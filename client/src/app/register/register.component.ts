@@ -44,10 +44,10 @@ export class RegisterComponent implements OnInit {
     console.log('On Submit');
     this.submitted = true;
     if (this.registerForm.invalid) {
-      console.log('Invalid Form')
+      console.log('Invalid Form');
       return;
     }
-    console.log('Valid Form')
+    console.log('Valid Form');
     this.loading = true;
     this.userService.register(this.registerForm.value)
       .pipe(first())

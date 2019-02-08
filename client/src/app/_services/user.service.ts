@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Globals} from '../globals';
 import {User} from '../_models/user';
-import {config} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({

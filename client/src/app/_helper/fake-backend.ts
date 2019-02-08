@@ -11,6 +11,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // array in local storage for registered users
     const users: any[] = JSON.parse(localStorage.getItem('users')) || [];
+    const vehicles: any[] = JSON.parse(localStorage.getItem('vehicles')) || [];
 
     // wrap in delayed observable to simulate server api call
     return of(null).pipe(mergeMap(() => {
@@ -111,6 +112,75 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           // return 401 not authorised if token is null or invalid
           return throwError({ status: 401, error: { message: 'Unauthorised' } });
         }
+      }
+
+      // get vehicles
+      if (request.url.endsWith('/vehicles') && request.method === 'GET') {
+        // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
+        if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+          return of(new HttpResponse({ status: 200, body: vehicles }));
+        } else {
+          // return 401 not authorised if token is null or invalid
+          return throwError({ status: 401, error: { message: 'Unauthorised' } });
+        }
+      }
+
+      // get vehicle by id
+      if (request.url.match(/\/vehicles\/\d+$/) && request.method === 'GET') {
+        // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
+        if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+          // find user by id in users array
+          const urlParts = request.url.split('/');
+          const id = parseInt(urlParts[urlParts.length - 1]);
+          const matchedVehicles = vehicles.filter(vehicle => vehicle.id === id);
+          const vehicle = matchedVehicles.length ? matchedVehicles[0] : null;
+          vehicle.href = request.url;
+          return of(new HttpResponse({ status: 200, body: vehicle }));
+        } else {
+          // return 401 not authorised if token is null or invalid
+          return throwError({ status: 401, error: { message: 'Unauthorised' } });
+        }
+      }
+
+      // Edit name of vehicle
+      if (request.url.match(/\/vehicles\/\d+$/) && request.method === 'PUT') {
+        const newVehicle = request.body;
+        // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
+        if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+          const urlParts = request.url.split('/');
+          const id = parseInt(urlParts[urlParts.length - 1]);
+          for (let i = 0; i < users.length; i++) {
+            const vehicle = vehicles[i];
+            if (vehicle.id === id) {
+              vehicles[i].name = newVehicle.name
+              localStorage.setItem('vehicles', JSON.stringify(vehicles));
+              break;
+            }
+          }
+          return of(new HttpResponse({ status: 200, body: vehicles }));
+        } else {
+          // return 401 not authorised if token is null or invalid
+          return throwError({ status: 401, error: { message: 'Unauthorised' } });
+        }
+      }
+
+      // Add vehicle
+      if (request.url.endsWith('/vehicles/add') && request.method === 'POST') {
+        const newVehicle = request.body;
+
+        // validation
+        const duplicateVehicle = vehicles.filter(vehicle => vehicle.name === newVehicle.name).length;
+        if (duplicateVehicle) {
+          return throwError({ error: { message: 'Vehicle "' + newVehicle.name + '" already exists' } });
+        }
+
+        // save new vehicle
+        newVehicle.id = vehicles.length + 1;
+        vehicles.push(newVehicle);
+        localStorage.setItem('vehicles', JSON.stringify(vehicles));
+
+        // respond 200 OK
+        return of(new HttpResponse({ status: 200 }));
       }
 
       // pass through any requests not handled above

@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-title>Hi {{currentUser.firstName}}!</mat-card-title>
+  <p>You're logged in with Angular 7!!</p>
+  <h3 mat-line>All registered users:</h3>
+  <mat-list>
+    <mat-list-item *ngFor="let user of users">
+      {{user.username}} ({{user.firstName}} {{user.lastName}})
+      <a mat-flat-button (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+    </mat-list-item>
+  </mat-list>
+</mat-card>
+
+<ul>
+
+</ul>

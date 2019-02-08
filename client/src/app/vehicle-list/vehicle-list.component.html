@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-title>Vehicle List</mat-card-title>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let vehicle of vehicles">
+          <a mat-flat-button [routerLink]="['/vehicle-edit', vehicle.id]">{{vehicle.id}}. {{vehicle.name}}</a>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+
+  <button mat-fab color="primary" [routerLink]="['/vehicle-add']">Add</button>
+</mat-card>

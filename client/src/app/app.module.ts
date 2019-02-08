@@ -6,7 +6,6 @@ import { fakeBackendProvider } from './_helper/fake-backend';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { VehicleComponent } from './vehicle/vehicle.component';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { LoginComponent } from './login/login.component';
 import {MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule} from '@angular/material';
@@ -14,15 +13,19 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Globals} from './globals';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { VehicleEditComponent } from './vehicle-edit/vehicle-edit.component';
+import { HomeComponent } from './home/home.component';
+import {JwtInterceptor} from "./_helper/jwt.interceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
-    VehicleComponent,
     VehicleListComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    VehicleEditComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserAnimationsModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     fakeBackendProvider,
     Globals
   ],
