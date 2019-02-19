@@ -5,12 +5,15 @@ import {AuthenticationService} from "../_services/authentication.service";
 import {User} from "../_models/user";
 import {Subscription} from "rxjs";
 
+
+// TODO fiks 401-error unauthorized eternal refresh hvis man ikke er logget inn
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
 
   currentUser: User;
   currentUserSubscription: Subscription;
@@ -18,7 +21,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private userService: UserService
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -26,24 +28,5 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loadAllUsers();
   }
-
-  ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks
-    this.currentUserSubscription.unsubscribe();
-  }
-
-  deleteUser(id: number) {
-    this.userService.delete(id).pipe(first()).subscribe(() => {
-      this.loadAllUsers()
-    });
-  }
-
-  private loadAllUsers() {
-    this.userService.getAll().pipe(first()).subscribe(users => {
-      this.users = users;
-    });
-  }
-
 }

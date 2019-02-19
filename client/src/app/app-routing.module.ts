@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {VehicleListComponent} from "./vehicle-list/vehicle-list.component";
-import {VehicleEditComponent} from "./vehicle-edit/vehicle-edit.component";
-import {HomeComponent} from "./home/home.component";
+import {VehicleListComponent} from './vehicle-list/vehicle-list.component';
+import {VehicleEditComponent} from './vehicle-edit/vehicle-edit.component';
+import {HomeComponent} from './home/home.component';
+import {UserAdminComponent} from './user-admin/user-admin.component';
 
 const routes: Routes = [];
 
@@ -17,6 +18,7 @@ const routes: Routes = [];
     { path: 'vehicle-add', component: VehicleEditComponent},
     { path: 'vehicle-edit', component: VehicleEditComponent},
     { path: 'vehicle-edit/:id', component: VehicleEditComponent},
+    { path: 'user-admin', component: UserAdminComponent},
     { path: '**', redirectTo: '' }
   ])],
   exports: [RouterModule]

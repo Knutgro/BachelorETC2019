@@ -149,11 +149,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
           const urlParts = request.url.split('/');
           const id = parseInt(urlParts[urlParts.length - 1]);
+          const items = JSON.parse(localStorage.getItem('vehicles'));
           for (let i = 0; i < users.length; i++) {
-            const vehicle = vehicles[i];
+            const vehicle = items[i];
             if (vehicle.id === id) {
-              vehicles[i].name = newVehicle.name
-              localStorage.setItem('vehicles', JSON.stringify(vehicles));
+              items[i].name = newVehicle.name;
+              localStorage.setItem('vehicles', JSON.stringify(items));
               break;
             }
           }

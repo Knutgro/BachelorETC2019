@@ -5,8 +5,14 @@
       <mat-list-item *ngFor="let vehicle of vehicles">
           <a mat-flat-button [routerLink]="['/vehicle-edit', vehicle.id]">{{vehicle.id}}. {{vehicle.name}}</a>
       </mat-list-item>
+      <!--<mat-paginator [length]="length"
+                     [pageSize]="pageSize"
+                     [pageSizeOptions]="pageSizeOptions"
+                     (page)="pageEvent = $event">
+      </mat-paginator>-->
     </mat-list>
+    <button mat-fab color="primary" [routerLink]="['/vehicle-add']">Add</button>
+
   </mat-card-content>
 
-  <button mat-fab color="primary" [routerLink]="['/vehicle-add']">Add</button>
 </mat-card>

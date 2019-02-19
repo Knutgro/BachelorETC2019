@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {VehicleService} from "../_services/vehicle.service";
 import {NgForm} from "@angular/forms";
+import {AlertService} from '../_services/alert.service';
 
 @Component({
   selector: 'app-vehicle-edit',
@@ -17,6 +18,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private vehicleService: VehicleService,
+              private alertService: AlertService
               ) {
   }
 
@@ -28,10 +30,11 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
           if (vehicle) {
             this.vehicle = vehicle;
             console.log(this.vehicle);
-            //this.vehicle.href = vehicle._links.self.href;
+            this.vehicle.href = vehicle._links.self.href;
             console.log('Vehicle foundd');
           } else {
-            console.log(`vehicle with id '${id}' not found, returning to list`);
+            // console.log(`vehicle with id '${id}' not found, returning to list`);
+            this.alertService.error(`vehicle with id '${id}' not found, returning to list`);
             this.gotoList();
           }
         });
@@ -50,12 +53,12 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   save(form: NgForm) {
     this.vehicleService.save(form).subscribe(result => {
       this.gotoList();
-    }, error => console.error(error));
+    }, error => this.alertService.error(error));
   }
 
   remove(href) {
     this.vehicleService.remove(href).subscribe(result => {
       this.gotoList();
-    }, error => console.error(error));
+    }, error => this.alertService.error(error));
   }
 }
