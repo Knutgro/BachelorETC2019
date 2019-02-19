@@ -1,0 +1,10 @@
+.center-card{
+  text-align: center;
+}
+
+.register-card {
+  margin: auto;
+  margin-top: 15%;
+  text-align: left;
+  display: inline-block;
+}
