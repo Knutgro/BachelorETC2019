@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     console.log('Login On init');
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      login: ['', Validators.required], // TODO change to username
       password: ['', Validators.required]
     });
 
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
+    this.authenticationService.login(this.f.login.value, this.f.password.value) // todo change login to username
       .pipe(first())
       .subscribe(
         data => {

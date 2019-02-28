@@ -5,7 +5,7 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
           <mat-label>Username</mat-label>
-          <input matInput type="text" formControlName="username" required/>
+          <input matInput type="text" formControlName="login" required/> <!-- TODO formControlName="username" -->
         </mat-form-field>
         <mat-form-field>
           <mat-label>Password</mat-label>
