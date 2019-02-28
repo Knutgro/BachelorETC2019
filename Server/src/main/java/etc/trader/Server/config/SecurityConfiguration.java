@@ -1,10 +1,10 @@
 package etc.trader.Server.config;
 
-import etc.trader.Server.security.*;
-
+import etc.trader.Server.security.AuthoritiesConstants;
 import io.github.jhipster.config.JHipsterProperties;
-import io.github.jhipster.security.*;
-
+import io.github.jhipster.security.AjaxAuthenticationFailureHandler;
+import io.github.jhipster.security.AjaxAuthenticationSuccessHandler;
+import io.github.jhipster.security.AjaxLogoutSuccessHandler;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,10 +20,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.web.filter.CorsFilter;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
 import javax.annotation.PostConstruct;
@@ -47,13 +44,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final SecurityProblemSupport problemSupport;
 
     public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService,
-                                 JHipsterProperties jHipsterProperties, /*RememberMeServices rememberMeServices, CorsFilter corsFilter,*/ SecurityProblemSupport problemSupport) {
+                                 JHipsterProperties jHipsterProperties, SecurityProblemSupport problemSupport) {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDetailsService = userDetailsService;
         this.jHipsterProperties = jHipsterProperties;
-        /*this.rememberMeServices = rememberMeServices;
-        this.corsFilter = corsFilter;
-        */
+       // this.corsFilter = corsFilter;
         this.problemSupport = problemSupport;
     }
 
@@ -111,18 +106,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .and()
-                /*
-                .addFilterBefore(corsFilter, CsrfFilter.class)
                 .exceptionHandling()
                 .authenticationEntryPoint(problemSupport)
                 .accessDeniedHandler(problemSupport)
                 .and()
-                .rememberMe()
-                .rememberMeServices(rememberMeServices)
-                .rememberMeParameter("remember-me")
-                .key(jHipsterProperties.getSecurity().getRememberMe().getKey())
-                .and()
-                */
                 .formLogin()
                 .loginProcessingUrl("/api/authentication")
                 .successHandler(ajaxAuthenticationSuccessHandler())
@@ -150,14 +137,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN);
 
     }
-
-    /*
-    @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
-        db.setDataSource(dataSource);
-
-        return db;
-    }
-    */
 }
