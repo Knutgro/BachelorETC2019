@@ -18,8 +18,8 @@ export class ErrorInterceptor implements HttpInterceptor {
       if (err.status === 401) {
         // auto logout if 401 response returned from api
         this.authenticationService.logout();
-        this.router.navigate(['/']);
-//        location.reload(true);
+        // this.router.navigate(['/']);
+        // location.reload(true);
         // TODO se nærmere på dette, skal reloade?
       }
 

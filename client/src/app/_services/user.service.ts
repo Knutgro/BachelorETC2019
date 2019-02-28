@@ -10,6 +10,8 @@ export class UserService {
 
   constructor(private http: HttpClient, private globals: Globals) { }
 
+
+
   getAll() {
     return this.http.get<User[]>(`${this.globals.apiUrl}/users`);
   }
@@ -20,7 +22,7 @@ export class UserService {
 
   register(user: User) {
     console.log(this.globals.apiUrl);
-    return this.http.post(`${this.globals.apiUrl}/users/register`, user);
+    return this.http.post(`${this.globals.apiUrl}/register`, user);
   }
 
   update(user: User) {

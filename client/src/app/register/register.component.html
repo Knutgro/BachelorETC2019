@@ -15,12 +15,12 @@
         <br>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput type="text" formControlName="email" required/>
+          <input matInput type="email" formControlName="email" ngModel email required/>
         </mat-form-field>
         <br>
         <mat-form-field>
           <mat-label>Username</mat-label>
-          <input matInput type="text" formControlName="username" required/>
+          <input matInput type="text" formControlName="login" required/> <!-- TODO formControlName="username"-->
         </mat-form-field>
         <br>
         <mat-form-field>

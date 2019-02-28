@@ -62,7 +62,7 @@ import { UserAdminComponent } from './user-admin/user-admin.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider,
+    // fakeBackendProvider,
     Globals
   ],
   bootstrap: [AppComponent]

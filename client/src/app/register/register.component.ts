@@ -33,8 +33,8 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      username: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
+      login: ['', Validators.required], // TODO username
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
     console.log('After Init');
@@ -43,13 +43,11 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
-    console.log('On Submit');
     this.submitted = true;
     if (this.registerForm.invalid) {
       console.log('Invalid Form');
       return;
     }
-    console.log('Valid Form');
     this.loading = true;
     this.userService.register(this.registerForm.value)
       .pipe(first())
@@ -63,6 +61,5 @@ export class RegisterComponent implements OnInit {
           this.alertService.error(error);
           this.loading = false;
         });
-    console.log('On Submit after');
   }
 }
