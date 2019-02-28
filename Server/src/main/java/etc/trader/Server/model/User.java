@@ -4,18 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import etc.trader.Server.config.Constants;
 import lombok.*;
 import org.hibernate.annotations.BatchSize;
-import javax.validation.constraints.Email;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
-import java.time.Instant;
 
 /**
  * A user.
@@ -103,4 +100,21 @@ public class User implements Serializable {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany
+    @JoinTable(
+        name = "vechical",
+        joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "vehicle_id", referencedColumnName = "id")})
+    private Set<Vehicle> vehicles = new HashSet<>();
+    /*
+    @JsonIgnore
+    @OneToMany
+    @JoinTable(
+            name = "listing",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "listing_id", referencedColumnName = "id")})
+    private Set<Listing> listings = new HashSet<>();
+    */
 }
+
