@@ -142,9 +142,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
       }
 
-      // Edit name of vehicle
+      // Edit vehicle
       if (request.url.match(/\/vehicles\/\d+$/) && request.method === 'PUT') {
         const newVehicle = request.body;
+        console.log(newVehicle);
         // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
           const urlParts = request.url.split('/');
@@ -154,6 +155,19 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const vehicle = items[i];
             if (vehicle.id === id) {
               items[i].name = newVehicle.name;
+              items[i].nick = newVehicle.nick;
+              items[i].color = newVehicle.color;
+              items[i].make = newVehicle.make;
+              items[i].tires = newVehicle.tires;
+              items[i].maxFuel = newVehicle.maxFuel;
+              items[i].chassisID = newVehicle.chassisID;
+              items[i].maxKmTank = newVehicle.maxKmTank;
+              items[i].fuelSystem = newVehicle.fuelSystem;
+              items[i].gearSystem = newVehicle.gearSystem;
+              items[i].drive = newVehicle.drive;
+              items[i].interior = newVehicle.interior;
+              items[i].barcode = newVehicle.barcode;
+              items[i].mileage = newVehicle.mileage;
               localStorage.setItem('vehicles', JSON.stringify(items));
               break;
             }

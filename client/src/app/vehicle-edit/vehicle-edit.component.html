@@ -5,23 +5,20 @@
     </mat-card-header>
     <mat-card-content>
       <input type="hidden" name="href" [(ngModel)]="vehicle.href">
-      <mat-form-field>
-        <input matInput placeholder="Vehicle Name" [(ngModel)]="vehicle.name" required name="name" #name>
-      </mat-form-field>
-      <mat-list role="list">
-        <mat-list-item role="listitem">Color: {{vehicle.color}}</mat-list-item>
-        <mat-list-item role="listitem">Make :{{vehicle.make}}</mat-list-item>
-        <mat-list-item role="listitem">Tires: {{vehicle.tires}}</mat-list-item>
-        <mat-list-item role="listitem">Max fuel: {{vehicle.maxFuel}}</mat-list-item>
-        <mat-list-item role="listitem">Chassis id: {{vehicle.chassisID}}</mat-list-item>
-        <mat-list-item role="listitem">Max km on full tank: {{vehicle.maxKmTank}}</mat-list-item>
-        <mat-list-item role="listitem">Fuelsystem: {{vehicle.fuelSystem}}</mat-list-item>
-        <mat-list-item role="listitem">Gearsystem: {{vehicle.gearSystem}}</mat-list-item>
-        <mat-list-item role="listitem">Drive: {{vehicle.drive}}</mat-list-item>
-        <mat-list-item role="listitem">Interior: {{vehicle.interior}}</mat-list-item>
-        <mat-list-item role="listitem">Barcode: {{vehicle.barcode}}</mat-list-item>
-        <mat-list-item role="listitem">Mileage: {{vehicle.mileage}}</mat-list-item>
-      </mat-list>
+      <mat-form-field><input matInput placeholder="Name" [(ngModel)]="vehicle.name" required name="name" #name></mat-form-field>&nbsp;
+      <mat-form-field><input matInput placeholder="Nick" [(ngModel)]="vehicle.nick" required name="nick" #nick></mat-form-field><br>
+      <mat-form-field><input matInput placeholder="Color" [(ngModel)]="vehicle.color" required name="color" #color></mat-form-field>&nbsp;
+      <mat-form-field><input matInput placeholder="Make" [(ngModel)]="vehicle.make" required name="make" #make></mat-form-field><br>
+      <mat-form-field><input matInput placeholder="Tires" [(ngModel)]="vehicle.tires" required name="tires" #tires></mat-form-field>&nbsp;
+      <mat-form-field><input matInput placeholder="Max Fuel" [(ngModel)]="vehicle.maxFuel" required name="maxFuel" #maxFuel></mat-form-field><br>
+      <mat-form-field><input matInput placeholder="Chassis ID" [(ngModel)]="vehicle.chassisID" required name="chassisID" #chassisID></mat-form-field>&nbsp;
+      <mat-form-field><input matInput placeholder="Max km" [(ngModel)]="vehicle.maxKmTank" required name="maxKmTank" #maxKmTank></mat-form-field><br>
+      <mat-form-field><input matInput placeholder="Fuelsystem" [(ngModel)]="vehicle.fuelSystem" required name="fuelSystem" #fuelSystem></mat-form-field>&nbsp;
+      <mat-form-field><input matInput placeholder="Gearsystem" [(ngModel)]="vehicle.gearSystem" required name="gearSystem" #gearSystem></mat-form-field><br>
+      <mat-form-field><input matInput placeholder="Drive" [(ngModel)]="vehicle.drive" required name="drive" #drive></mat-form-field>&nbsp;
+      <mat-form-field><input matInput placeholder="Interior" [(ngModel)]="vehicle.interior" required name="interior" #interior></mat-form-field><br>
+      <mat-form-field><input matInput placeholder="Barcode" [(ngModel)]="vehicle.barcode" required name="barcode" #barcode></mat-form-field>&nbsp;
+      <mat-form-field><input matInput placeholder="Mileage" [(ngModel)]="vehicle.mileage" required name="mileage" #mileage></mat-form-field>
       <alert></alert>
     </mat-card-content>
     <mat-card-actions>
