@@ -30,6 +30,7 @@ import {FooterComponent} from './footer/footer.component';
 import {ErrorInterceptor} from './_helper/error.interceptor';
 import { AlertComponent } from './_components/alert.component';
 import { UserAdminComponent } from './user-admin/user-admin.component';
+import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UserAdminComponent } from './user-admin/user-admin.component';
     HeaderComponent,
     FooterComponent,
     AlertComponent,
-    UserAdminComponent
+    UserAdminComponent,
+    VehicleDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import { UserAdminComponent } from './user-admin/user-admin.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // fakeBackendProvider,
+    fakeBackendProvider,
     Globals
   ],
   bootstrap: [AppComponent]

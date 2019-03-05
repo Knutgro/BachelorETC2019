@@ -6,6 +6,7 @@ import {VehicleListComponent} from './vehicle-list/vehicle-list.component';
 import {VehicleEditComponent} from './vehicle-edit/vehicle-edit.component';
 import {HomeComponent} from './home/home.component';
 import {UserAdminComponent} from './user-admin/user-admin.component';
+import {VehicleDetailComponent} from './vehicle-detail/vehicle-detail.component';
 
 const routes: Routes = [];
 
@@ -19,6 +20,7 @@ const routes: Routes = [];
     { path: 'vehicle-edit', component: VehicleEditComponent},
     { path: 'vehicle-edit/:id', component: VehicleEditComponent},
     { path: 'user-admin', component: UserAdminComponent},
+    { path: 'vehicle-detail/:id', component: VehicleDetailComponent},
     { path: '**', redirectTo: '' }
   ])],
   exports: [RouterModule]

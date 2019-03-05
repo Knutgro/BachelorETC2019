@@ -31,7 +31,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
             this.vehicle = vehicle;
             console.log(this.vehicle);
             this.vehicle.href = vehicle._links.self.href;
-            console.log('Vehicle foundd');
+            console.log('Vehicle found');
           } else {
             // console.log(`vehicle with id '${id}' not found, returning to list`);
             this.alertService.error(`vehicle with id '${id}' not found, returning to list`);

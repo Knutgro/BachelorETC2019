@@ -17,7 +17,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     return of(null).pipe(mergeMap(() => {
 
       // authenticate
-      if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
+      if (request.url.endsWith('/authentication') && request.method === 'POST') {
         // find if any user matches login credentials
         const filteredUsers = users.filter(user => {
           return user.username === request.body.username && user.password === request.body.password;
@@ -70,7 +70,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       }
 
       // register user
-      if (request.url.endsWith('/users/register') && request.method === 'POST') {
+      if (request.url.endsWith('/register') && request.method === 'POST') {
         // get new user object from post body
         const newUser = request.body;
 
