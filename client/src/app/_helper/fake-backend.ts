@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import {NgxGalleryImage} from 'ngx-gallery';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
-
+  images: any[] = [];
   constructor() { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // array in local storage for registered users
     const users: any[] = JSON.parse(localStorage.getItem('users')) || [];
     const vehicles: any[] = JSON.parse(localStorage.getItem('vehicles')) || [];
-
+    let galleryImages: Blob[];
     // wrap in delayed observable to simulate server api call
     return of(null).pipe(mergeMap(() => {
 
@@ -196,6 +197,24 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // respond 200 OK
         return of(new HttpResponse({ status: 200 }));
+      }
+
+      if (request.url.match(/\/images\/\d+$/) && request.method === 'GET') {
+        /*const reader = new FileReader();
+        reader.addEventListener('load', () => {
+          this.image = reader.result;
+        }
+        const gallery = new Blob([URL.createObjectURL('assets/1-car.png')], {type: 'image/png'});*/
+
+        this.images = [
+          {
+            url: 'assets/1-car.png'
+          },
+          {
+            url: 'assets/2-car.jpg'
+          }
+         ];
+        return of(new HttpResponse({ status: 200, body: this.images }));
       }
 
       // pass through any requests not handled above

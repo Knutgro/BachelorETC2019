@@ -28,7 +28,7 @@ export class VehicleDetailComponent implements OnInit {
           if (vehicle) {
             this.vehicle = vehicle;
             console.log(this.vehicle);
-            this.vehicle.href = vehicle._links.self.href;
+            this.vehicle.href = vehicle.href;
             console.log('Vehicle found');
           } else {
             // console.log(`vehicle with id '${id}' not found, returning to list`);

@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import 'hammerjs';
 import { fakeBackendProvider } from './_helper/fake-backend';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
@@ -11,25 +9,28 @@ import { LoginComponent } from './login/login.component';
 import {
   MatButtonModule,
   MatCardModule,
+  MatGridListModule,
   MatInputModule,
   MatListModule,
   MatPaginatorModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {Globals} from './globals';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Globals } from './globals';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { VehicleEditComponent } from './vehicle-edit/vehicle-edit.component';
 import { HomeComponent } from './home/home.component';
-import {JwtInterceptor} from './_helper/jwt.interceptor';
-import {HeaderComponent} from './header/header.component';
-import {FooterComponent} from './footer/footer.component';
-import {ErrorInterceptor} from './_helper/error.interceptor';
+import { JwtInterceptor } from './_helper/jwt.interceptor';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { ErrorInterceptor } from './_helper/error.interceptor';
 import { AlertComponent } from './_components/alert.component';
 import { UserAdminComponent } from './user-admin/user-admin.component';
+import { NgxGalleryModule } from 'ngx-gallery';
+import { VehicleGalleryComponent } from './vehicle-gallery/vehicle-gallery.component';
 import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.component';
 
 @NgModule({
@@ -39,17 +40,20 @@ import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.componen
     LoginComponent,
     RegisterComponent,
     VehicleEditComponent,
+    VehicleDetailComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
     AlertComponent,
     UserAdminComponent,
-    VehicleDetailComponent
+    VehicleGalleryComponent
   ],
   imports: [
+    NgxGalleryModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    MatGridListModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,

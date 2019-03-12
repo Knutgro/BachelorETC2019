@@ -3,6 +3,7 @@
     <!--  <span>HOME</span> -->
     <a mat-button routerLink="/">Home</a>
     <span class="fillSpace"></span>
+    <a mat-button routerLink="/vehicle-gallery-test">GalleryTest</a> <!-- TODO remove -->
     <a mat-button routerLink="/register" *ngIf="!currentUser">Register</a>
     <a mat-button routerLink="/login" *ngIf="!currentUser">Login</a>
     <a mat-button (click)="logout()" *ngIf="currentUser">Logout</a>
