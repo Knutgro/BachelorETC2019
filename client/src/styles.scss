@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./theme.scss";
+
+.center-card {
+  width: 100%;
+  text-align: center;
+}
+
+/* LEFT align */
+.mat-list .mat-list-item.left .mat-list-item-content{
+   // justify-content: flex-start;
+  // float: left;
+}
+
+/* RIGHT align */
+.mat-list .mat-list-item.right .mat-list-item-content{
+  //justify-content: flex-end;
+}
+
+/* For compability with ngx-gallery */
+.mat-sidenav-container, .mat-sidenav-content, .mat-tab-body-content {
+  transform: none !important;
+}

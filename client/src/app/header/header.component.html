@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <!--  <span>HOME</span> -->
+    <a mat-button routerLink="/">Home</a>
+    <span class="fillSpace"></span>
+    <a mat-button routerLink="/register" *ngIf="!currentUser">Register</a>
+    <a mat-button routerLink="/login" *ngIf="!currentUser">Login</a>
+    <a mat-button (click)="logout()" *ngIf="currentUser">Logout</a>
+    <a mat-button routerLink="/vehicle-list" *ngIf="currentUser">Vehicles</a>
+    <a mat-button routerLink="/user-admin" *ngIf="currentUser">Administrate</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
