@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { LoginComponent } from './login/login.component';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatCheckboxModule,
+  MatChipsModule,
+  MatFormFieldModule,
   MatGridListModule,
+  MatIconModule,
   MatInputModule,
   MatListModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatSidenavModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
@@ -32,6 +36,8 @@ import { UserAdminComponent } from './user-admin/user-admin.component';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { VehicleGalleryComponent } from './vehicle-gallery/vehicle-gallery.component';
 import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -46,12 +52,13 @@ import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.componen
     FooterComponent,
     AlertComponent,
     UserAdminComponent,
-    VehicleGalleryComponent
+    VehicleGalleryComponent,
+    SearchBarComponent,
+    SearchResultComponent
   ],
   imports: [
     NgxGalleryModule,
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
     MatGridListModule,
     MatButtonModule,
@@ -59,11 +66,19 @@ import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.componen
     MatInputModule,
     MatListModule,
     MatToolbarModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatAutocompleteModule,
+    MatIconModule,
+    MatChipsModule,
+    MatInputModule,
+    HttpClientModule,
+    MatSidenavModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

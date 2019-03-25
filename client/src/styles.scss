@@ -1,20 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./theme.scss";
+@import url( 'https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');
 
 .center-card {
   width: 100%;
   text-align: center;
-}
-
-/* LEFT align */
-.mat-list .mat-list-item.left .mat-list-item-content{
-   // justify-content: flex-start;
-  // float: left;
-}
-
-/* RIGHT align */
-.mat-list .mat-list-item.right .mat-list-item-content{
-  //justify-content: flex-end;
 }
 
 /* For compability with ngx-gallery */

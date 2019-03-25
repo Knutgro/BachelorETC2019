@@ -9,6 +9,8 @@ import {Observable} from "rxjs";
 })
 export class VehicleService {
 
+  public vehicleData: Vehicle[];
+  searchOption = [];
   constructor(private http: HttpClient, private globals: Globals) { }
 
   save(vehicle: any): Observable<any> {
@@ -31,5 +33,19 @@ export class VehicleService {
 
   remove(href: string) {
     return this.http.delete(href);
+  }
+
+  filteredListOptions() {
+    const vehicles = this.vehicleData;
+    const filteredVehiclesList = [];
+    for (const vehicle of vehicles) {
+      for (const options of this.searchOption) {
+        if (options.name === vehicle.name) {
+          filteredVehiclesList.push(vehicle);
+        }
+      }
+    }
+    console.log(filteredVehiclesList);
+    return filteredVehiclesList;
   }
 }
