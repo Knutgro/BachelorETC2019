@@ -20,7 +20,7 @@
         "serviceDiscoveryType": "eureka",
         "buildTool": "maven",
         "enableSwaggerCodegen": false,
-        "jwtSecretKey": "NTBmMjI1YjllNGJmN2FhOTFmOGZhMTMwMjIxNDUzYzcyNWEwNjU1ZWUxYjA2Y2Y1N2E4MTIzNTA3NDk5Y2RkYzFiMmJkNmViN2MzOWVhNTE5MTQxYjg2NzQ3MzY4MjAyMjI2MGQwMTlkOThhYzcyNzM5OTc0ZDE3ZGVkNTBhYTk=",
+        "jwtSecretKey": "YjEyNGRjODRjMWMyZmU2MTg1NDhjMTY5ZjQ0OTQzNzRlZjc5ZDQxMzI4MWYyMWY2MTg4MTVlZGI2ZmNlNzFmNjA1MjE4NTNlODY5MWVkNzliOGUyYzhkNzIwOWExOGY3YjljMzQwNmE3NjNiNjFkOTNmMjE1NDQwYjU0OWZkNWM=",
         "clientFramework": "angularX",
         "useSass": false,
         "clientPackageManager": "npm",
