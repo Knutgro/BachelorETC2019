@@ -1,0 +1,34 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "com.etc.trader"
+        },
+        "jhipsterVersion": "5.8.2",
+        "applicationType": "monolith",
+        "baseName": "trader",
+        "packageName": "com.etc.trader",
+        "packageFolder": "com/etc/trader",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "no",
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "mariadb",
+        "prodDatabaseType": "mariadb",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": "eureka",
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "NTBmMjI1YjllNGJmN2FhOTFmOGZhMTMwMjIxNDUzYzcyNWEwNjU1ZWUxYjA2Y2Y1N2E4MTIzNTA3NDk5Y2RkYzFiMmJkNmViN2MzOWVhNTE5MTQxYjg2NzQ3MzY4MjAyMjI2MGQwMTlkOThhYzcyNzM5OTc0ZDE3ZGVkNTBhYTk=",
+        "clientFramework": "angularX",
+        "useSass": false,
+        "clientPackageManager": "npm",
+        "testFrameworks": [],
+        "jhiPrefix": "jhi",
+        "entitySuffix": "",
+        "dtoSuffix": "DTO",
+        "otherModules": [],
+        "enableTranslation": false
+    }
+}
