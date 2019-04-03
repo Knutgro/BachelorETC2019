@@ -28,7 +28,8 @@ public class Region implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "regions")
+    //@ManyToMany(mappedBy = "regions")
+    @ManyToMany
     @JsonIgnore
     private Set<Company> companies = new HashSet<>();
 

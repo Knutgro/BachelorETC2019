@@ -31,10 +31,14 @@ public class Model implements Serializable {
     @Column(name = "m_year")
     private Integer year;
 
-    @OneToMany(mappedBy = "model")
+    //@OneToMany(mappedBy = "model")
+    @OneToMany
     private Set<Vehicle> vehicles = new HashSet<>();
-    @OneToMany(mappedBy = "model")
+
+    //@OneToMany(mappedBy = "model")
+    @OneToMany
     private Set<TypeData> typeData = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties("models")
     private Brand brand;

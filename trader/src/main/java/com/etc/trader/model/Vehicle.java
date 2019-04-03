@@ -1,6 +1,5 @@
 package com.etc.trader.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -95,9 +94,12 @@ public class Vehicle implements Serializable {
     @Column(name = "insurance_partner")
     private String insurancePartner;
 
-    @OneToMany(mappedBy = "vehicle")
+    //@OneToMany(mappedBy = "vehicle")
+    @OneToMany
     private Set<VehicleAlbum> vehicleAlbums = new HashSet<>();
-    @OneToOne(mappedBy = "vehicle")
+
+    //@OneToOne(mappedBy = "vehicle")
+    @OneToOne
     @JsonIgnore
     private Listing listing;
 

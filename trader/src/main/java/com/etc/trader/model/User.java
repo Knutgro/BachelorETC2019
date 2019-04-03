@@ -1,6 +1,8 @@
 package com.etc.trader.model;
 
 import com.etc.trader.security.Constants;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.NaturalId;
@@ -59,13 +61,15 @@ public class User {
     @Size(min=3, max = 256)
     private String imageUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JsonIgnoreProperties("user")
     private Company company;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @BatchSize(size = 20)
     private Set<Role> roles = new HashSet<>();
 
 

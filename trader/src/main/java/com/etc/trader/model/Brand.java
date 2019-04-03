@@ -30,7 +30,8 @@ public class Brand implements Serializable {
     @Column(name = "origin")
     private String origin;
 
-    @OneToMany(mappedBy = "brand")
+    //@OneToMany(mappedBy = "brand")
+    @OneToMany
     private Set<Model> models = new HashSet<>();
 
 }
