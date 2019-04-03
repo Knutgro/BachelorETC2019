@@ -122,8 +122,8 @@ public class AccountResource {
     public CustomUserDetails getAuthenticatedUser(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtProvider.getUserNameFromJwtToken(token);
-        CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(username);
-        return user;
+        return (CustomUserDetails) userDetailsService.loadUserByUsername(username);
+        //return user;
     }
 
     @RequestMapping("updateUser")
