@@ -18,37 +18,55 @@ import java.io.Serializable;
 public class TypeData implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "body_style")
-    private String bodyStyle;
+    @Column(name = "type_name")
+    private String typeName;
 
-    @Column(name = "trim_level")
-    private String trimLevel;
+    @Column(name = "body_type")
+    private String bodyType;
 
-    @Column(name = "list_price")
-    private Long listPrice;
+    @Column(name = "engine_effect")
+    private Long engineEffect;
 
-    @Column(name = "effect")
-    private Double effect;
+    @Column(name = "engine_volume")
+    private Long engineVolume;
 
-    @Column(name = "range")
-    private Double range;
+    @Column(name = "fuel")
+    private String fuel;
+
+    @Column(name = "m_range")
+    private Long range;
 
     @Column(name = "battery_capacity")
-    private Double batteryCapacity;
+    private Long batteryCapacity;
 
-    @Column(name = "co_2")
-    private Double co2;
+    @Column(name = "co2")
+    private Long co2;
 
     @Column(name = "nox")
-    private Double nox;
+    private Long nox;
 
-    @Column(name = "engine_type")
-    private String engineType;
+    @Column(name = "transmission")
+    private String transmission;
+
+    @Column(name = "wheel_drive")
+    private String wheelDrive;
+
+    @Column(name = "size_of_boot")
+    private Long sizeOfBoot;
+
+    @Column(name = "weight")
+    private Long weight;
+
+    @Column(name = "no_of_doors")
+    private Long noOfDoors;
+
+    @Column(name = "no_of_seats")
+    private Long noOfSeats;
 
     @ManyToOne
     @JsonIgnoreProperties("typeData")

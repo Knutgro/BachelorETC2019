@@ -21,7 +21,7 @@ import java.util.Set;
 public class Vehicle implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,11 +29,44 @@ public class Vehicle implements Serializable {
     @Column(name = "nick")
     private String nick;
 
-    @Column(name = "color")
-    private String color;
+    @Column(name = "first_registration")
+    private String firstRegistration;
 
-    @Column(name = "make")
-    private String make;
+    @Column(name = "registration_class")
+    private String registrationClass;
+
+    @Column(name = "reg_no")
+    private String regNo;
+
+    @Column(name = "warranty")
+    private String warranty;
+
+    @Column(name = "warranty_duration")
+    private String warrantyDuration;
+
+    @Column(name = "warranty_distance")
+    private Long warrantyDistance;
+
+    @Column(name = "warranty_url")
+    private String warrantyUrl;
+
+    @Column(name = "car_premium")
+    private String carPremium;
+
+    @Column(name = "car_premium_link")
+    private String carPremiumLink;
+
+    @Column(name = "exterior_color_main")
+    private String exteriorColorMain;
+
+    @Column(name = "exterior_color")
+    private String exteriorColor;
+
+    @Column(name = "interior_color")
+    private String interiorColor;
+
+    @Column(name = "interior_type")
+    private String interiorType;
 
     @Column(name = "tires")
     private String tires;
@@ -47,23 +80,20 @@ public class Vehicle implements Serializable {
     @Column(name = "max_km_tank")
     private Long maxKmTank;
 
-    @Column(name = "fuel_system")
-    private String fuelSystem;
-
-    @Column(name = "gear_system")
-    private String gearSystem;
-
-    @Column(name = "drive")
-    private String drive;
-
-    @Column(name = "interior")
-    private String interior;
-
-    @Column(name = "barcode")
-    private String barcode;
-
     @Column(name = "mileage")
     private Long mileage;
+
+    @Column(name = "service_history")
+    private Boolean serviceHistory;
+
+    @Column(name = "service_plan_followed")
+    private Boolean servicePlanFollowed;
+
+    @Column(name = "finance_partner")
+    private String financePartner;
+
+    @Column(name = "insurance_partner")
+    private String insurancePartner;
 
     @OneToMany(mappedBy = "vehicle")
     private Set<VehicleAlbum> vehicleAlbums = new HashSet<>();

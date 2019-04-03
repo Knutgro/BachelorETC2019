@@ -34,5 +34,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Page<User> findAllByUsernameNot(Pageable pageable, String username);
 
-
+    Optional<User> findAllByCompany_id(Long id);
 }

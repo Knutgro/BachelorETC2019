@@ -135,6 +135,7 @@ public class AccountResource {
     }
 
 
+    @RequestMapping("")
 
     private static boolean checkPasswordLength(String password) {
         return !StringUtils.isEmpty(password) &&

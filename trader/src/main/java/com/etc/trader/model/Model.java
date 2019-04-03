@@ -28,7 +28,7 @@ public class Model implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "year")
+    @Column(name = "m_year")
     private Integer year;
 
     @OneToMany(mappedBy = "model")

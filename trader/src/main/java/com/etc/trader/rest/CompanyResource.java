@@ -103,6 +103,8 @@ public class CompanyResource {
         return ResponseUtil.wrapOrNotFound(company);
     }
 
+
+
     /**
      * DELETE  /companies/:id : delete the "id" company.
      *
