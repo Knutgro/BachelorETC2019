@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import 'hammerjs';
 import { fakeBackendProvider } from './_helper/fake-backend';
@@ -10,7 +10,7 @@ import {
   MatAutocompleteModule,
   MatButtonModule,
   MatCardModule, MatCheckboxModule,
-  MatChipsModule,
+  MatChipsModule, MatExpansionModule,
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
@@ -18,7 +18,7 @@ import {
   MatListModule,
   MatPaginatorModule, MatSidenavModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule, MatTreeModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -38,6 +38,9 @@ import { VehicleGalleryComponent } from './vehicle-gallery/vehicle-gallery.compo
 import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { VehicleAdComponent } from './vehicle-ad/vehicle-ad.component';
+import { SearchFilterComponent } from './search-filter/search-filter.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,9 @@ import { SearchResultComponent } from './search-result/search-result.component';
     UserAdminComponent,
     VehicleGalleryComponent,
     SearchBarComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    VehicleAdComponent,
+    SearchFilterComponent
   ],
   imports: [
     NgxGalleryModule,
@@ -78,13 +83,16 @@ import { SearchResultComponent } from './search-result/search-result.component';
     MatInputModule,
     HttpClientModule,
     MatSidenavModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FlexLayoutModule,
+    MatExpansionModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider,
-    Globals
+    Globals,
+    Title
   ],
   bootstrap: [AppComponent]
 })

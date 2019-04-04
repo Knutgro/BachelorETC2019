@@ -70,7 +70,7 @@ export class SearchBarComponent implements OnInit {
     }
     this.focusOnPlaceInput();
 
-    this.onSelectedOption.emit(this.vehicleService.searchOption)
+    this.onSelectedOption.emit(this.vehicleService.searchOption);
   }
 
   focusOnPlaceInput() {

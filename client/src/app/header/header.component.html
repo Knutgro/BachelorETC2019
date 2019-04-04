@@ -4,5 +4,7 @@
     <!--  <span>HOME</span> -->
     <a mat-button routerLink="/">Hjem</a>
     <span class="fillSpace"></span>
+    <a mat-button routerLink="/login" *ngIf="!currentUser">Logg inn</a>
+    <a mat-button (click)="logout()" *ngIf="currentUser">Logg ut</a>
   </mat-toolbar-row>
 </mat-toolbar>

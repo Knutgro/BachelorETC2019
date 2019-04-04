@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {AuthenticationService} from '../_services/authentication.service';
 import {UserService} from '../_services/user.service';
 import {first} from 'rxjs/operators';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-admin',
@@ -17,7 +18,8 @@ export class UserAdminComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private userService: UserService
+    private userService: UserService,
+    private titleService: Title
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -25,6 +27,7 @@ export class UserAdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Administrer');
     this.loadAllUsers();
   }
 

@@ -4,6 +4,7 @@ import {UserService} from "../_services/user.service";
 import {AuthenticationService} from "../_services/authentication.service";
 import {User} from "../_models/user";
 import {Subscription} from "rxjs";
+import {Title} from '@angular/platform-browser';
 
 
 // TODO fiks 401-error unauthorized eternal refresh hvis man ikke er logget inn
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private titleService: Title
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -28,5 +30,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('ETC Salg');
   }
 }

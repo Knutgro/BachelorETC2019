@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../_services/authentication.service';
 import {first} from 'rxjs/operators';
 import {AlertService} from '../_services/alert.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +23,7 @@ export class RegisterComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private alertService: AlertService,
+    private titleService: Title
   ) {
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
@@ -29,7 +31,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Before init');
+    this.titleService.setTitle('Registrer');
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -37,7 +39,6 @@ export class RegisterComponent implements OnInit {
       login: ['', Validators.required], // TODO username
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
-    console.log('After Init');
   }
 
   get f() { return this.registerForm.controls; }
@@ -45,7 +46,6 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.registerForm.invalid) {
-      console.log('Invalid Form');
       return;
     }
     this.loading = true;

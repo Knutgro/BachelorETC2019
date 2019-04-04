@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {VehicleService} from "../_services/vehicle.service";
 import {PageEvent} from '@angular/material';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -23,9 +24,13 @@ export class VehicleListComponent implements OnInit {
 */
 
 
-  constructor( private vehicleService: VehicleService ) { }
+  constructor(
+    private vehicleService: VehicleService,
+    private titleService: Title
+  ) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Kjøretøyliste');
     this.vehicleService.getAll().subscribe(
       data => {
         this.vehicles = data;

@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Vehicle} from "../_models/vehicle";
 import {Globals} from "../globals";
 import {Observable} from "rxjs";
+import {log} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ import {Observable} from "rxjs";
 export class VehicleService {
 
   public vehicleData: Vehicle[];
+  selectedFilterCount = 0;
+  filteredVehiclesList = [];
   searchOption = [];
+  searchFilter = [];
   constructor(private http: HttpClient, private globals: Globals) { }
 
   save(vehicle: any): Observable<any> {
@@ -31,21 +35,26 @@ export class VehicleService {
     return this.http.get(`${this.globals.apiUrl}/vehicles/${id}`);
   }
 
-  remove(href: string) {
-    return this.http.delete(href);
+  remove(id: number) {
+    return this.http.delete(`${this.globals.apiUrl}/vehicles/${id}`);
   }
 
   filteredListOptions() {
     const vehicles = this.vehicleData;
-    const filteredVehiclesList = [];
+    this.filteredVehiclesList.length = 0;
     for (const vehicle of vehicles) {
+      for (const filter of this.searchFilter) { // TODO fiks det her filterrotet: Fjernes ikke når man avhuker filteret
+          if (filter.name === vehicle.color && filter.selected && !this.filteredVehiclesList.includes(vehicle)) {
+            this.filteredVehiclesList.push(vehicle);
+          }
+      }
       for (const options of this.searchOption) {
-        if (options.name === vehicle.name) {
-          filteredVehiclesList.push(vehicle);
+        //if (options.name === vehicle.name) {
+        if (vehicle.name.includes(options.name) && !this.filteredVehiclesList.includes(vehicle)) {
+          this.filteredVehiclesList.push(vehicle);
         }
       }
     }
-    console.log(filteredVehiclesList);
-    return filteredVehiclesList;
+    return this.filteredVehiclesList;
   }
 }

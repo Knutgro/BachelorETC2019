@@ -1,8 +1,24 @@
 <div style="margin:auto; width: 70%; margin-top: 30px;">
   <app-search-bar (onSelectedOption)="onSelectedOption($event)"></app-search-bar>
 </div>
-<h2 style="text-align:center">Data</h2>
-<div *ngFor="let vehicle of vehicles" class="group">
-  <p><b>Item :</b>{{vehicle.id}}</p>
-  <p><b>Name :</b> {{vehicle.name}}</p>
-</div>
+<!--<h2 style="text-align:center" *ngIf="vehicles">Results</h2>-->
+<alert></alert>
+
+
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
+  <div fxLayout="column">
+    <h3>Filtere</h3>
+    <app-search-filter (onSelectedFilter)="onSelectedFilter($event)"></app-search-filter>
+  </div>
+  <div fxLayout="column" fxLayoutGap="5px">
+    <mat-card *ngFor="let vehicle of vehicles" routerLink="vehicle-detail/{{vehicle.id}}">
+      <mat-card-title-group>
+        <mat-card-title><p><b>Name :</b> {{vehicle.name}}</p></mat-card-title>
+        <mat-card-subtitle>
+          <p><b>Item :</b>{{vehicle.id}}</p>
+        </mat-card-subtitle>
+        <img mat-card-md-image src="{{vehicle.thumbnail}}">
+      </mat-card-title-group>
+    </mat-card>
+  </div>
+<div>

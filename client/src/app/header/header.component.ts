@@ -11,6 +11,7 @@ import {SidenavService} from '../_services/sidenav.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  currentUser: User;
   constructor(
     title: Title,
     private router: Router,
@@ -19,11 +20,16 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   toggleSidenav() {
     this.sidenavService.toggle();
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

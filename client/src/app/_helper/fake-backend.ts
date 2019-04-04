@@ -115,15 +115,35 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
       }
 
-      // get vehicles
-      if (request.url.endsWith('/vehicles') && request.method === 'GET') {
-        // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
+      // delete vehicle
+      if (request.url.match(/\/vehicles\/\d+$/) && request.method === 'DELETE') {
+        // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-          return of(new HttpResponse({ status: 200, body: vehicles }));
+          // find user by id in users array
+          const urlParts = request.url.split('/');
+          const id = parseInt(urlParts[urlParts.length - 1]);
+          for (let i = 0; i < vehicles.length; i++) {
+            const vehicle = vehicles[i];
+            if (vehicle.id === id) {
+              // delete user
+              vehicles.splice(i, 1);
+              localStorage.setItem('vehicles', JSON.stringify(vehicles));
+              break;
+            }
+          }
+
+          // respond 200 OK
+          return of(new HttpResponse({ status: 200 }));
         } else {
           // return 401 not authorised if token is null or invalid
           return throwError({ status: 401, error: { message: 'Unauthorised' } });
         }
+      }
+
+      // get vehicles
+      if (request.url.endsWith('/vehicles') && request.method === 'GET') {
+        // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
+        return of(new HttpResponse({ status: 200, body: vehicles }));
       }
 
       // get vehicle by id
@@ -146,7 +166,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       // Edit vehicle
       if (request.url.match(/\/vehicles\/\d+$/) && request.method === 'PUT') {
         const newVehicle = request.body;
-        console.log(newVehicle);
         // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
           const urlParts = request.url.split('/');
