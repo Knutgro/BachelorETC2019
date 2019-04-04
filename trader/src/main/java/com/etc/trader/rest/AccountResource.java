@@ -102,10 +102,10 @@ public class AccountResource {
 
 
     /**
-     * GET  /authenticate : check if the user is authenticated, and return its login.
+     * GET  /authenticate : check if the user is authenticated, and return its username.
      *
      * @param request the HTTP request
-     * @return the login if the user is authenticated
+     * @return the username if the user is authenticated
      */
     @GetMapping("/authenticate")
     public String isAuthenticated(HttpServletRequest request) {

@@ -25,12 +25,12 @@ INSERT INTO `model` (`id`, `name`, `m_year`, `brand_id`) VALUES ('1', 'Skoda Oct
 INSERT INTO `model` (`id`, `name`, `m_year`, `brand_id`) VALUES ('2', 'Skoda Octavia', 2013, '4');
 
 
-INSERT INTO `type_data` (`id`, `type_name`, `body_type`, `engine_effect`, `engine_volume`, `fuel`, `co2`,
+INSERT INTO `type_data` (`id`, `type_name`, `body_type`, `engine_effect`, `engine_volume`, `fuel`, `co_2`,
                         `transmission`, `wheel_drive`, `size_of_boot`, `weight`, `no_of_doors`, `no_of_seats`, `model_id`)
              VALUES ('1', '1.4 TSI 6MT (150 HP)', 'liftback sedan', '150', '1395', 'Gasoline', '121', '6-speed manual', 'Front wheel drive',
                     '589', '1255', '5', '5', '1');
 
-INSERT INTO `type_data` (`id`, `type_name`, `body_type`, `engine_effect`, `engine_volume`, `fuel`, `co2`,
+INSERT INTO `type_data` (`id`, `type_name`, `body_type`, `engine_effect`, `engine_volume`, `fuel`, `co_2`,
                         `transmission`, `wheel_drive`, `size_of_boot`, `weight`, `no_of_doors`, `no_of_seats`, `model_id`)
              VALUES ('2', '2.0 TDI 6MT (150 HP)', 'liftback sedan', '150', '1968', 'Diesel', '113', '6-speed manual',
               'Front wheel drive', '589', '1332', '5', '5', '2');
