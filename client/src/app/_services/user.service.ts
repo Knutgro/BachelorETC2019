@@ -22,7 +22,7 @@ export class UserService {
 
   register(user: User) {
     console.log(this.globals.apiUrl);
-    return this.http.post(`${this.globals.apiUrl}/register`, user);
+    return this.http.post(`${this.globals.apiUrl}/auth/signup`, user);
   }
 
   update(user: User) {
