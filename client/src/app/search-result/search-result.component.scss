@@ -1,0 +1,35 @@
+mat-card {
+  width: 50%;
+  overflow: hidden;
+}
+
+mat-card mat-card-title-group img {
+  object-fit: cover;
+  width: 50%;
+  height: 100%;
+}
+
+.center {
+  margin: auto;
+}
+
+div mat-list h3 {
+  margin-bottom: 0px;
+}
+
+div div h4, div div h3 {
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+div div h4 {
+  padding-left: 10px;
+}
+
+div div mat-checkbox{
+  padding-left: 20px;
+}
+
+div div mat-card {
+  cursor: pointer;
+}

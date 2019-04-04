@@ -1,13 +1,10 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
     <!--  <span>HOME</span> -->
-    <a mat-button routerLink="/">Home</a>
+    <a mat-button routerLink="/">Hjem</a>
     <span class="fillSpace"></span>
-    <a mat-button routerLink="/register" *ngIf="!currentUser">Register</a>
-    <a mat-button routerLink="/login" *ngIf="!currentUser">Login</a>
-    <a mat-button (click)="logout()" *ngIf="currentUser">Logout</a>
-    <a mat-button routerLink="/vehicle-list" *ngIf="currentUser">Vehicles</a>
-    <a mat-button routerLink="/user-admin" *ngIf="currentUser">Administrate</a>
+    <a mat-button routerLink="/login" *ngIf="!currentUser">Logg inn</a>
+    <a mat-button (click)="logout()" *ngIf="currentUser">Logg ut</a>
   </mat-toolbar-row>
 </mat-toolbar>
-

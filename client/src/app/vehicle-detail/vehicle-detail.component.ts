@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {VehicleService} from '../_services/vehicle.service';
 import {AlertService} from '../_services/alert.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-vehicle-detail',
@@ -17,7 +18,8 @@ export class VehicleDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private vehicleService: VehicleService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private titleService: Title
   ) { }
 
   ngOnInit() {
@@ -27,9 +29,8 @@ export class VehicleDetailComponent implements OnInit {
         this.vehicleService.getById(id).subscribe((vehicle: any) => {
           if (vehicle) {
             this.vehicle = vehicle;
-            console.log(this.vehicle);
             this.vehicle.href = vehicle.href;
-            console.log('Vehicle found');
+            this.titleService.setTitle(this.vehicle.name);
           } else {
             // console.log(`vehicle with id '${id}' not found, returning to list`);
             this.alertService.error(`vehicle with id '${id}' not found, returning to list`);

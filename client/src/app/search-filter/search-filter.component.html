@@ -1,0 +1,9 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let filter of filters">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{filter.name}}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-checkbox #checkboxFilter *ngFor="let option of filter.options" (change)="getSelectedFilter()" value="{{filter.category}},{{option.name}}" [(ngModel)]="option.selected">{{option.name}}</mat-checkbox><br/>
+<!--    <mat-checkbox #checkboxFilter *ngFor="let option of filter.options" (change)="filterVehicleList($event)" value="{{filter.category}},{{option.name}}" [(ngModel)]="option.selected">{{option.name}}</mat-checkbox><br/>-->
+  </mat-expansion-panel>
+</mat-accordion>

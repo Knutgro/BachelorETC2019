@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../_services/authentication.service';
 import {first} from 'rxjs/operators';
 import {AlertService} from '../_services/alert.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private titleService: Title
   ) {
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Login On init');
+    this.titleService.setTitle('Logg inn');
     this.loginForm = this.formBuilder.group({
       login: ['', Validators.required], // TODO change to username
       password: ['', Validators.required]
