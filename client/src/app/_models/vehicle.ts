@@ -16,4 +16,6 @@ export class Vehicle {
   interior: string;
   barcode: string;
   mileage: number;
+
+  thumbnail: string;
 }

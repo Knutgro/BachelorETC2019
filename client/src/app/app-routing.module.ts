@@ -8,6 +8,8 @@ import {HomeComponent} from './home/home.component';
 import {UserAdminComponent} from './user-admin/user-admin.component';
 import {VehicleDetailComponent} from './vehicle-detail/vehicle-detail.component';
 import {VehicleGalleryComponent} from './vehicle-gallery/vehicle-gallery.component';
+import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
 
 const routes: Routes = [];
 

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import 'hammerjs';
 import { fakeBackendProvider } from './_helper/fake-backend';
@@ -7,14 +7,18 @@ import { AppComponent } from './app.component';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { LoginComponent } from './login/login.component';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatCheckboxModule,
+  MatChipsModule, MatExpansionModule,
+  MatFormFieldModule,
   MatGridListModule,
+  MatIconModule,
   MatInputModule,
   MatListModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatSidenavModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule, MatTreeModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -32,6 +36,11 @@ import { UserAdminComponent } from './user-admin/user-admin.component';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { VehicleGalleryComponent } from './vehicle-gallery/vehicle-gallery.component';
 import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { VehicleAdComponent } from './vehicle-ad/vehicle-ad.component';
+import { SearchFilterComponent } from './search-filter/search-filter.component';
 
 @NgModule({
   declarations: [
@@ -46,12 +55,15 @@ import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.componen
     FooterComponent,
     AlertComponent,
     UserAdminComponent,
-    VehicleGalleryComponent
+    VehicleGalleryComponent,
+    SearchBarComponent,
+    SearchResultComponent,
+    VehicleAdComponent,
+    SearchFilterComponent
   ],
   imports: [
     NgxGalleryModule,
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
     MatGridListModule,
     MatButtonModule,
@@ -59,17 +71,28 @@ import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.componen
     MatInputModule,
     MatListModule,
     MatToolbarModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatAutocompleteModule,
+    MatIconModule,
+    MatChipsModule,
+    MatInputModule,
+    HttpClientModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    FlexLayoutModule,
+    MatExpansionModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider,
-    Globals
+    Globals,
+    Title
   ],
   bootstrap: [AppComponent]
 })

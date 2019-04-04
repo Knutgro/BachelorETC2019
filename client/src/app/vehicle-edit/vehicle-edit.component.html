@@ -22,11 +22,11 @@
       <alert></alert>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit"
+      <button mat-raised-button color="accent" type="submit"
               [disabled]="!vehicleForm.form.valid">Save</button>
-      <button mat-raised-button color="secondary" (click)="remove(vehicle.href)"
+      <button mat-raised-button routerLink="/vehicle-list">Cancel</button>
+      <button mat-raised-button color="warn" (click)="remove(vehicle.id)"
               *ngIf="vehicle.href" type="button">Delete</button>
-      <a mat-button routerLink="/vehicle-list">Cancel</a>
     </mat-card-actions>
   </form>
 </mat-card>
