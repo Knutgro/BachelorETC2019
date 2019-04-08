@@ -39,8 +39,8 @@ import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.componen
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { VehicleAdComponent } from './vehicle-ad/vehicle-ad.component';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
+import { VehicleListingComponent } from './vehicle-listing/vehicle-listing.component';
 
 @NgModule({
   declarations: [
@@ -58,8 +58,9 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
     VehicleGalleryComponent,
     SearchBarComponent,
     SearchResultComponent,
-    VehicleAdComponent,
-    SearchFilterComponent
+    VehicleListingComponent,
+    SearchFilterComponent,
+    VehicleListingComponent
   ],
   imports: [
     NgxGalleryModule,

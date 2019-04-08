@@ -11,7 +11,7 @@
     <app-search-filter (onSelectedFilter)="onSelectedFilter($event)"></app-search-filter>
   </div>
   <div fxLayout="column" fxLayoutGap="5px">
-    <mat-card *ngFor="let vehicle of vehicles" routerLink="vehicle-detail/{{vehicle.id}}">
+    <mat-card *ngFor="let vehicle of vehicles" routerLink="vehicle-listing/{{vehicle.id}}">
       <mat-card-title-group>
         <mat-card-title><p><b>Name :</b> {{vehicle.name}}</p></mat-card-title>
         <mat-card-subtitle>

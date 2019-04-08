@@ -10,6 +10,7 @@ import {VehicleDetailComponent} from './vehicle-detail/vehicle-detail.component'
 import {VehicleGalleryComponent} from './vehicle-gallery/vehicle-gallery.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
+import {VehicleListingComponent} from './vehicle-listing/vehicle-listing.component';
 
 const routes: Routes = [];
 
@@ -22,6 +23,7 @@ const routes: Routes = [];
     { path: 'vehicle-add', component: VehicleEditComponent},
     { path: 'vehicle-edit', component: VehicleEditComponent},
     { path: 'vehicle-edit/:id', component: VehicleEditComponent},
+    { path: 'vehicle-listing/:id', component: VehicleListingComponent},
     { path: 'user-admin', component: UserAdminComponent},
     { path: 'vehicle-detail/:id', component: VehicleDetailComponent},
     { path: 'vehicle-gallery-test', component: VehicleGalleryComponent}
