@@ -26,6 +26,7 @@ export class SearchResultComponent implements OnInit {
     this.listingService.getAll().subscribe(listings => {
       this.listings = listings;
       this.listingService.listingData = listings;
+      console.log(listings);
       /* Old image method
       for (let i = 0; i < this.listings.length; i++) {
         this.imageService.getImages(this.listings[i].id.toString()).subscribe(images => {

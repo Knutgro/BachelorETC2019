@@ -10,12 +10,12 @@
     <h3>Filtere</h3>
     <app-search-filter (onSelectedFilter)="onSelectedFilter($event)"></app-search-filter>
   </div>
-  <div fxLayout="column" fxLayoutGap="5px">
+  <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 100%">
     <mat-card *ngFor="let listing of listings" routerLink="vehicle-listing/{{listing.id}}">
       <mat-card-title-group>
-        <mat-card-title><p><b>Name :</b> {{listing.vehicle.name}}</p></mat-card-title>
+        <mat-card-title><p><b>Name :</b> {{listing.vehicle.model.name}}</p></mat-card-title>
         <mat-card-subtitle>
-          <p><b>Item :</b>{{listing.id}}</p>
+          <p>{{listing.description}}</p>
         </mat-card-subtitle>
         <img mat-card-md-image src="{{listing.vehicle.thumbnail}}">
       </mat-card-title-group>

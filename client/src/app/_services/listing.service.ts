@@ -46,7 +46,7 @@ export class ListingService {
     for (const listing of listings) {
       const vehicle = listing.vehicle;
       for (const filter of this.searchFilter) {
-        if (filter.name === vehicle.color && filter.selected && !this.filteredListingsList.includes(listing)) {
+        if (filter.name === vehicle.exteriorColorMain && filter.selected && !this.filteredListingsList.includes(listing)) {
           this.filteredListingsList.push(listing);
         }
       }
