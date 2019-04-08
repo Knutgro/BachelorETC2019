@@ -40,7 +40,7 @@ public class Model implements Serializable {
     private Set<TypeData> typeData = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnore
+    //@JsonIgnore
     @JsonIgnoreProperties("models")
     private Brand brand;
 
