@@ -36,8 +36,10 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required, Validators.email],
-      login: ['', Validators.required], // TODO username
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      company_id: ['', Validators.required],
+      role: [[]] // TODO ikke hardkod admin, for testing purposes only
     });
   }
 

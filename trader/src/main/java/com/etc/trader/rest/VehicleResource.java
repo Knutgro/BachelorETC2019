@@ -80,6 +80,7 @@ public class VehicleResource {
      * @param filter the filter of the request
      * @return the ResponseEntity with status 200 (OK) and the list of vehicles in body
      */
+
     @GetMapping("/vehicles")
     public ResponseEntity<List<Vehicle>> getAllVehicles(Pageable pageable, @RequestParam(required = false) String filter) {
         if ("listing-is-null".equals(filter)) {

@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    console.log(this.currentUser);
     this.sidenavService.setSideNav(this.sideNav);
   }
 

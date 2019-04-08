@@ -1,26 +1,27 @@
 <mat-card>
   <app-vehicle-gallery></app-vehicle-gallery>
+  <alert></alert>
   <div class="center-card" style="margin-top: 10px">
     <mat-card class="inlineStyle">
-          <mat-list role="list" style="float: left">
-            <mat-list-item role="listitem">Name: {{vehicle.name}}</mat-list-item>
-            <mat-list-item role="listitem">Nick: {{vehicle.nick}}</mat-list-item>
-            <mat-list-item role="listitem">Color: {{vehicle.color}}</mat-list-item>
-            <mat-list-item role="listitem">Make :{{vehicle.make}}</mat-list-item>
-            <mat-list-item role="listitem">Tires: {{vehicle.tires}}</mat-list-item>
-            <mat-list-item role="listitem">Max fuel: {{vehicle.maxFuel}}</mat-list-item>
-            <mat-list-item role="listitem">Chassis id: {{vehicle.chassisID}}</mat-list-item>
-          </mat-list>
-          <mat-list role="list" style="float: left">
-            <mat-list-item role="listitem">Max km on full tank: {{vehicle.maxKmTank}}</mat-list-item>
-            <mat-list-item role="listitem">Fuelsystem: {{vehicle.fuelSystem}}</mat-list-item>
-            <mat-list-item role="listitem">Gearsystem: {{vehicle.gearSystem}}</mat-list-item>
-            <mat-list-item role="listitem">Drive: {{vehicle.drive}}</mat-list-item>
-            <mat-list-item role="listitem">Interior: {{vehicle.interior}}</mat-list-item>
-            <mat-list-item role="listitem">Barcode: {{vehicle.barcode}}</mat-list-item>
-            <mat-list-item role="listitem">Mileage: {{vehicle.mileage}}</mat-list-item>
-          </mat-list>
-        <button mat-fab color="accent" [routerLink]="['/vehicle-edit', vehicle.id]">Edit</button>
+      <mat-list role="list" style="float: left">
+        <mat-list-item role="listitem">Name: {{vehicle.name}}</mat-list-item>
+        <mat-list-item role="listitem">Nick: {{vehicle.nick}}</mat-list-item>
+        <mat-list-item role="listitem">Color: {{vehicle.color}}</mat-list-item>
+        <mat-list-item role="listitem">Make :{{vehicle.make}}</mat-list-item>
+        <mat-list-item role="listitem">Tires: {{vehicle.tires}}</mat-list-item>
+        <mat-list-item role="listitem">Max fuel: {{vehicle.maxFuel}}</mat-list-item>
+        <mat-list-item role="listitem">Chassis id: {{vehicle.chassisID}}</mat-list-item>
+      </mat-list>
+      <mat-list role="list" style="float: left">
+        <mat-list-item role="listitem">Max km on full tank: {{vehicle.maxKmTank}}</mat-list-item>
+        <mat-list-item role="listitem">Fuelsystem: {{vehicle.fuelSystem}}</mat-list-item>
+        <mat-list-item role="listitem">Gearsystem: {{vehicle.gearSystem}}</mat-list-item>
+        <mat-list-item role="listitem">Drive: {{vehicle.drive}}</mat-list-item>
+        <mat-list-item role="listitem">Interior: {{vehicle.interior}}</mat-list-item>
+        <mat-list-item role="listitem">Barcode: {{vehicle.barcode}}</mat-list-item>
+        <mat-list-item role="listitem">Mileage: {{vehicle.mileage}}</mat-list-item>
+      </mat-list>
+      <button mat-fab color="accent" [routerLink]="['/vehicle-edit', vehicle.id]">Edit</button>
     </mat-card>
   </div>
 </mat-card>

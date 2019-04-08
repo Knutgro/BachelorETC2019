@@ -39,8 +39,8 @@ import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.componen
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { VehicleAdComponent } from './vehicle-ad/vehicle-ad.component';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
+import { VehicleListingComponent } from './vehicle-listing/vehicle-listing.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
@@ -59,7 +59,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     VehicleGalleryComponent,
     SearchBarComponent,
     SearchResultComponent,
-    VehicleAdComponent,
+    VehicleListingComponent,
     SearchFilterComponent,
     UserProfileComponent
   ],
@@ -92,7 +92,6 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider,
     Globals,
     Title
   ],

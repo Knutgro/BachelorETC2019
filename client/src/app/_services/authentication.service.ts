@@ -21,18 +21,18 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(login: string, password: string) {
-    return this.http.post<any>(`${this.globals.apiUrl}/authentication`, { login, password })
-      .pipe(map(user => {
+  login(username: string, password: string) {
+    return this.http.post<any>(`${this.globals.apiUrl}/auth/signin`, { username, password })
+      .pipe(map(token => {
         // login successful if there's a jwt token in the response
-        if (user && user.token) {
+        if (token) {
           // console.log(username);
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
+          localStorage.setItem('currentUser', JSON.stringify(token));
+          this.currentUserSubject.next(token);
         }
 
-        return user;
+        return token;
       }));
   }
 

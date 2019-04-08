@@ -1,0 +1,50 @@
+<mat-card>
+  <app-vehicle-gallery></app-vehicle-gallery>
+  <alert></alert>
+  <div class="center-card" style="margin-top: 10px">
+    <mat-card class="inlineStyle">
+      <p>Vehicle info</p>
+      <mat-list role="list" style="float: left">
+        <mat-list-item role="listitem">Name: {{vehicle.name}}</mat-list-item>
+        <mat-list-item role="listitem">Nick: {{vehicle.nick}}</mat-list-item>
+        <mat-list-item role="listitem">Color: {{vehicle.color}}</mat-list-item>
+        <mat-list-item role="listitem">Make :{{vehicle.make}}</mat-list-item>
+        <mat-list-item role="listitem">Tires: {{vehicle.tires}}</mat-list-item>
+        <mat-list-item role="listitem">Max fuel: {{vehicle.maxFuel}}</mat-list-item>
+        <mat-list-item role="listitem">Chassis id: {{vehicle.chassisID}}</mat-list-item>
+      </mat-list>
+      <mat-list role="list" style="float: left">
+        <mat-list-item role="listitem">Max km on full tank: {{vehicle.maxKmTank}}</mat-list-item>
+        <mat-list-item role="listitem">Fuelsystem: {{vehicle.fuelSystem}}</mat-list-item>
+        <mat-list-item role="listitem">Gearsystem: {{vehicle.gearSystem}}</mat-list-item>
+        <mat-list-item role="listitem">Drive: {{vehicle.drive}}</mat-list-item>
+        <mat-list-item role="listitem">Interior: {{vehicle.interior}}</mat-list-item>
+        <mat-list-item role="listitem">Barcode: {{vehicle.barcode}}</mat-list-item>
+        <mat-list-item role="listitem">Mileage: {{vehicle.mileage}}</mat-list-item>
+      </mat-list>
+    </mat-card>
+    <mat-card class="inlineStyle">
+      <p>Listing info</p>
+      <mat-list role="list" style="float: left">
+        <mat-list-item role="listitem">title: {{listing.title}}</mat-list-item>
+        <mat-list-item role="listitem">description: {{listing.description}}</mat-list-item>
+        <mat-list-item role="listitem">urlText: {{listing.urlText}}</mat-list-item>
+        <mat-list-item role="listitem">keywords: {{listing.keywords}}</mat-list-item>
+        <mat-list-item role="listitem">registrationTaxIncluded: {{listing.registrationTaxIncluded}}</mat-list-item>
+        <mat-list-item role="listitem">registrationExemption: {{listing.registrationExemption}}</mat-list-item>
+        <mat-list-item role="listitem">vatIncluded: {{listing.vatIncluded}}</mat-list-item>
+        <mat-list-item role="listitem">totalPrice: {{listing.totalPrice}}</mat-list-item>
+      </mat-list>
+      <mat-list role="list" style="float: left">
+        <mat-list-item role="listitem">netPrice: {{listing.netPrice}}</mat-list-item>
+        <mat-list-item role="listitem">registration: {{listing.registration}}</mat-list-item>
+        <mat-list-item role="listitem">currency: {{listing.currency}}</mat-list-item>
+        <mat-list-item role="listitem">position: {{listing.position}}</mat-list-item>
+        <mat-list-item role="listitem">noOfOwners: {{listing.noOfOwners}}</mat-list-item>
+        <mat-list-item role="listitem">carCondition: {{listing.carCondition}}</mat-list-item>
+        <mat-list-item role="listitem">dateCreated: {{listing.dateCreated}}</mat-list-item>
+        <mat-list-item role="listitem">dateExpired: {{listing.dateExpired}}</mat-list-item>
+      </mat-list>
+    </mat-card>
+  </div>
+</mat-card>

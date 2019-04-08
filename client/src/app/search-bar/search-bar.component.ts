@@ -3,6 +3,8 @@ import {VehicleService} from '../_services/vehicle.service';
 import {Vehicle} from '../_models/vehicle';
 import {Observable} from 'rxjs';
 import {FormControl} from '@angular/forms';
+import {Listing} from '../_models/listing';
+import {ListingService} from '../_services/listing.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -13,19 +15,19 @@ export class SearchBarComponent implements OnInit {
 
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
-  allVehicles: Vehicle[];
+  allListings: Listing[];
   autoCompleteList: any[];
 
   @ViewChild('autocompleteInput') autocompleteInput: ElementRef;
   @Output() onSelectedOption = new EventEmitter();
 
   constructor(
-    private vehicleService: VehicleService
+    private listingService: ListingService
   ) { }
 
   ngOnInit() {
-    this.vehicleService.getAll().subscribe(vehicles => {
-      this.allVehicles = vehicles;
+    this.listingService.getAll().subscribe(listings => {
+      this.allListings = listings;
     });
 
     this.myControl.valueChanges.subscribe(userInput => {
@@ -42,35 +44,35 @@ export class SearchBarComponent implements OnInit {
     if (typeof val !== 'string' || val === '' || val === null) {
       return [];
     }
-    return val ? this.allVehicles.filter(s =>
-      s.name.toLowerCase().indexOf(val.toLowerCase()) !== -1) : this.allVehicles;
+    return val ? this.allListings.filter(s =>
+      s.title.toLowerCase().indexOf(val.toLowerCase()) !== -1) : this.allListings;
   }
 
-  displayFn(vehicle: Vehicle) {
-    const k = vehicle ? vehicle.name : vehicle;
+  displayFn(listing: Listing) {
+    const k = listing ? listing.title : listing;
     return k;
   }
 
-  filterVehicleList(event) {
-    const vehicles = event.source.value;
-    if (!vehicles) {
-      this.vehicleService.searchOption = [];
+  filterListingList(event) {
+    const listings = event.source.value;
+    if (!listings) {
+      this.listingService.searchOption = [];
     } else {
-      this.vehicleService.searchOption.push(vehicles);
-      this.onSelectedOption.emit(this.vehicleService.searchOption);
+      this.listingService.searchOption.push(listings);
+      this.onSelectedOption.emit(this.listingService.searchOption);
     }
     this.focusOnPlaceInput();
   }
 
   removeOption(option) {
 
-    const index = this.vehicleService.searchOption.indexOf(option);
+    const index = this.listingService.searchOption.indexOf(option);
     if (index >= 0) {
-      this.vehicleService.searchOption.splice(index, 1);
+      this.listingService.searchOption.splice(index, 1);
     }
     this.focusOnPlaceInput();
 
-    this.onSelectedOption.emit(this.vehicleService.searchOption);
+    this.onSelectedOption.emit(this.listingService.searchOption);
   }
 
   focusOnPlaceInput() {

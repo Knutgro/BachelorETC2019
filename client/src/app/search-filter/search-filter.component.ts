@@ -1,6 +1,8 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {VehicleService} from '../_services/vehicle.service';
 import {Vehicle} from '../_models/vehicle';
+import {ListingService} from '../_services/listing.service';
+import {Listing} from '../_models/listing';
 
 
 export interface CatFilter { // TODO reconsider
@@ -17,6 +19,7 @@ export class SearchFilterComponent implements OnInit {
   selectedCount: 0;
   selectedFilter: any;
   vehicles: Vehicle[];
+  listings: Listing[];
   catFilters: any;
 
   @ViewChild('checkboxFilter') checkboxFilter: ElementRef;
@@ -64,12 +67,13 @@ export class SearchFilterComponent implements OnInit {
   //endregion
 
   constructor(
-    private vehicleService: VehicleService
+    private vehicleService: VehicleService,
+    private listingService: ListingService,
   ) { }
 
   ngOnInit() {
-    this.vehicleService.getAll().subscribe(vehicles => {
-      this.vehicles = vehicles;
+    this.listingService.getAll().subscribe(listings => {
+      this.listings = listings;
     });
     this.catFilters = [{category: '', name: ''}];
     this.catFilters.pop();
@@ -94,18 +98,18 @@ export class SearchFilterComponent implements OnInit {
 
   getSelectedFilter() {
     this.selectedCount = 0;
-    this.vehicleService.searchFilter.length = 0;
+    this.listingService.searchFilter.length = 0;
     this.selectedFilter = this.filters.filter( filterTop => {
       return filterTop.options.filter( option => {
         if (option.selected) {
           this.selectedCount++;
-          this.vehicleService.searchFilter.push({name: option.name, selected: true});
+          this.listingService.searchFilter.push({name: option.name, selected: true});
           return option.name;
         }
       });
     });
-    this.vehicleService.selectedFilterCount = this.selectedCount;
-    this.onSelectedFilter.emit(this.vehicleService.searchFilter);
+    this.listingService.selectedFilterCount = this.selectedCount;
+    this.onSelectedFilter.emit(this.listingService.searchFilter);
     // this.onSelectedFilter.emit(this.vehicleService.searchFilter);
   }
 
