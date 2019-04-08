@@ -16,4 +16,5 @@ export class Listing {
   carCondition: string;
   dateCreated: string;
   dateExpired: string;
+  vehicle: any;
 }

@@ -60,7 +60,6 @@ import { VehicleListingComponent } from './vehicle-listing/vehicle-listing.compo
     SearchResultComponent,
     VehicleListingComponent,
     SearchFilterComponent,
-    VehicleListingComponent
   ],
   imports: [
     NgxGalleryModule,

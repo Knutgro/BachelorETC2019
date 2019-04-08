@@ -3,6 +3,8 @@ import {Vehicle} from '../_models/vehicle';
 import {VehicleService} from '../_services/vehicle.service';
 import {AlertService} from '../_services/alert.service';
 import {ImagesService} from '../_services/images.service';
+import {ListingService} from '../_services/listing.service';
+import {Listing} from '../_models/listing';
 
 @Component({
   selector: 'app-search-result',
@@ -11,14 +13,31 @@ import {ImagesService} from '../_services/images.service';
 })
 export class SearchResultComponent implements OnInit {
   vehicles: Vehicle[];
+  listings: Listing[];
 
   constructor(
     private vehicleService: VehicleService,
+    private listingService: ListingService,
     private alertService: AlertService,
     private imageService: ImagesService
   ) { }
 
   ngOnInit() {
+    this.listingService.getAll().subscribe(listings => {
+      this.listings = listings;
+      this.listingService.listingData = listings;
+      /* Old image method
+      for (let i = 0; i < this.listings.length; i++) {
+        this.imageService.getImages(this.listings[i].id.toString()).subscribe(images => {
+          this.listings[i].thumbnail = images[0].url;
+        }, error2 => {
+          this.alertService.error(error2);
+        });
+      }*/
+    }, error1 => {
+      this.alertService.error(error1);
+    });
+    /*
     this.vehicleService.getAll().subscribe(vehicles => {
       this.vehicles = vehicles;
       this.vehicleService.vehicleData = vehicles;
@@ -31,7 +50,7 @@ export class SearchResultComponent implements OnInit {
       }
     }, error1 => {
       this.alertService.error(error1);
-    });
+    });*/
   }
 
   onSelectedOption(e) {
@@ -42,7 +61,15 @@ export class SearchResultComponent implements OnInit {
     this.getFilteredExpenseList();
   }
 
+  getFilteredExpenseList() {
+    if (this.listingService.searchOption.length > 0 || this.listingService.searchFilter.length > 0) {
+      this.listings = this.listingService.filteredListOptions();
+    } else {
+      this.listings = this.listingService.listingData;
+    }
+  }
 
+  /* Old method for getting vehicles not listings
   getFilteredExpenseList() {
     if (this.vehicleService.searchOption.length > 0 || this.vehicleService.searchFilter.length > 0) {
       this.vehicles = this.vehicleService.filteredListOptions();
@@ -50,6 +77,7 @@ export class SearchResultComponent implements OnInit {
       this.vehicles = this.vehicleService.vehicleData;
     }
   }
+  */
 
   // Filter
 

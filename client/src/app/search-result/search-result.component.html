@@ -11,13 +11,13 @@
     <app-search-filter (onSelectedFilter)="onSelectedFilter($event)"></app-search-filter>
   </div>
   <div fxLayout="column" fxLayoutGap="5px">
-    <mat-card *ngFor="let vehicle of vehicles" routerLink="vehicle-listing/{{vehicle.id}}">
+    <mat-card *ngFor="let listing of listings" routerLink="vehicle-listing/{{listing.id}}">
       <mat-card-title-group>
-        <mat-card-title><p><b>Name :</b> {{vehicle.name}}</p></mat-card-title>
+        <mat-card-title><p><b>Name :</b> {{listing.vehicle.name}}</p></mat-card-title>
         <mat-card-subtitle>
-          <p><b>Item :</b>{{vehicle.id}}</p>
+          <p><b>Item :</b>{{listing.id}}</p>
         </mat-card-subtitle>
-        <img mat-card-md-image src="{{vehicle.thumbnail}}">
+        <img mat-card-md-image src="{{listing.vehicle.thumbnail}}">
       </mat-card-title-group>
     </mat-card>
   </div>
