@@ -41,6 +41,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { VehicleAdComponent } from './vehicle-ad/vehicle-ad.component';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
     SearchBarComponent,
     SearchResultComponent,
     VehicleAdComponent,
-    SearchFilterComponent
+    SearchFilterComponent,
+    UserProfileComponent
   ],
   imports: [
     NgxGalleryModule,
