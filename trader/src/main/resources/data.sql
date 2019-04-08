@@ -53,3 +53,10 @@ INSERT INTO `vehicle` (`id`, `reg_no`, `warranty`,
               VALUES ('2', '123456XY', 'basic', '22', '200', '123.no', 'blabla', 'blabla.no',
                          'Black', 'Beige', '205/55 R16 91V', '54321578', '112', True, True, 'DNB', 'DNB',
                          '1', '1');
+
+ INSERT INTO `listing` (`id`, `car_condition`, `currency`,`description`,`keywords`,`net_price`,`no_of_owners`,`registration`,
+                        `registration_exemption`, `registration_tax_included`, `title`, `total_price`, `url_text`,
+                        `vat_included`, `company_id`, `vehicle_id`)
+              VALUES ('1', 'Good', 'NOK', 'This is a car description describing a car', 'keyword', '69000', '4', 'registration',
+                      '1', '1', 'KJØP BILEN MIN ER DU SNILL!', '70000', 'www.vg.no', True, '1', '1');
+

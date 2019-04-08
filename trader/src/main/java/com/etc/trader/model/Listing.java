@@ -52,7 +52,7 @@ public class Listing implements Serializable {
     private Double netPrice;
 
     @Column(name = "registration")
-    private Double registration;
+    private String registration;
 
     @Column(name = "currency")
     private String currency;
@@ -209,16 +209,16 @@ public class Listing implements Serializable {
         this.netPrice = netPrice;
     }
 
-    public Double getRegistration() {
+    public String getRegistration() {
         return registration;
     }
 
-    public Listing registration(Double registration) {
+    public Listing registration(String registration) {
         this.registration = registration;
         return this;
     }
 
-    public void setRegistration(Double registration) {
+    public void setRegistration(String registration) {
         this.registration = registration;
     }
 

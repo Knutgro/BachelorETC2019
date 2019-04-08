@@ -108,7 +108,7 @@ public class Vehicle implements Serializable {
     private Company company;
 
     @ManyToOne
-    @JsonIgnore
+    //@JsonIgnore
     @JsonIgnoreProperties("vehicles")
     private Model model;
 
