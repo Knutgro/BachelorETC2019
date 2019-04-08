@@ -10,7 +10,7 @@ import {Globals} from '../globals';
 })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  public currentUser: Observable<any>;
 
   constructor(private http: HttpClient, private globals: Globals) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));

@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title *ngIf="!currentUser">Welcome</mat-card-title>
-  <mat-card-title *ngIf="currentUser">Hi {{currentUser.firstName}}!</mat-card-title>
+  <mat-card-title *ngIf="currentUser">Hi {{currentUser.user.firstName}}!</mat-card-title>
   <p *ngIf="currentUser">You're logged in with Angular 7!!</p>
   <alert></alert>
 </mat-card>

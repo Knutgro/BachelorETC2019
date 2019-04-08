@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
     <!--  <span>HOME</span> -->
     <a mat-button routerLink="/">Hjem</a>
-    <a mat-button [routerLink]="['/user-profile', currentUser.id, currentUser.username]" *ngIf="currentUser">Profil</a>
+    <a mat-button [routerLink]="['/user-profile', currentUser.user.id]" *ngIf="currentUser">Profil</a>
     <span class="fillSpace"></span>
     <a mat-button routerLink="/login" *ngIf="!currentUser">Logg inn</a>
     <a mat-button (click)="logout()" *ngIf="currentUser">Logg ut</a>
