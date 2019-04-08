@@ -59,14 +59,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     VehicleGalleryComponent,
     SearchBarComponent,
     SearchResultComponent,
-<<<<<<< HEAD
     VehicleListingComponent,
     SearchFilterComponent,
-=======
-    VehicleAdComponent,
-    SearchFilterComponent,
     UserProfileComponent
->>>>>>> f54af87619be27905e6a1917d457e4e13eef1ffd
   ],
   imports: [
     NgxGalleryModule,
