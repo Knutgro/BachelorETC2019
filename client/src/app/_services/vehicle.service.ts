@@ -44,13 +44,13 @@ export class VehicleService {
     this.filteredVehiclesList.length = 0;
     for (const vehicle of vehicles) {
       for (const filter of this.searchFilter) { // TODO fiks det her filterrotet: Fjernes ikke når man avhuker filteret
-          if (filter.name === vehicle.color && filter.selected && !this.filteredVehiclesList.includes(vehicle)) {
+          if (filter.name === vehicle.exteriorColorMain && filter.selected && !this.filteredVehiclesList.includes(vehicle)) {
             this.filteredVehiclesList.push(vehicle);
           }
       }
       for (const options of this.searchOption) {
         //if (options.name === vehicle.name) {
-        if (vehicle.name.includes(options.name) && !this.filteredVehiclesList.includes(vehicle)) {
+        if (vehicle.nick.includes(options.name) && !this.filteredVehiclesList.includes(vehicle)) {
           this.filteredVehiclesList.push(vehicle);
         }
       }

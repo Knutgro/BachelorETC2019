@@ -4,22 +4,31 @@
   <div class="center-card" style="margin-top: 10px">
     <mat-card class="inlineStyle">
       <mat-list role="list" style="float: left">
-        <mat-list-item role="listitem">Name: {{vehicle.name}}</mat-list-item>
-        <mat-list-item role="listitem">Nick: {{vehicle.nick}}</mat-list-item>
-        <mat-list-item role="listitem">Color: {{vehicle.color}}</mat-list-item>
-        <mat-list-item role="listitem">Make :{{vehicle.make}}</mat-list-item>
-        <mat-list-item role="listitem">Tires: {{vehicle.tires}}</mat-list-item>
-        <mat-list-item role="listitem">Max fuel: {{vehicle.maxFuel}}</mat-list-item>
-        <mat-list-item role="listitem">Chassis id: {{vehicle.chassisID}}</mat-list-item>
+        <mat-list-item role="listitem">nick: {{vehicle.nick}}</mat-list-item>
+        <mat-list-item role="listitem">firstRegistration: {{vehicle.firstRegistration}}</mat-list-item>
+        <mat-list-item role="listitem">registrationClass: {{vehicle.registrationClass}}</mat-list-item>
+        <mat-list-item role="listitem">regNo: {{vehicle.regNo}}</mat-list-item>
+        <mat-list-item role="listitem">warranty: {{vehicle.warranty}}</mat-list-item>
+        <mat-list-item role="listitem">warrantyDuration: {{vehicle.warrantyDuration}}</mat-list-item>
+        <mat-list-item role="listitem">warrantyDistance: {{vehicle.warrantyDistance}}</mat-list-item>
+        <mat-list-item role="listitem">warrantyUrl: {{vehicle.warrantyUrl}}</mat-list-item>
+        <mat-list-item role="listitem">carPremium: {{vehicle.carPremium}}</mat-list-item>
+        <mat-list-item role="listitem">carPremiumLink: {{vehicle.carPremiumLink}}</mat-list-item>
+        <mat-list-item role="listitem">exteriorColorMain: {{vehicle.exteriorColorMain}}</mat-list-item>
+        <mat-list-item role="listitem">exteriorColor: {{vehicle.exteriorColor}}</mat-list-item>
       </mat-list>
       <mat-list role="list" style="float: left">
-        <mat-list-item role="listitem">Max km on full tank: {{vehicle.maxKmTank}}</mat-list-item>
-        <mat-list-item role="listitem">Fuelsystem: {{vehicle.fuelSystem}}</mat-list-item>
-        <mat-list-item role="listitem">Gearsystem: {{vehicle.gearSystem}}</mat-list-item>
-        <mat-list-item role="listitem">Drive: {{vehicle.drive}}</mat-list-item>
-        <mat-list-item role="listitem">Interior: {{vehicle.interior}}</mat-list-item>
-        <mat-list-item role="listitem">Barcode: {{vehicle.barcode}}</mat-list-item>
-        <mat-list-item role="listitem">Mileage: {{vehicle.mileage}}</mat-list-item>
+        <mat-list-item role="listitem">interiorColor: {{vehicle.interiorColor}}</mat-list-item>
+        <mat-list-item role="listitem">interiorType: {{vehicle.interiorType}}</mat-list-item>
+        <mat-list-item role="listitem">tires: {{vehicle.tires}}</mat-list-item>
+        <mat-list-item role="listitem">maxFuel: {{vehicle.maxFuel}}</mat-list-item>
+        <mat-list-item role="listitem">chassisId: {{vehicle.chassisId}}</mat-list-item>
+        <mat-list-item role="listitem">maxKmTank: {{vehicle.maxKmTank}}</mat-list-item>
+        <mat-list-item role="listitem">mileage: {{vehicle.mileage}}</mat-list-item>
+        <mat-list-item role="listitem">serviceHistory: {{vehicle.serviceHistory}}</mat-list-item>
+        <mat-list-item role="listitem">servicePlanFollowed: {{vehicle.servicePlanFollowed}}</mat-list-item>
+        <mat-list-item role="listitem">financePartner: {{vehicle.financePartner}}</mat-list-item>
+        <mat-list-item role="listitem">insurancePartner: {{vehicle.insurancePartner}}</mat-list-item>
       </mat-list>
       <button mat-fab color="accent" [routerLink]="['/vehicle-edit', vehicle.id]">Edit</button>
     </mat-card>
