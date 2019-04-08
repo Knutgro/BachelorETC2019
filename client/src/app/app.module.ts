@@ -41,6 +41,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { VehicleListingComponent } from './vehicle-listing/vehicle-listing.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -58,8 +59,14 @@ import { VehicleListingComponent } from './vehicle-listing/vehicle-listing.compo
     VehicleGalleryComponent,
     SearchBarComponent,
     SearchResultComponent,
+<<<<<<< HEAD
     VehicleListingComponent,
     SearchFilterComponent,
+=======
+    VehicleAdComponent,
+    SearchFilterComponent,
+    UserProfileComponent
+>>>>>>> f54af87619be27905e6a1917d457e4e13eef1ffd
   ],
   imports: [
     NgxGalleryModule,

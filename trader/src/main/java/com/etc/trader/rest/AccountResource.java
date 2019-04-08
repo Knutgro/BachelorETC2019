@@ -87,7 +87,10 @@ public class AccountResource {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtProvider.generateJwtToken(authentication);
-        return ResponseEntity.ok(new JwtResponse(jwt));
+        String username = jwtProvider.getUserNameFromJwtToken(jwt);
+        CustomUserDetails customUserDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(username);
+
+        return ResponseEntity.ok(new JwtResponse(jwt,customUserDetails));
     }
 
 
@@ -134,8 +137,6 @@ public class AccountResource {
         userService.updateUser(userDTO);
     }
 
-
-    @RequestMapping("")
 
     private static boolean checkPasswordLength(String password) {
         return !StringUtils.isEmpty(password) &&

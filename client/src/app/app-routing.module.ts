@@ -11,6 +11,7 @@ import {VehicleGalleryComponent} from './vehicle-gallery/vehicle-gallery.compone
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {VehicleListingComponent} from './vehicle-listing/vehicle-listing.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
 
 const routes: Routes = [];
 
@@ -26,7 +27,8 @@ const routes: Routes = [];
     { path: 'vehicle-listing/:id', component: VehicleListingComponent},
     { path: 'user-admin', component: UserAdminComponent},
     { path: 'vehicle-detail/:id', component: VehicleDetailComponent},
-    { path: 'vehicle-gallery-test', component: VehicleGalleryComponent}
+    { path: 'vehicle-gallery-test', component: VehicleGalleryComponent},
+    { path: 'user-profile/:id', component: UserProfileComponent }
     // { path: '**', redirectTo: '' }
   ])],
   exports: [RouterModule]
