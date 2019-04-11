@@ -30,7 +30,7 @@ export class VehicleDetailComponent implements OnInit {
           if (vehicle) {
             this.vehicle = vehicle;
             this.vehicle.href = vehicle.href;
-            this.titleService.setTitle(this.vehicle.name);
+            this.titleService.setTitle(this.vehicle.nick);
           } else {
             // console.log(`vehicle with id '${id}' not found, returning to list`);
             this.alertService.error(`vehicle with id '${id}' not found, returning to list`);

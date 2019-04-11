@@ -5,20 +5,29 @@
     </mat-card-header>
     <mat-card-content>
       <input type="hidden" name="href" [(ngModel)]="vehicle.href">
-      <mat-form-field><input matInput placeholder="Name" [(ngModel)]="vehicle.name" required name="name" #name></mat-form-field>&nbsp;
-      <mat-form-field><input matInput placeholder="Nick" [(ngModel)]="vehicle.nick" required name="nick" #nick></mat-form-field><br>
-      <mat-form-field><input matInput placeholder="Color" [(ngModel)]="vehicle.color" required name="color" #color></mat-form-field>&nbsp;
-      <mat-form-field><input matInput placeholder="Make" [(ngModel)]="vehicle.make" required name="make" #make></mat-form-field><br>
-      <mat-form-field><input matInput placeholder="Tires" [(ngModel)]="vehicle.tires" required name="tires" #tires></mat-form-field>&nbsp;
-      <mat-form-field><input matInput placeholder="Max Fuel" [(ngModel)]="vehicle.maxFuel" required name="maxFuel" #maxFuel></mat-form-field><br>
-      <mat-form-field><input matInput placeholder="Chassis ID" [(ngModel)]="vehicle.chassisID" required name="chassisID" #chassisID></mat-form-field>&nbsp;
-      <mat-form-field><input matInput placeholder="Max km" [(ngModel)]="vehicle.maxKmTank" required name="maxKmTank" #maxKmTank></mat-form-field><br>
-      <mat-form-field><input matInput placeholder="Fuelsystem" [(ngModel)]="vehicle.fuelSystem" required name="fuelSystem" #fuelSystem></mat-form-field>&nbsp;
-      <mat-form-field><input matInput placeholder="Gearsystem" [(ngModel)]="vehicle.gearSystem" required name="gearSystem" #gearSystem></mat-form-field><br>
-      <mat-form-field><input matInput placeholder="Drive" [(ngModel)]="vehicle.drive" required name="drive" #drive></mat-form-field>&nbsp;
-      <mat-form-field><input matInput placeholder="Interior" [(ngModel)]="vehicle.interior" required name="interior" #interior></mat-form-field><br>
-      <mat-form-field><input matInput placeholder="Barcode" [(ngModel)]="vehicle.barcode" required name="barcode" #barcode></mat-form-field>&nbsp;
-      <mat-form-field><input matInput placeholder="Mileage" [(ngModel)]="vehicle.mileage" required name="mileage" #mileage></mat-form-field>
+      <mat-form-field><input matInput placeholder="nick" [(ngModel)]="vehicle.nick" required name="nick" #nick></mat-form-field>
+      <mat-form-field><input matInput placeholder="firstRegistration" [(ngModel)]="vehicle.firstRegistration" required name="firstRegistration" #firstRegistration></mat-form-field>
+      <mat-form-field><input matInput placeholder="registrationClass" [(ngModel)]="vehicle.registrationClass" required name="registrationClass" #registrationClass></mat-form-field>
+      <mat-form-field><input matInput placeholder="regNo" [(ngModel)]="vehicle.regNo" required name="regNo" #regNo></mat-form-field>
+      <mat-form-field><input matInput placeholder="warranty" [(ngModel)]="vehicle.warranty" required name="warranty" #warranty></mat-form-field>
+      <mat-form-field><input matInput placeholder="warrantyDuration" [(ngModel)]="vehicle.warrantyDuration" required name="warrantyDuration" #warrantyDuration></mat-form-field>
+      <mat-form-field><input matInput placeholder="warrantyDistance" [(ngModel)]="vehicle.warrantyDistance" required name="warrantyDistance" #warrantyDistance></mat-form-field>
+      <mat-form-field><input matInput placeholder="warrantyUrl" [(ngModel)]="vehicle.warrantyUrl" required name="warrantyUrl" #warrantyUrl></mat-form-field>
+      <mat-form-field><input matInput placeholder="carPremium" [(ngModel)]="vehicle.carPremium" required name="carPremium" #carPremium></mat-form-field>
+      <mat-form-field><input matInput placeholder="carPremiumLink" [(ngModel)]="vehicle.carPremiumLink" required name="carPremiumLink" #carPremiumLink></mat-form-field>
+      <mat-form-field><input matInput placeholder="exteriorColorMain" [(ngModel)]="vehicle.exteriorColorMain" required name="exteriorColorMain" #exteriorColorMain></mat-form-field>
+      <mat-form-field><input matInput placeholder="exteriorColor" [(ngModel)]="vehicle.exteriorColor" required name="exteriorColor" #exteriorColor></mat-form-field>
+      <mat-form-field><input matInput placeholder="interiorColor" [(ngModel)]="vehicle.interiorColor" required name="interiorColor" #interiorColor></mat-form-field>
+      <mat-form-field><input matInput placeholder="interiorType" [(ngModel)]="vehicle.interiorType" required name="interiorType" #interiorType></mat-form-field>
+      <mat-form-field><input matInput placeholder="tires" [(ngModel)]="vehicle.tires" required name="tires" #tires></mat-form-field>
+      <mat-form-field><input matInput placeholder="maxFuel" [(ngModel)]="vehicle.maxFuel" required name="maxFuel" #maxFuel></mat-form-field>
+      <mat-form-field><input matInput placeholder="chassisId" [(ngModel)]="vehicle.chassisId" required name="chassisId" #chassisId></mat-form-field>
+      <mat-form-field><input matInput placeholder="maxKmTank" [(ngModel)]="vehicle.maxKmTank" required name="maxKmTank" #maxKmTank></mat-form-field>
+      <mat-form-field><input matInput placeholder="mileage" [(ngModel)]="vehicle.mileage" required name="mileage" #mileage></mat-form-field>
+      <mat-form-field><input matInput placeholder="serviceHistory" [(ngModel)]="vehicle.serviceHistory" required name="serviceHistory" #serviceHistory></mat-form-field>
+      <mat-form-field><input matInput placeholder="servicePlanFollowed" [(ngModel)]="vehicle.servicePlanFollowed" required name="servicePlanFollowed" #servicePlanFollowed></mat-form-field>
+      <mat-form-field><input matInput placeholder="financePartner" [(ngModel)]="vehicle.financePartner" required name="financePartner" #financePartner></mat-form-field>
+      <mat-form-field><input matInput placeholder="insurancePartner" [(ngModel)]="vehicle.insurancePartner" required name="insurancePartner" #insurancePartner></mat-form-field>
       <alert></alert>
     </mat-card-content>
     <mat-card-actions>
@@ -29,4 +38,7 @@
               *ngIf="vehicle.href" type="button">Delete</button>
     </mat-card-actions>
   </form>
+  <button mat-raised-button color="primary" (click)="openInput()">Choose Files</button>
+  <input hidden="hidden" id="fileInput" multiple type="file" (change)="fileChange($event)" />
+  <button mat-button [disabled]="!ourFile" (click)="upload()">Upload</button>
 </mat-card>

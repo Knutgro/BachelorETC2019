@@ -1,26 +1,5 @@
 export class Vehicle {
   id: number;
-
-  name: string;
-
-  nick: string;
-  color: string;
-  make: string;
-  tires: string;
-  maxFuel: number;
-  chassisID: string;
-  maxKmTank: number;
-  fuelSystem: string;
-  gearSystem: string;
-  drive: string;
-  interior: string;
-  barcode: string;
-  mileage: number;
-
-  thumbnail: string;
-
-  /* Vehicle model from backend
-  id: number;
   nick: string;
   firstRegistration: string;
   registrationClass: string;
@@ -44,11 +23,4 @@ export class Vehicle {
   servicePlanFollowed: boolean;
   financePartner: string;
   insurancePartner: string;
-
-  + Relationhips
-  ++ VehicleAlbums
-  ++ Listing
-  ++ Company
-  ++ Model
-  */
 }

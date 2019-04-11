@@ -13,6 +13,7 @@ import {Title} from '@angular/platform-browser';
 })
 export class VehicleEditComponent implements OnInit, OnDestroy {
   vehicle: any = {};
+  ourFile: File[];
 
   sub: Subscription;
 
@@ -62,4 +63,19 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
       this.gotoList();
     }, error => this.alertService.error(error));
   }
+
+  openInput() {
+    document.getElementById('fileInput').click();
+  }
+
+  fileChange(event: any) {
+    if (event.target.files) {
+      this.ourFile = event.target.files;
+    }
+  }
+
+  upload() {
+    console.log('Send to server');
+  }
+
 }
