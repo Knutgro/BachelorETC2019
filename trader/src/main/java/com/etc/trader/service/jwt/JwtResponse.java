@@ -9,7 +9,6 @@ import lombok.Setter;
 public class JwtResponse {
     private String token;
     private String type = "Bearer";
-
     private CustomUserDetails user;
 
     public JwtResponse(String token, CustomUserDetails user) {

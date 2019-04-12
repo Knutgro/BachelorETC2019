@@ -23,7 +23,9 @@ public class CustomUserDetails implements UserDetails {
 
     private boolean activated;
 
-    private String imageUrl;
+    private byte[] image;
+
+    private String imageContentType;
 
     private String username;
 
@@ -37,14 +39,15 @@ public class CustomUserDetails implements UserDetails {
     private Collection<? extends GrantedAuthority> roles;
 
     public CustomUserDetails(Long id, String firstName, String lastName,
-                         boolean activated, String imageUrl,
+                         boolean activated, byte[] image, String imageContentType,
                          String username, String email, String password,
                          Collection<? extends GrantedAuthority> authorities, Company company) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.activated = activated;
-        this.imageUrl = imageUrl;
+        this.image = image;
+        this.imageContentType = imageContentType;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -62,7 +65,8 @@ public class CustomUserDetails implements UserDetails {
                 user.getFirstName(),
                 user.getLastName(),
                 user.isActivated(),
-                user.getImageUrl(),
+                user.getImage(),
+                user.getImageContentType(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
@@ -83,10 +87,13 @@ public class CustomUserDetails implements UserDetails {
         return lastName;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageContentType() {
+        return imageContentType;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
 
     public String getEmail() {
         return email;

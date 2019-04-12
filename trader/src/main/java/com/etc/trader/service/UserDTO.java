@@ -40,8 +40,9 @@ public class UserDTO {
     @Email
     private String email;
 
-    @Size(min=3, max = 256)
-    private String imageUrl;
+    private byte[] image;
+
+    private String imageContentType;
 
     private Set<String> role;
 
@@ -86,12 +87,20 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getImageContentType() {
+        return imageContentType;
+    }
+
+    public void setImageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
     }
 
     public Set<String> getRole() {
@@ -110,16 +119,5 @@ public class UserDTO {
         this.company_id = company_id;
     }
 
-    @Override
-    public String toString() {
-        return "UserDTO{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", role=" + role +
-                ", company_id=" + company_id +
-                '}';
-    }
+
 }

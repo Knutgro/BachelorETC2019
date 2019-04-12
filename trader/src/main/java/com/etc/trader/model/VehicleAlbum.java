@@ -3,11 +3,11 @@ package com.etc.trader.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -23,8 +23,13 @@ public class VehicleAlbum implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "picture_url")
-    private String pictureUrl;
+    @Lob
+    @Column(name = "image")
+    private byte[] image;
+
+    @Column(name = "image_content_type")
+    private String imageContentType;
+
 
     @JsonIgnore
     @ManyToOne
@@ -32,6 +37,10 @@ public class VehicleAlbum implements Serializable {
     private Vehicle vehicle;
 
     VehicleAlbum() {}
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Long getId() {
         return id;
@@ -41,32 +50,29 @@ public class VehicleAlbum implements Serializable {
         this.id = id;
     }
 
-    public String getPictureUrl() {
-        return pictureUrl;
+    public byte[] getImage() {
+        return image;
     }
 
-    public VehicleAlbum pictureUrl(String pictureUrl) {
-        this.pictureUrl = pictureUrl;
-        return this;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
-    public void setPictureUrl(String pictureUrl) {
-        this.pictureUrl = pictureUrl;
+    public String getImageContentType() {
+        return imageContentType;
+    }
+
+    public void setImageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
     }
 
     public Vehicle getVehicle() {
         return vehicle;
     }
 
-    public VehicleAlbum vehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
-        return this;
-    }
-
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -91,9 +97,10 @@ public class VehicleAlbum implements Serializable {
     @Override
     public String toString() {
         return "VehicleAlbum{" +
-                "id=" + getId() +
-                ", pictureUrl='" + getPictureUrl() + "'" +
-                "}";
+                "id=" + id +
+                ", image=" + Arrays.toString(image) +
+                ", imageContentType='" + imageContentType + '\'' +
+                ", vehicle=" + vehicle +
+                '}';
     }
-    
 }

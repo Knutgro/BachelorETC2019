@@ -104,7 +104,8 @@ public class UserService {
         updatedUser.setUsername(userDTO.getUsername().toLowerCase());
         updatedUser.setFirstName(userDTO.getFirstName());
         updatedUser.setLastName(userDTO.getLastName());
-        updatedUser.setImageUrl(userDTO.getImageUrl());
+        updatedUser.setImage(userDTO.getImage());
+        updatedUser.setImageContentType(userDTO.getImageContentType());
 
         return Optional.of(userRepository
                 .findByUsername(userDTO.getUsername()))
@@ -115,7 +116,8 @@ public class UserService {
                     user.setFirstName(userDTO.getFirstName());
                     user.setLastName(userDTO.getLastName());
                     user.setEmail(userDTO.getEmail().toLowerCase());
-                    user.setImageUrl(userDTO.getImageUrl());
+                    user.setImage(userDTO.getImage());
+                    user.setImageContentType(userDTO.getImageContentType());
 
                     /*Set<Authority> managedAuthorities = user.getAuthorities();
                     managedAuthorities.clear();
