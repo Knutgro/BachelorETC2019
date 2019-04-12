@@ -13,7 +13,7 @@ export class ImagesService {
     private globals: Globals
   ) { }
 
-  getImages(vehicleID: string): Observable<any> {
+  getImages(vehicleID: string): Observable<any> { // TODO fix for backend not fake
     return this.http.get(`${this.globals.apiUrl}/images/${vehicleID}`);
   }
 
