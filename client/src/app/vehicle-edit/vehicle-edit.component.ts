@@ -5,6 +5,8 @@ import {VehicleService} from "../_services/vehicle.service";
 import {NgForm} from "@angular/forms";
 import {AlertService} from '../_services/alert.service';
 import {Title} from '@angular/platform-browser';
+import {VehicleImage} from '../_models/vehicleImage';
+import {ImagesService} from '../_services/images.service';
 
 @Component({
   selector: 'app-vehicle-edit',
@@ -14,14 +16,17 @@ import {Title} from '@angular/platform-browser';
 export class VehicleEditComponent implements OnInit, OnDestroy {
   vehicle: any = {};
   ourFile: File[];
-
+  vImage: VehicleImage;
   sub: Subscription;
+  imageArr: any[] = [];
+  url: any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private vehicleService: VehicleService,
               private alertService: AlertService,
-              private titleService: Title
+              private titleService: Title,
+              private imageService: ImagesService
               ) {
   }
 
@@ -71,11 +76,29 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   fileChange(event: any) {
     if (event.target.files) {
       this.ourFile = event.target.files;
+      const reader = new FileReader();
+      reader.onload = (eventR: any) => {
+        this.url = eventR.target.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+      this.imageArr.push(event.target.files[0]);
+      console.log(event.target.files[0].name);
     }
   }
 
-  upload() {
+  upload() { // TODO
     console.log('Send to server');
+    // let vehicleAlbum = VehicleImage[];
+    for (let i = 0; i < this.imageArr.length; i++) {
+      let fileExt = this.imageArr[i].name.split('.').pop();
+      console.log(fileExt);
+      this.vImage = {
+        image: new Blob([this.imageArr[i]]),
+        imageContentType: fileExt,
+        vehicle_id: this.vehicle.id
+      };
+      this.imageService.postImage(this.vImage);
+    }
   }
 
 }
