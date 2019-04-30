@@ -16,7 +16,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatPaginatorModule, MatSidenavModule,
+  MatPaginatorModule, MatSelectModule, MatSidenavModule,
   MatTableModule,
   MatToolbarModule, MatTreeModule
 } from '@angular/material';
@@ -98,7 +98,8 @@ export function getToken() {
     MatSidenavModule,
     MatCheckboxModule,
     FlexLayoutModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -32,7 +32,7 @@ export class RoleGuardService implements CanActivate {
     }
     if (
       !this.authenticationService.isAuthenticated() ||
-      !expectedRole
+      !asExpected
     ) {
       console.log('Access denied!');
       this.router.navigate(['']);

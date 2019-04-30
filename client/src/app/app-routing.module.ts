@@ -20,7 +20,7 @@ const routes: Routes = [];
 @NgModule({
   imports: [RouterModule.forRoot([
     { path: '', component: HomeComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: 'register', component: RegisterComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN' }},
     { path: 'login', component: LoginComponent },
     { path: 'vehicle-list', component: VehicleListComponent},
     { path: 'vehicle-add', component: VehicleEditComponent, canActivate: [AuthGuardService]},

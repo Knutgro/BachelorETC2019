@@ -45,6 +45,7 @@ export class UserAdminComponent implements OnInit, OnDestroy {
   private loadAllUsers() {
     this.userService.getAll().pipe(first()).subscribe(users => {
       this.users = users;
+      console.log(users);
     });
   }
 
