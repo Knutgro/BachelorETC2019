@@ -1,14 +1,15 @@
+
 <mat-card>
-  <mat-card-header>
-    <mat-card-title><h2>{{currentUser.user.username}}</h2></mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-card-content>
-      <mat-list>
-
-
+  <alert></alert>
+  <div class="center-card" style="margin-top: 10px">
+    <mat-card class="inlineStyle">
+      <mat-list role="list" style="float: left">
+        <mat-list-item role="listitem">username: {{currentUser.user.username}}</mat-list-item>
+        <mat-list-item role="listitem">first name: {{currentUser.user.firstName}}</mat-list-item>
+        <mat-list-item role="listitem">last name: {{currentUser.user.lastName}}</mat-list-item>
+        <mat-list-item role="listitem">email: {{currentUser.user.email}}</mat-list-item>
       </mat-list>
-
-    </mat-card-content>
-  </mat-card-content>
+      <button mat-fab color="accent" [routerLink]="['/vehicle-edit', currentUser.user.id]">Edit</button>
+    </mat-card>
+  </div>
 </mat-card>

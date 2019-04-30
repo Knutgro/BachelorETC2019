@@ -105,7 +105,7 @@ public class UserService {
         updatedUser.setFirstName(userDTO.getFirstName());
         updatedUser.setLastName(userDTO.getLastName());
         updatedUser.setImage(userDTO.getImage());
-        updatedUser.setImageContentType(userDTO.getImageContentType());
+        updatedUser.setFilename(userDTO.getFilename());
 
         return Optional.of(userRepository
                 .findByUsername(userDTO.getUsername()))
@@ -117,7 +117,7 @@ public class UserService {
                     user.setLastName(userDTO.getLastName());
                     user.setEmail(userDTO.getEmail().toLowerCase());
                     user.setImage(userDTO.getImage());
-                    user.setImageContentType(userDTO.getImageContentType());
+                    user.setFilename(userDTO.getFilename());
 
                     /*Set<Authority> managedAuthorities = user.getAuthorities();
                     managedAuthorities.clear();
@@ -134,6 +134,10 @@ public class UserService {
 
     }
 
+    @Transactional(readOnly = true)
+    public Page<User> getAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
         return userRepository.findAllByUsernameNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);

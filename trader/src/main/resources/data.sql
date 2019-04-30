@@ -59,4 +59,11 @@ INSERT INTO `vehicle` (`id`, `reg_no`, `warranty`,
                         `vat_included`, `company_id`, `vehicle_id`)
               VALUES ('1', 'Good', 'NOK', 'This is a car description describing a car', 'keyword', '69000', '4', 'registration',
                       '1', '1', 'KJØP BILEN MIN ER DU SNILL!', '70000', 'www.vg.no', True, '1', '1');
+/*
+INSERT INTO `users` (`id`, `activated`, `email`, `firstName`, `lastName`, `password`, `username`, `company_id`)
+              VALUES (1, 1, 'admin@admin.no', 'firstname', 'lastname', '$2y$12$uchV9nToITQyHghfUIW2tOdduuJiDCfLr2WNNyNzuoMqiV8XLdV5C',
+              'admin', '1');
 
+INSERT INTO `user_roles` (`user_id`, `role_id`)
+              VALUES (1, 1);
+*/
