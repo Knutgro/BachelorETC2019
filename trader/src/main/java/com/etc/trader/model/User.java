@@ -56,8 +56,8 @@ public class User {
     @Column(name = "image")
     private byte[] image;
 
-    @Column(name = "image_content_type")
-    private String imageContentType;
+    @Column(name = "filename")
+    private String filename;
 
     @ManyToOne
     @JsonIgnore
@@ -87,7 +87,7 @@ public class User {
                 @NotBlank @Size(min = 6, max = 100) String password, @NotBlank @Size(min = 3,
             max = 50) String firstName, @NotBlank @Size(min = 3, max = 50) String lastName,
                 @NotBlank @Size(max = 50) @Email String email, boolean activated, byte[] image,
-                String imageContentType, Company company, Set<Role> roles) {
+                String filename, Company company, Set<Role> roles) {
 
         this.username = username;
         this.password = password;
@@ -96,7 +96,7 @@ public class User {
         this.email = email;
         this.activated = activated;
         this.image = image;
-        this.imageContentType = imageContentType;
+        this.filename = filename;
         this.company = company;
         this.roles = roles;
     }
@@ -165,12 +165,12 @@ public class User {
         this.image = image;
     }
 
-    public String getImageContentType() {
-        return imageContentType;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setImageContentType(String imageContentType) {
-        this.imageContentType = imageContentType;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     public Company getCompany() {
@@ -202,14 +202,14 @@ public class User {
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(email, user.email) &&
                 Arrays.equals(image, user.image) &&
-                Objects.equals(imageContentType, user.imageContentType) &&
+                Objects.equals(filename, user.filename) &&
                 Objects.equals(company, user.company) &&
                 Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, username, password, firstName, lastName, email, activated, imageContentType, company, roles);
+        int result = Objects.hash(id, username, password, firstName, lastName, email, activated, filename, company, roles);
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
@@ -225,7 +225,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", activated=" + activated +
                 ", image=" + Arrays.toString(image) +
-                ", imageContentType='" + imageContentType + '\'' +
+                ", filename='" + filename + '\'' +
                 ", company=" + company +
                 ", roles=" + roles +
                 '}';

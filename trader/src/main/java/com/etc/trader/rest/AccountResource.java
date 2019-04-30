@@ -30,9 +30,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -130,10 +132,12 @@ public class AccountResource {
     }
 
     @RequestMapping("updateUser")
-    public void saveAccount(@Valid @RequestBody UserDTO userDTO, HttpServletRequest request) {
+    public void saveAccount(@Valid @RequestBody UserDTO userDTO, @RequestParam MultipartFile file, HttpServletRequest request) throws IOException {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtProvider.getUserNameFromJwtToken(token);
         userDTO.setUsername(username);
+        userDTO.setImage(file.getBytes());
+        userDTO.setFilename(file.getOriginalFilename());
         userService.updateUser(userDTO);
     }
 

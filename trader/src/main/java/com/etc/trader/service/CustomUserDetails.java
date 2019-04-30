@@ -25,7 +25,7 @@ public class CustomUserDetails implements UserDetails {
 
     private byte[] image;
 
-    private String imageContentType;
+    private String filename;
 
     private String username;
 
@@ -47,7 +47,7 @@ public class CustomUserDetails implements UserDetails {
         this.lastName = lastName;
         this.activated = activated;
         this.image = image;
-        this.imageContentType = imageContentType;
+        this.filename = imageContentType;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -66,7 +66,7 @@ public class CustomUserDetails implements UserDetails {
                 user.getLastName(),
                 user.isActivated(),
                 user.getImage(),
-                user.getImageContentType(),
+                user.getFilename(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
@@ -87,8 +87,8 @@ public class CustomUserDetails implements UserDetails {
         return lastName;
     }
 
-    public String getImageContentType() {
-        return imageContentType;
+    public String getFilename() {
+        return filename;
     }
 
     public byte[] getImage() {

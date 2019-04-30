@@ -3,6 +3,7 @@ package com.etc.trader.rest;
 
 
 import com.etc.trader.model.RoleName;
+import com.etc.trader.model.User;
 import com.etc.trader.rest.util.PaginationUtil;
 import com.etc.trader.security.Constants;
 import com.etc.trader.service.UserDTO;
@@ -63,8 +64,9 @@ public class UserResource {
      * @return the ResponseEntity with status 200 (OK) and with body all users
      */
     @GetMapping("/users")
-    public ResponseEntity<List<UserDTO>> getAllUsers(Pageable pageable) {
-        final Page<UserDTO> page = userService.getAllManagedUsers(pageable);
+    public ResponseEntity<List<User>> getAllUsers(Pageable pageable) {
+        //final Page<UserDTO> page = userService.getAllManagedUsers(pageable);
+        final Page<User> page = userService.getAllUsers(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

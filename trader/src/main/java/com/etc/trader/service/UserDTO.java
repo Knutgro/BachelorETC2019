@@ -2,20 +2,13 @@ package com.etc.trader.service;
 
 
 
-import com.etc.trader.model.Company;
 import com.etc.trader.model.User;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Date;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * A DTO representing a user, with his authorities.
@@ -42,7 +35,7 @@ public class UserDTO {
 
     private byte[] image;
 
-    private String imageContentType;
+    private String filename;
 
     private Set<String> role;
 
@@ -95,12 +88,12 @@ public class UserDTO {
         this.image = image;
     }
 
-    public String getImageContentType() {
-        return imageContentType;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setImageContentType(String imageContentType) {
-        this.imageContentType = imageContentType;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     public Set<String> getRole() {
