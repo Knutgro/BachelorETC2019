@@ -42,6 +42,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { VehicleListingComponent } from './vehicle-listing/vehicle-listing.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
+
+export function getToken() {
+  return localStorage.getItem('currentUser');
+}
 
 @NgModule({
   declarations: [
@@ -64,6 +69,12 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     UserProfileComponent
   ],
   imports: [
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: getToken,
+        whitelistedDomains: ['localhost:4200']
+      }
+    }),
     NgxGalleryModule,
     BrowserModule,
     AppRoutingModule,
@@ -93,7 +104,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     Globals,
-    Title
+    Title,
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,8 @@ import {BehaviorSubject, config, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Globals} from '../globals';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +14,23 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<any>;
 
-  constructor(private http: HttpClient, private globals: Globals) {
+  constructor(
+    private http: HttpClient,
+    private globals: Globals,
+    public jwtHelper: JwtHelperService
+  ) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
+  }
+
+  public isAuthenticated(): boolean {
+    const token = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(token.token);
+    return !this.jwtHelper.isTokenExpired(token.token);
   }
 
   login(username: string, password: string) {

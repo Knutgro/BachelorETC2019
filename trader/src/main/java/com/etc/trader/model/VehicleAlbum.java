@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * A VehicleAlbum.
@@ -36,7 +37,13 @@ public class VehicleAlbum implements Serializable {
     @JsonIgnoreProperties("vehicleAlbums")
     private Vehicle vehicle;
 
-    VehicleAlbum() {}
+    public VehicleAlbum(byte[] image, String imageContentType, Vehicle vehicle) {
+        this.image = image;
+        this.imageContentType = imageContentType;
+        this.vehicle = vehicle;
+    }
+
+    public VehicleAlbum() {}
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

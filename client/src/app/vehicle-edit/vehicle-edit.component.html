@@ -1,7 +1,7 @@
 <mat-card>
   <form #vehicleForm="ngForm" (ngSubmit)="save(vehicleForm.value)">
     <mat-card-header>
-      <mat-card-title><h2>{{vehicle.name ? 'Edit' : 'Add'}} Vehicle</h2></mat-card-title>
+      <mat-card-title><h2>{{vehicle ? 'Rediger' : 'Legg til'}} kjøretøy</h2></mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <input type="hidden" name="href" [(ngModel)]="vehicle.href">
@@ -32,7 +32,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="accent" type="submit"
-              [disabled]="!vehicleForm.form.valid">Save</button>
+              [disabled]="!vehicleForm.form.valid" (click)="upload()">Save</button>
       <button mat-raised-button routerLink="/vehicle-list">Cancel</button>
       <button mat-raised-button color="warn" (click)="remove(vehicle.id)"
               *ngIf="vehicle.href" type="button">Delete</button>
@@ -40,5 +40,5 @@
   </form>
   <button mat-raised-button color="primary" (click)="openInput()">Choose Files</button>
   <input hidden="hidden" id="fileInput" multiple type="file" (change)="fileChange($event)" />
-  <button mat-button [disabled]="!ourFile" (click)="upload()">Upload</button>
+  <button mat-raised-button [disabled]="!ourFile" color="accent" (click)="upload()">Upload</button>
 </mat-card>

@@ -22,7 +22,7 @@ export class VehicleService {
     if (vehicle['href']) {
       result = this.http.put(vehicle.href, vehicle);
     } else {
-      result = this.http.post(`${this.globals.apiUrl}/vehicles/add`, vehicle);
+      result = this.http.post(`${this.globals.apiUrl}/vehicles`, vehicle);
     }
     return result;
   }

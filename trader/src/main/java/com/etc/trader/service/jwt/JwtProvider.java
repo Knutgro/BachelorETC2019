@@ -22,7 +22,7 @@ public class JwtProvider {
     @Value("$trader.app.jwtSecret")
     private String jwtSecret;
 
-    @Value("${trader.app.jwtExpiration}")
+    @Value("${trader.app.jwtExpiration}0")
     private int jwtExpiration;
 
     public String generateJwtToken(Authentication authentication) {
@@ -33,6 +33,7 @@ public class JwtProvider {
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpiration))
+                .claim("role", userPrincipal.getAuthorities())
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }

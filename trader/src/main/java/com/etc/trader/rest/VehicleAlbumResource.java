@@ -1,9 +1,12 @@
 package com.etc.trader.rest;
 
+import com.etc.trader.model.Vehicle;
 import com.etc.trader.model.VehicleAlbum;
 import com.etc.trader.repository.VehicleAlbumRepository;
+import com.etc.trader.repository.VehicleRepository;
 import com.etc.trader.rest.errors.BadRequestAlertException;
 import com.etc.trader.rest.util.HeaderUtil;
+import com.etc.trader.rest.vm.ImageUpload;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +28,13 @@ public class VehicleAlbumResource {
     private static final String ENTITY_NAME = "vehicleAlbum";
 
     private final VehicleAlbumRepository vehicleAlbumRepository;
+    private final VehicleRepository vehicleRepository;
 
-    public VehicleAlbumResource(VehicleAlbumRepository vehicleAlbumRepository) {
+    public VehicleAlbumResource(VehicleAlbumRepository vehicleAlbumRepository,
+                                VehicleRepository vehicleRepository) {
         this.vehicleAlbumRepository = vehicleAlbumRepository;
+        this.vehicleRepository = vehicleRepository;
+
     }
 
     /**
@@ -58,13 +65,17 @@ public class VehicleAlbumResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/vehicle-albums")
-    public ResponseEntity<VehicleAlbum> updateVehicleAlbum(@RequestBody VehicleAlbum vehicleAlbum) throws URISyntaxException {
-        if (vehicleAlbum.getId() == null) {
+    public ResponseEntity<VehicleAlbum> updateVehicleAlbum(@RequestBody ImageUpload imageUpload) throws URISyntaxException {
+        if (imageUpload.getVehicle_id() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        VehicleAlbum result = vehicleAlbumRepository.save(vehicleAlbum);
+        VehicleAlbum album = new VehicleAlbum();
+        album.setVehicle(vehicleRepository.findVehicleById(imageUpload.getVehicle_id()));
+        album.setImage(imageUpload.getImage());
+        album.setImageContentType(imageUpload.getImageContentType());
+        VehicleAlbum result = vehicleAlbumRepository.save(album);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, vehicleAlbum.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, album.getId().toString()))
             .body(result);
     }
 
