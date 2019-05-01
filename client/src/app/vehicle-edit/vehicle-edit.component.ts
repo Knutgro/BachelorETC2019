@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
-import {VehicleService} from "../_services/vehicle.service";
-import {NgForm} from "@angular/forms";
+import {Subscription} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {VehicleService} from '../_services/vehicle.service';
+import {NgForm} from '@angular/forms';
 import {AlertService} from '../_services/alert.service';
 import {Title} from '@angular/platform-browser';
 import {VehicleImage} from '../_models/vehicleImage';
@@ -34,6 +34,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
+      console.log(id);
       if (id) {
         this.vehicleService.getById(id).subscribe((vehicle: any) => {
           if (vehicle) {
@@ -46,6 +47,8 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
             this.gotoList();
           }
         });
+      } else {
+        this.vehicle.href = null;
       }
     });
   }
@@ -91,14 +94,14 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
     console.log('Send to server');
     // let vehicleAlbum = VehicleImage[];
     for (let i = 0; i < this.imageArr.length; i++) {
-      //let fileExt = this.imageArr[i].split('.').pop();
-      //let formData = new FormData();
-      //console.log(fileExt);
-      //formData.append('image', this.imageArr[i]);
-      //formData.append('imageContentType', fileExt);
-      //formData.append('vehicle_id', JSON.stringify(this.vehicle.id));
-      let imgString = JSON.stringify(this.imageArr[i]);
-      let fileExt = imgString.substring('{data:image/'.length, imgString.indexOf(';base64'));
+      // let fileExt = this.imageArr[i].split('.').pop();
+      // let formData = new FormData();
+      // console.log(fileExt);
+      // formData.append('image', this.imageArr[i]);
+      // formData.append('imageContentType', fileExt);
+      // formData.append('vehicle_id', JSON.stringify(this.vehicle.id));
+      const imgString = JSON.stringify(this.imageArr[i]);
+      const fileExt = imgString.substring('{data:image/'.length, imgString.indexOf(';base64'));
       this.vImage = {
         image: this.imageArr[i],
         imageContentType: fileExt,
