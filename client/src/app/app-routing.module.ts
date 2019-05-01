@@ -14,17 +14,19 @@ import {VehicleListingComponent} from './vehicle-listing/vehicle-listing.compone
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AuthGuardService} from './_services/auth-guard.service';
 import {RoleGuardService} from './_services/role-guard.service';
+import {UserEditComponent} from './user-edit/user-edit.component';
 
 const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot([
     { path: '', component: HomeComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: 'register', component: RegisterComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN' }},
     { path: 'login', component: LoginComponent },
     { path: 'vehicle-list', component: VehicleListComponent},
     { path: 'vehicle-add', component: VehicleEditComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-edit', component: VehicleEditComponent, canActivate: [AuthGuardService]},
+    { path: 'user-edit/:id', component: UserEditComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-edit/:id', component: VehicleEditComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-listing/:id', component: VehicleListingComponent},
     { path: 'user-admin', component: UserAdminComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN'}},

@@ -16,7 +16,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatPaginatorModule, MatSidenavModule,
+  MatPaginatorModule, MatSelectModule, MatSidenavModule,
   MatTableModule,
   MatToolbarModule, MatTreeModule
 } from '@angular/material';
@@ -43,6 +43,7 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { VehicleListingComponent } from './vehicle-listing/vehicle-listing.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 export function getToken() {
   return localStorage.getItem('currentUser');
@@ -66,7 +67,8 @@ export function getToken() {
     SearchResultComponent,
     VehicleListingComponent,
     SearchFilterComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserEditComponent
   ],
   imports: [
     JwtModule.forRoot({
@@ -98,7 +100,8 @@ export function getToken() {
     MatSidenavModule,
     MatCheckboxModule,
     FlexLayoutModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

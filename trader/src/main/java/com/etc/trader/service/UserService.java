@@ -134,6 +134,16 @@ public class UserService {
 
     }
 
+    /**
+     * Delete the company by id.
+     *
+     * @param id the id of the entity
+     */
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
+
+
     @Transactional(readOnly = true)
     public Page<User> getAllUsers(Pageable pageable) {
         return userRepository.findAll(pageable);

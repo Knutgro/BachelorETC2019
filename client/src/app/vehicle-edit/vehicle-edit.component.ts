@@ -7,6 +7,7 @@ import {AlertService} from '../_services/alert.service';
 import {Title} from '@angular/platform-browser';
 import {VehicleImage} from '../_models/vehicleImage';
 import {ImagesService} from '../_services/images.service';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-vehicle-edit',
@@ -18,7 +19,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   ourFile: File[];
   vImage: VehicleImage;
   sub: Subscription;
-  imageArr: any[] = [];
+  imageArr: File[] = [];
   url: any;
 
   constructor(private route: ActivatedRoute,
@@ -26,7 +27,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
               private vehicleService: VehicleService,
               private alertService: AlertService,
               private titleService: Title,
-              private imageService: ImagesService
+              private imageService: ImagesService,
               ) {
   }
 
@@ -79,10 +80,10 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
       const reader = new FileReader();
       reader.onload = (eventR: any) => {
         this.url = eventR.target.result;
+        this.imageArr.push(this.url);
+        console.log(this.url);
       };
       reader.readAsDataURL(event.target.files[0]);
-      this.imageArr.push(event.target.files[0]);
-      console.log(event.target.files[0].name);
     }
   }
 
@@ -90,14 +91,28 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
     console.log('Send to server');
     // let vehicleAlbum = VehicleImage[];
     for (let i = 0; i < this.imageArr.length; i++) {
-      let fileExt = this.imageArr[i].name.split('.').pop();
-      console.log(fileExt);
+      //let fileExt = this.imageArr[i].split('.').pop();
+      //let formData = new FormData();
+      //console.log(fileExt);
+      //formData.append('image', this.imageArr[i]);
+      //formData.append('imageContentType', fileExt);
+      //formData.append('vehicle_id', JSON.stringify(this.vehicle.id));
+      let imgString = JSON.stringify(this.imageArr[i]);
+      let fileExt = imgString.substring('{data:image/'.length, imgString.indexOf(';base64'));
       this.vImage = {
-        image: new Blob([this.imageArr[i]]),
+        image: this.imageArr[i],
         imageContentType: fileExt,
         vehicle_id: this.vehicle.id
       };
-      this.imageService.postImage(this.vImage);
+      console.log(this.vImage);
+      this.imageService.postImage(this.vImage/*formData, this.imageArr[i]*/).pipe(first())
+        .subscribe(
+          data => {
+            this.alertService.success('Image posted');
+          }, error => {
+            this.alertService.error(error);
+          }
+        );
     }
   }
 

@@ -120,18 +120,18 @@ export class VehicleGalleryComponent implements OnInit {
     this.isImageLoading = true;
     this.imageService.getImages(vehicleID).subscribe(data => {
       console.log(data);
-      // const blob = new Blob([data], { type: 'image/png' });
+      const blob = new Blob([JSON.stringify(data.image)], { type: 'image/' + data.imageContentType});
       // this.createImageFromBlob(blob);
 //      this.imageToShow.push(imageURL);
-      console.log(data.length);
+      console.log(data.image);
+      console.log(blob);
+      this.createImageFromBlob(blob); // TODO remove, ere for testing with one image and not expecting an array.
       for (let i = 0; i < data.length; i++) {
-        this.galleryImages[i] = {
-          small: data[i].url,
-          medium: data[i].url,
-          big: data[i].url
-        };
+        console.log(data[i]);
+        this.createImageFromBlob(data[i]);
       }
       this.isImageLoading = true;
+      console.log(this.galleryImages);
     }, error => {
       this.isImageLoading = false;
       this.alertService.error(error);

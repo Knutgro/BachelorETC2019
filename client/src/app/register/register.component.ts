@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     private titleService: Title
   ) {
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
+      // this.router.navigate(['/']);
     }
   }
 
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       company_id: ['', Validators.required],
-      role: [[]] // TODO ikke hardkod admin, for testing purposes only
+      role: [['']]
     });
   }
 
@@ -51,13 +51,14 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.loading = true;
+    console.log(this.registerForm);
     this.userService.register(this.registerForm.value)
       .pipe(first())
       .subscribe(
         data => {
           // alertservice success
           this.alertService.success('Registration successful', true);
-          this.router.navigate(['/login']);
+          // this.router.navigate(this.router.getCurrentNavigation());
         },
         error => {
           this.alertService.error(error);

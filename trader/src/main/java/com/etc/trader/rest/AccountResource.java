@@ -7,6 +7,7 @@ import com.etc.trader.repository.RoleRepository;
 import com.etc.trader.repository.UserRepository;
 import com.etc.trader.rest.errors.InternalServerErrorException;
 import com.etc.trader.rest.errors.InvalidPasswordException;
+import com.etc.trader.rest.util.HeaderUtil;
 import com.etc.trader.rest.vm.ManagedUserVM;
 import com.etc.trader.service.CustomUserDetails;
 import com.etc.trader.service.CustomUserDetailsService;
@@ -37,6 +38,8 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.hibernate.id.IdentifierGenerator.ENTITY_NAME;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -132,13 +135,23 @@ public class AccountResource {
     }
 
     @RequestMapping("updateUser")
-    public void saveAccount(@Valid @RequestBody UserDTO userDTO, @RequestParam MultipartFile file, HttpServletRequest request) throws IOException {
+    public void saveAccount(@Valid @RequestBody UserDTO userDTO, HttpServletRequest request) throws IOException {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtProvider.getUserNameFromJwtToken(token);
         userDTO.setUsername(username);
-        userDTO.setImage(file.getBytes());
-        userDTO.setFilename(file.getOriginalFilename());
         userService.updateUser(userDTO);
+    }
+
+    /**
+     * DELETE  /user/:id : delete the "id" user.
+     *
+     * @param id the id of the user to delete
+     * @return the ResponseEntity with status 200 (OK)
+     */
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.delete(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
 
