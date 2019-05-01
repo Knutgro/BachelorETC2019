@@ -1,1 +1,7 @@
-<mat-error *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}</mat-error>
+<div *ngIf="message">
+
+  <mat-error *ngIf="message.type == 'error'"
+             [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}</mat-error>
+  <p *ngIf="message.type == 'success'"
+             [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}</p>
+</div>

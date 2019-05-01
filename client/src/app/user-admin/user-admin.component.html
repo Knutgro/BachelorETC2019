@@ -1,18 +1,34 @@
-<mat-card>
-  <h3 mat-line >Create new user</h3>
-  <app-register></app-register>
-</mat-card>
-<mat-card>
-  <h3 mat-line >Create new company</h3>
-</mat-card>
-<mat-card *ngIf="currentUser">
-  <h3 mat-line >All registered users:</h3>
-  <mat-list>
-    <mat-list-item *ngFor="let user of users">
-      {{user.username}} ({{user.firstName}} {{user.lastName}})
-      <a mat-flat-button (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-    </mat-list-item>
-  </mat-list>
-  <alert></alert>
-</mat-card>
+<div fxLayout="row">
+  <mat-card fxFlex="1 1">
+    <h3 mat-line>Lag ny bruker</h3>
+    <app-register></app-register>
+  </mat-card>
+  <mat-card fxFlex="1 1">
+    <h3 mat-line>Lag nytt selskap</h3>
+    <app-register-company></app-register-company>
+  </mat-card>
+</div>
+
+<div fxLayout="row">
+  <mat-card *ngIf="currentUser" fxFlex="1 1">
+    <h3 mat-line>Alle registrerte brukere</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let user of users">
+        {{user.username}} ({{user.firstName}} {{user.lastName}})
+        <a mat-flat-button (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+      </mat-list-item>
+    </mat-list>
+    <alert></alert>
+  </mat-card>
+  <mat-card *ngIf="currentUser" fxFlex="1 1">
+    <h3 mat-line>Alle selskap</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let company of companies">
+        {{company.name}}
+        <a mat-flat-button (click)="deleteCompany(company.id)" class="text-danger">Delete</a>
+      </mat-list-item>
+    </mat-list>
+    <alert></alert>
+  </mat-card>
+</div>
 

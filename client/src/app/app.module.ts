@@ -43,6 +43,7 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { VehicleListingComponent } from './vehicle-listing/vehicle-listing.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
+import { RegisterCompanyComponent } from './register-company/register-company.component';
 
 export function getToken() {
   return localStorage.getItem('currentUser');
@@ -66,7 +67,8 @@ export function getToken() {
     SearchResultComponent,
     VehicleListingComponent,
     SearchFilterComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    RegisterCompanyComponent
   ],
   imports: [
     JwtModule.forRoot({
