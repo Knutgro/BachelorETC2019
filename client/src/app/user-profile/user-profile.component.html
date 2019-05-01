@@ -1,4 +1,7 @@
 
+
+
+<!--
 <mat-card>
   <alert></alert>
   <div class="center-card" style="margin-top: 10px">
@@ -12,4 +15,19 @@
       <button mat-fab color="accent" [routerLink]="['/vehicle-edit', currentUser.user.id]">Edit</button>
     </mat-card>
   </div>
+</mat-card>
+-->
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{currentUser.user.username}}</mat-card-title>
+    <mat-card-subtitle>{{currentUser.user.firstName}} {{currentUser.user.lastName}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>{{currentUser.user.email}} </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-fab color="accent" [routerLink]="['/user-edit', currentUser.user.id]">Oppdater</button>
+  </mat-card-actions>
 </mat-card>
