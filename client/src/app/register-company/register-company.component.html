@@ -1,24 +1,27 @@
 <div class="center-card">
   <mat-card class="register-card" role="form">
-    <mat-card-title>Registrer selskap</mat-card-title>
+    <mat-card-title>{{company.name ? 'Rediger' : 'Registrer'}} bedrift</mat-card-title>
     <mat-card-content>
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <form #companyForm="ngForm" (ngSubmit)="onSubmit(companyForm.value)">
         <mat-form-field>
-          <mat-label>Navn</mat-label>
-          <input matInput type="text" formControlName="name" required/>
+          <input matInput placeholder="Navn" type="text" [(ngModel)]="company.name" #name name="name" required/>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>Organisasjonsnummer</mat-label>
-          <input matInput type="number" formControlName="orgNr" required/>
+          <input matInput placeholder="Organisasjonsnummer"  type="number" [(ngModel)]="company.orgNr" #orgNr name="orgNr" required/>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>Telefon nummer</mat-label>
-          <input matInput type="text" formControlName="phoneNumber" required/>
+          <input matInput placeholder="Telefon nummer"  type="text" [(ngModel)]="company.phoneNumber" #phoneNumber name="phoneNumber" required/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-select placeholder="Region/Fylke" type="text" [(ngModel)]="company.regions" #region name="regions" required multiple>
+            <mat-option *ngFor="let region of regions" [value]="{id: region.id, name: region.name}">{{region.name}}</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-card-actions>
-          <button type="submit" [disabled]="registerForm.invalid" mat-raised-button>Register</button>
+          <button type="submit" [disabled]="!companyForm.form.valid" mat-raised-button>Lagre</button>
         </mat-card-actions>
       </form>
       <alert></alert>

@@ -30,6 +30,6 @@ export class UserService {
   }
 
   delete(id: number) {
-    return this.http.delete(`${this.globals.apiUrl}/users/${id}`);
+    return this.http.delete(`${this.globals.apiUrl}/auth/user/${id}`);
   }
 }

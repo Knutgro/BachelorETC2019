@@ -15,6 +15,7 @@ import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AuthGuardService} from './_services/auth-guard.service';
 import {RoleGuardService} from './_services/role-guard.service';
 import {UserEditComponent} from './user-edit/user-edit.component';
+import {RegisterCompanyComponent} from './register-company/register-company.component';
 
 const routes: Routes = [];
 
@@ -32,7 +33,8 @@ const routes: Routes = [];
     { path: 'user-admin', component: UserAdminComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN'}},
     { path: 'vehicle-detail/:id', component: VehicleDetailComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-gallery-test', component: VehicleGalleryComponent},
-    { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuardService]}
+    { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuardService]},
+    { path: 'user-admin/company-edit/:id', component: RegisterCompanyComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN'} }
     // { path: '**', redirectTo: '' }
   ])],
   exports: [RouterModule]

@@ -39,6 +39,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
         this.vehicleService.getById(id).subscribe((vehicle: any) => {
           if (vehicle) {
             this.vehicle = vehicle;
+            console.log(vehicle);
             this.titleService.setTitle(`Rediger ${vehicle.name}`);
             this.vehicle.href = vehicle._links.self.href;
           } else {

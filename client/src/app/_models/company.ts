@@ -1,5 +1,9 @@
+import {Region} from './region';
+
 export class Company {
+  id: number;
   name: string;
   orgNr: number;
-  phoneNr: number;
+  phoneNumber: number;
+  regions: Region[];
 }

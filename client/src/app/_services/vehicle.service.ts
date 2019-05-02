@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Vehicle} from "../_models/vehicle";
 import {Globals} from "../globals";
 import {Observable} from "rxjs";
+import {first} from 'rxjs/operators';
 import {log} from 'util';
 
 @Injectable({

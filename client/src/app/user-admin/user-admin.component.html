@@ -1,10 +1,10 @@
-<div fxLayout="row">
+<div fxLayout="row" *ngIf="currentUser">
   <mat-card fxFlex="1 1">
     <h3 mat-line>Lag ny bruker</h3>
     <app-register></app-register>
   </mat-card>
   <mat-card fxFlex="1 1">
-    <h3 mat-line>Lag nytt selskap</h3>
+    <h3 mat-line>Lag ny bedrift</h3>
     <app-register-company></app-register-company>
   </mat-card>
 </div>
@@ -15,6 +15,7 @@
     <mat-list>
       <mat-list-item *ngFor="let user of users">
         {{user.username}} ({{user.firstName}} {{user.lastName}})
+        <a mat-flat-button routerLink="user-edit/{{user.id}}">Rediger</a>
         <a mat-flat-button (click)="deleteUser(user.id)" class="text-danger">Delete</a>
       </mat-list-item>
     </mat-list>
@@ -25,6 +26,7 @@
     <mat-list>
       <mat-list-item *ngFor="let company of companies">
         {{company.name}}
+        <a mat-flat-button routerLink="company-edit/{{company.id}}">Rediger</a>
         <a mat-flat-button (click)="deleteCompany(company.id)" class="text-danger">Delete</a>
       </mat-list-item>
     </mat-list>
