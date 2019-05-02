@@ -8,8 +8,17 @@ INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 INSERT INTO `company` (`id`, `name`, `org_nr`, `phone_number`) VALUES ('1', 'Dibbert and Sons', '', '083.588.3028x948');
 INSERT INTO `company` (`id`, `name`, `org_nr`, `phone_number`) VALUES ('2', 'Labadie LLC', '2771', '(334)085-9876x6639');
 
-INSERT INTO `region` (`id`, `name`) VALUES ('1', 'NorthDakota');
-INSERT INTO `region` (`id`, `name`) VALUES ('2', 'Arkansas');
+INSERT INTO `region` (`id`, `name`) VALUES ('1', 'Agder');
+INSERT INTO `region` (`id`, `name`) VALUES ('2', 'Innlandet');
+INSERT INTO `region` (`id`, `name`) VALUES ('3', 'Møre og Romsdal');
+INSERT INTO `region` (`id`, `name`) VALUES ('4', 'Nordland');
+INSERT INTO `region` (`id`, `name`) VALUES ('5', 'Oslo');
+INSERT INTO `region` (`id`, `name`) VALUES ('6', 'Rogaland');
+INSERT INTO `region` (`id`, `name`) VALUES ('7', 'Troms og Finnmark');
+INSERT INTO `region` (`id`, `name`) VALUES ('8', 'Trøndelag');
+INSERT INTO `region` (`id`, `name`) VALUES ('9', 'Vestfold og Telemark');
+INSERT INTO `region` (`id`, `name`) VALUES ('10', 'Vestland');
+INSERT INTO `region` (`id`, `name`) VALUES ('11', 'Viken');
 
 INSERT INTO `company_region` (`company_id`, `region_id`) VALUES ('1', '1');
 INSERT INTO `company_region` (`company_id`, `region_id`) VALUES ('2', '2');
