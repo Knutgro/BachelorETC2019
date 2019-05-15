@@ -34,6 +34,7 @@ export class VehicleListComponent implements OnInit {
     this.vehicleService.getAll().subscribe(
       data => {
         this.vehicles = data;
+        console.log(this.vehicles);
       });
   }
 

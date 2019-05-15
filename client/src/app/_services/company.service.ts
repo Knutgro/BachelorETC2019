@@ -20,10 +20,10 @@ export class CompanyService {
     return this.http.get(`${this.globals.apiUrl}/companies/${id}`);
   }
 
-  register(company: any): Observable<any> {
+  register(company: any, exist: boolean): Observable<any> {
     let result: Observable<Object>;
-    if (company['href']) {
-      result = this.http.put(company.href, company);
+    if (exist) {
+      result = this.http.put(`${this.globals.apiUrl}/companies`, company);
     } else {
       result = this.http.post(`${this.globals.apiUrl}/companies`, company);
     }

@@ -1,8 +1,9 @@
 <div class="center-card">
   <mat-card class="register-card" role="form">
-    <mat-card-title>{{company.name ? 'Rediger' : 'Registrer'}} bedrift</mat-card-title>
+    <mat-card-title>{{exist ? 'Rediger' : 'Registrer'}} bedrift</mat-card-title>
     <mat-card-content>
       <form #companyForm="ngForm" (ngSubmit)="onSubmit(companyForm.value)">
+        <input type="hidden" [(ngModel)]="company.id" #id name="id" [value]="company.id">
         <mat-form-field>
           <input matInput placeholder="Navn" type="text" [(ngModel)]="company.name" #name name="name" required/>
         </mat-form-field>

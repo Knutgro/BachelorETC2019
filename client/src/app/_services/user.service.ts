@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Globals} from '../globals';
 import {User} from '../_models/user';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,14 @@ export class UserService {
     return this.http.get(`${this.globals.apiUrl}/users/${id}`);
   }
 
-  register(user: User) {
-    console.log(this.globals.apiUrl);
-    return this.http.post(`${this.globals.apiUrl}/auth/signup`, user);
+  register(user: any, exist: boolean): Observable<any> {
+    let result: Observable<Object>;
+    if (exist) {
+      result =  this.http.put(`${this.globals.apiUrl}/auth/signup`, user);
+    } else {
+      result =  this.http.post(`${this.globals.apiUrl}/auth/signup`, user);
+    }
+    return result;
   }
 
   update(user: User) {

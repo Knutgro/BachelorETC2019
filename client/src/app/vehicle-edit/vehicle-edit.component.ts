@@ -21,6 +21,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   sub: Subscription;
   imageArr: File[] = [];
   url: any;
+  exist: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -32,6 +33,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.exist = false;
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       console.log(id);
@@ -41,15 +43,13 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
             this.vehicle = vehicle;
             console.log(vehicle);
             this.titleService.setTitle(`Rediger ${vehicle.name}`);
-            this.vehicle.href = vehicle._links.self.href;
+            this.exist = true;
           } else {
             // console.log(`vehicle with id '${id}' not found, returning to list`);
             this.alertService.error(`vehicle with id '${id}' not found, returning to list`);
             this.gotoList();
           }
         });
-      } else {
-        this.vehicle.href = null;
       }
     });
   }
@@ -63,7 +63,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   }
 
   save(form: NgForm) {
-    this.vehicleService.save(form).subscribe(result => {
+    this.vehicleService.save(form, this.exist).subscribe(result => {
       this.gotoList();
     }, error => this.alertService.error(error));
   }
@@ -93,8 +93,24 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
 
   upload() { // TODO
     console.log('Send to server');
+    const imgString = JSON.stringify(this.imageArr[0]);
+    const fileExt = imgString.substring('{data:image/'.length, imgString.indexOf(';base64'));
+    this.vImage = {
+      image: this.imageArr[0],
+      imageContentType: fileExt,
+      vehicle_id: this.vehicle.id
+    };
+
+    this.imageService.postImage(this.vImage).pipe(first())
+        .subscribe(
+          data => {
+            this.alertService.success('Image posted');
+          }, error => {
+            this.alertService.error(error);
+          }
+        );
     // let vehicleAlbum = VehicleImage[];
-    for (let i = 0; i < this.imageArr.length; i++) {
+    /*for (let i = 0; i < this.imageArr.length; i++) {
       // let fileExt = this.imageArr[i].split('.').pop();
       // let formData = new FormData();
       // console.log(fileExt);
@@ -108,8 +124,8 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
         imageContentType: fileExt,
         vehicle_id: this.vehicle.id
       };
-      console.log(this.vImage);
-      this.imageService.postImage(this.vImage/*formData, this.imageArr[i]*/).pipe(first())
+      console.log(this.vImage.image);
+      this.imageService.postImage(this.vImage/*formData, this.imageArr[i]).pipe(first())
         .subscribe(
           data => {
             this.alertService.success('Image posted');
@@ -117,7 +133,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
             this.alertService.error(error);
           }
         );
-    }
+    }*/
   }
 
 }

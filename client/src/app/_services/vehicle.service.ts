@@ -18,10 +18,10 @@ export class VehicleService {
   searchFilter = [];
   constructor(private http: HttpClient, private globals: Globals) { }
 
-  save(vehicle: any): Observable<any> {
+  save(vehicle: any, exist: boolean): Observable<any> {
     let result: Observable<Object>;
-    if (vehicle['href']) {
-      result = this.http.put(vehicle.href, vehicle);
+    if (exist) {
+      result = this.http.put(`${this.globals.apiUrl}/vehicles`, vehicle);
     } else {
       result = this.http.post(`${this.globals.apiUrl}/vehicles`, vehicle);
     }

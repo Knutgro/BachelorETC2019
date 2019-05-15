@@ -19,9 +19,10 @@ import {element} from 'protractor';
   styleUrls: ['./register-company.component.scss']
 })
 export class RegisterCompanyComponent implements OnInit {
-  sub: Subscription;
+    sub: Subscription;
   registerForm: FormGroup;
   company: any = {};
+  exist: boolean;
 
   tmp: Region[] = [];
   regions: any[] = [];
@@ -45,6 +46,7 @@ export class RegisterCompanyComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       region: ['', Validators.required]
     });*/
+    this.exist = false;
     this.regionService.getAll().subscribe( regions => {
       /*this.tmp.push(region);
       console.log(this.tmp);
@@ -65,6 +67,7 @@ export class RegisterCompanyComponent implements OnInit {
             this.company = company;
             console.log(company);
             this.titleService.setTitle(`Rediger ${company.name}`);
+            this.exist = true;
           } else {
             // console.log(`company with id '${id}' not found, returning to list`);
             this.alertService.error(`company with id '${id}' not found, returning to home`);
@@ -80,8 +83,9 @@ export class RegisterCompanyComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    form.controls['role'].setValue(['']);
     console.log(form);
-    this.companyService.register(form)
+    this.companyService.register(form, this.exist)
       .pipe(first())
       .subscribe(
         data => {

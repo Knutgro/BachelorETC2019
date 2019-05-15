@@ -8,13 +8,14 @@
   <mat-sidenav #sidenav mode="push" [(opened)]="opened" [fixedInViewport]="true">
     <mat-nav-list>
       <a mat-button style="height: 0;position: absolute"></a><!-- Brukes for å unngå at første element i listen automatisk blir merket -->
-      <a mat-list-item *ngIf="currentUser">{{currentUser.firstName}}</a>
+      <a mat-list-item *ngIf="currentUser" routerLink="/user-profile/{{currentUser.id}}">{{currentUser.firstName}}</a>
       <mat-divider *ngIf="currentUser"></mat-divider>
-      <a mat-list-item (click)="toggleSidenav()" routerLink="/register" *ngIf="!currentUser">Registrer</a>
       <a mat-list-item (click)="toggleSidenav()" routerLink="/login" *ngIf="!currentUser">Logg inn</a>
       <a mat-list-item (click)="toggleSidenav()" (click)="logout()" *ngIf="currentUser">Logg ut</a>
       <a mat-list-item (click)="toggleSidenav()" routerLink="/vehicle-list" *ngIf="currentUser">Kjøretøy</a>
-      <a mat-list-item (click)="toggleSidenav()" routerLink="/user-admin" *ngIf="currentUser">Administrer</a>
+
+      <a mat-list-item (click)="toggleSidenav()" routerLink="/user-admin"
+            *ngIf="isAdmin">Administrer</a>
     </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>
