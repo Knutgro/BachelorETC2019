@@ -69,16 +69,19 @@ export class VehicleGalleryComponent implements OnInit {
   getImageFromService(vehicleID: string) {
     this.isImageLoading = true;
     this.imageService.getImages(vehicleID).subscribe(data => {
-      const image = this.imageService.convertImage(data.image, data.imageContentType);
-      this.ngxImage = image.substring(0, image.length);
-      console.log(image);
-      const img = {
-        small: this.ngxImage,
-        medium: this.ngxImage,
-        big: this.ngxImage
-      };
-      console.log(img);
-      this.galleryImages.push(img);
+      console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        const image = this.imageService.convertImage(data[i].image, data[i].imageContentType);
+        this.ngxImage = image;
+        console.log(image);
+        const img = {
+          small: this.ngxImage,
+          medium: this.ngxImage,
+          big: this.ngxImage
+        };
+        console.log(img);
+        this.galleryImages.push(img);
+      }
     }, error => {
       this.isImageLoading = false;
       this.alertService.error(error);

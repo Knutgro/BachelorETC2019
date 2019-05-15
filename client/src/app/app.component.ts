@@ -5,6 +5,7 @@ import {User} from './_models/user';
 import {MatSidenav} from '@angular/material';
 import {SidenavService} from './_services/sidenav.service';
 import {Title} from '@angular/platform-browser';
+import {Role} from './_models/role';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   @ViewChild('sidenav') public sideNav: MatSidenav;
   opened: boolean;
   currentUser: User;
-  role: string[] = [];
+  role: Role;
   isAdmin: boolean;
 
   constructor(
@@ -26,11 +27,14 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.role = {
+      authority: ['']
+    }
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x.user);
     console.log(this.currentUser);
     if (this.currentUser) {
       for (let i = 0; i < this.currentUser.authorities.length; i++) {
-        this.role[i] = this.currentUser.authorities[i];
+        this.role.authority[i] = this.currentUser.authorities[i];
       }
     }
     console.log(this.role);
@@ -57,12 +61,11 @@ export class AppComponent implements OnInit {
   isAdministrator() {
     if (this.currentUser) {
       console.log()
-      for (let i = 0; i < this.role.length; i++) {
-        console.log(this.role[i]);
-        if (this.role[i].authority === 'ROLE_ADMIN') {
+      for (let i = 0; i < this.role.authority.length; i++) {
+        if (JSON.stringify(this.role.authority[0]).includes('ROLE_ADMIN')) {
           console.log('true');
           this.isAdmin = true;
-        }
+        } else console.log('false');
       }
     }
   }

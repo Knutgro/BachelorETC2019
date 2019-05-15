@@ -30,7 +30,7 @@ export class SearchResultComponent implements OnInit {
       this.listingService.listingData = listings;
       console.log(listings);
       for (let i = 0; i < listings.length; i++) {
-        this.listings[i].vehicle.thumbnail = this.sanitizer.bypassSecurityTrustUrl(this.imageService.convertImage(listings[i].vehicle.vehicleAlbums[0].image.substring(0, listings[i].vehicle.vehicleAlbums[0].image.length), listings[i].vehicle.vehicleAlbums[0].imageContentType));
+        this.listings[i].vehicle.thumbnail = this.sanitizer.bypassSecurityTrustUrl(this.imageService.convertImage(listings[i].vehicle.vehicleImages[0].image.substring(0, listings[i].vehicle.vehicleImages[0].image.length), listings[i].vehicle.vehicleImages[0].imageContentType));
       }
       /* Old image method
       for (let i = 0; i < this.listings.length; i++) {

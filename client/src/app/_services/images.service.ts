@@ -17,11 +17,11 @@ export class ImagesService {
   ) { }
 
   getImages(vehicleID: string): Observable<any> {
-    return this.http.get(`${this.globals.apiUrl}/vehicle-albums/${vehicleID}`);
+    return this.http.get(`${this.globals.apiUrl}/vehicle-image/${vehicleID}`);
   }
 
   postImage(image: VehicleImage) {
-    return this.http.post(`${this.globals.apiUrl}/vehicle-albums`, image);
+    return this.http.post(`${this.globals.apiUrl}/vehicle-image`, image);
   }
 
   convertImage(dataImage: string, dataContentType: string) {

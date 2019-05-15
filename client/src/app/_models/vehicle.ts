@@ -23,5 +23,5 @@ export class Vehicle {
   servicePlanFollowed: boolean;
   financePartner: string;
   insurancePartner: string;
-  vehicleAlbums: string[];
+  vehicleImages: string[];
 }
