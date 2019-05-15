@@ -61,47 +61,24 @@ export class VehicleGalleryComponent implements OnInit {
       if (id) {
         this.getImageFromService(id);
       } else {
-        this.alertService.error("No ID found");
+        this.alertService.error('No ID found');
       }
     });
-  }
-
-  createImage(image: string, contentType: string) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      this.imageToShow = reader.result;
-      console.log(image);
-
-      console.log(this.imageToShow);
-      console.log(this.galleryImages);
-    }, false);
-    if (image) {
-      const imageT = 'data:image/' + contentType + ';base64,' + image;
-      this.ngxImage = imageT.substring(0, imageT.length - 1);;
-      console.log(imageT);
-      const img = {
-        small: this.ngxImage,
-        medium: this.ngxImage,
-        big: this.ngxImage
-      };
-      this.galleryImages.push(img);
-
-    }
   }
 
   getImageFromService(vehicleID: string) {
     this.isImageLoading = true;
     this.imageService.getImages(vehicleID).subscribe(data => {
-      const base64String = JSON.stringify(data.image);
-      const startString = 'dataimage/' + data.imageContentType + ';base64';
-      const base64Data = base64String.substring(startString.length)
-      this.createImage(base64Data, data.imageContentType); // TODO remove, ere for testing with one image and not expecting an array.
-      /*for (let i = 0; i < data.length; i++) {
-        console.log(data[i]);
-        this.createImageFromBlob(base64Data, data.imageContentType);
-      }*/
-      this.isImageLoading = true;
-      console.log(this.galleryImages);
+      const image = this.imageService.convertImage(data.image, data.imageContentType);
+      this.ngxImage = image.substring(0, image.length);
+      console.log(image);
+      const img = {
+        small: this.ngxImage,
+        medium: this.ngxImage,
+        big: this.ngxImage
+      };
+      console.log(img);
+      this.galleryImages.push(img);
     }, error => {
       this.isImageLoading = false;
       this.alertService.error(error);

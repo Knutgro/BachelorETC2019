@@ -8,6 +8,8 @@ import {VehicleImage} from '../_models/vehicleImage';
   providedIn: 'root'
 })
 export class ImagesService {
+  imageToShow: any;
+
 
   constructor(
     private http: HttpClient,
@@ -21,5 +23,15 @@ export class ImagesService {
   postImage(image: VehicleImage) {
     return this.http.post(`${this.globals.apiUrl}/vehicle-albums`, image);
   }
+
+  convertImage(dataImage: string, dataContentType: string) {
+    const base64String = JSON.stringify(dataImage);
+    const startString = 'dataimage/' + dataContentType + ';base64';
+    const base64Data = base64String.substring(startString.length, base64String.length - 1);
+    return 'data:image/' + dataContentType + ';base64,' + base64Data;
+  }
+
+
+
 
 }
