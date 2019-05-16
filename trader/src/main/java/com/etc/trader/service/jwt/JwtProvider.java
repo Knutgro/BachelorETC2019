@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 import com.etc.trader.service.CustomUserDetails;
 import java.util.Date;
 /*
-generate a JWT token
-valiate a JWT token
-parse username from JWT token
+Generer en JWT
+Validerer en JWT
+Henter brukernavn fra JWT
  */
 @Component
 public class JwtProvider {
@@ -21,7 +21,7 @@ public class JwtProvider {
 
     @Value("$trader.app.jwtSecret")
     private String jwtSecret;
-
+    // Tid til token løper ut
     @Value("${trader.app.jwtExpiration}0")
     private int jwtExpiration;
 
@@ -38,6 +38,11 @@ public class JwtProvider {
                 .compact();
     }
 
+    /**
+     *
+     * @param token: bearer token
+     * @return username: brukernavn til bruker.
+     */
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parser()
                 .setSigningKey(jwtSecret)

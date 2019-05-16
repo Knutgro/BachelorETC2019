@@ -1,6 +1,6 @@
 package com.etc.trader.rest;
 
-import com.etc.trader.model.Vehicle;
+
 import com.etc.trader.model.VehicleAlbum;
 import com.etc.trader.repository.VehicleAlbumRepository;
 import com.etc.trader.repository.VehicleRepository;
@@ -8,8 +8,6 @@ import com.etc.trader.rest.errors.BadRequestAlertException;
 import com.etc.trader.rest.util.HeaderUtil;
 import com.etc.trader.rest.vm.ImageUpload;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

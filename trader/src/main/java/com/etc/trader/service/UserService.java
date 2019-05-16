@@ -39,8 +39,15 @@ public class UserService {
 
     private final CompanyRepository companyRepository;
 
-
-    public User registerUser(UserDTO userDTO, String password) {
+    /**
+     * Funksjonen legger ny bruker til i databasen med
+     * de data som er sendt fra REST controller.
+     * Error haandtering for allerede brukt brukernavn eller email.
+     *
+     * @param userDTO: DTO for bruker objekt.
+     * @param password: Passord som skal krypteres.
+     */
+    public void registerUser(UserDTO userDTO, String password) {
         userRepository.findOneByUsername(userDTO.getUsername().toLowerCase()).ifPresent(existingUser -> {
 
             throw new LoginAlreadyUsedException();
@@ -53,6 +60,7 @@ public class UserService {
         });
 
         User newUser = new User();
+        // Krypterer passord
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setUsername(userDTO.getUsername().toLowerCase());
         newUser.setPassword(encryptedPassword);
@@ -60,7 +68,7 @@ public class UserService {
         newUser.setLastName(userDTO.getLastName());
         newUser.setEmail(userDTO.getEmail().toLowerCase());
         newUser.setActivated(true);
-
+        // Bruker blir medlem av bedrift
         newUser.setCompany(companyRepository.findCompanyById(userDTO.getCompany_id()));
 
         Set<String> strRoles = userDTO.getRole();
@@ -88,8 +96,8 @@ public class UserService {
         });
 
         newUser.setRoles(roles);
+        // Ny bruker lagres til databasen
         userRepository.save(newUser);
-        return newUser;
     }
 
 
@@ -132,6 +140,28 @@ public class UserService {
                 .map(UserDTO::new);
 
 
+    }
+
+    public User save(User updatedUser) {
+        User oldUser = userRepository.findOneById(updatedUser.getId());
+
+        if (updatedUser.getFirstName() != null) {
+            oldUser.setFirstName(updatedUser.getFirstName());
+        }
+
+        if (updatedUser.getLastName() != null) {
+            oldUser.setLastName(updatedUser.getLastName());
+        }
+
+        if (updatedUser.getImage() != null) {
+            oldUser.setImage(updatedUser.getImage());
+        }
+
+        if (updatedUser.getFilename() != null) {
+            oldUser.setFilename(updatedUser.getFilename());
+        }
+
+        return userRepository.save(oldUser);
     }
 
     /**

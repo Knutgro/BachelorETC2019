@@ -1,44 +1,18 @@
 <mat-card>
-  <form #vehicleForm="ngForm" (ngSubmit)="save(vehicleForm.value)">
+  <form #vehicleForm="ngForm" (ngSubmit)="save(userForm.value)">
     <mat-card-header>
-      <mat-card-title><h2>{{vehicle ? 'Rediger' : 'Legg til'}} kjøretøy</h2></mat-card-title>
+      <mat-card-title><h2>H</h2></mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-      <input type="hidden" name="href" [(ngModel)]="vehicle.href">
-      <mat-form-field><input matInput placeholder="nick" [(ngModel)]="vehicle.nick" required name="nick" #nick></mat-form-field>
-      <mat-form-field><input matInput placeholder="firstRegistration" [(ngModel)]="vehicle.firstRegistration" required name="firstRegistration" #firstRegistration></mat-form-field>
-      <mat-form-field><input matInput placeholder="registrationClass" [(ngModel)]="vehicle.registrationClass" required name="registrationClass" #registrationClass></mat-form-field>
-      <mat-form-field><input matInput placeholder="regNo" [(ngModel)]="vehicle.regNo" required name="regNo" #regNo></mat-form-field>
-      <mat-form-field><input matInput placeholder="warranty" [(ngModel)]="vehicle.warranty" required name="warranty" #warranty></mat-form-field>
-      <mat-form-field><input matInput placeholder="warrantyDuration" [(ngModel)]="vehicle.warrantyDuration" required name="warrantyDuration" #warrantyDuration></mat-form-field>
-      <mat-form-field><input matInput placeholder="warrantyDistance" [(ngModel)]="vehicle.warrantyDistance" required name="warrantyDistance" #warrantyDistance></mat-form-field>
-      <mat-form-field><input matInput placeholder="warrantyUrl" [(ngModel)]="vehicle.warrantyUrl" required name="warrantyUrl" #warrantyUrl></mat-form-field>
-      <mat-form-field><input matInput placeholder="carPremium" [(ngModel)]="vehicle.carPremium" required name="carPremium" #carPremium></mat-form-field>
-      <mat-form-field><input matInput placeholder="carPremiumLink" [(ngModel)]="vehicle.carPremiumLink" required name="carPremiumLink" #carPremiumLink></mat-form-field>
-      <mat-form-field><input matInput placeholder="exteriorColorMain" [(ngModel)]="vehicle.exteriorColorMain" required name="exteriorColorMain" #exteriorColorMain></mat-form-field>
-      <mat-form-field><input matInput placeholder="exteriorColor" [(ngModel)]="vehicle.exteriorColor" required name="exteriorColor" #exteriorColor></mat-form-field>
-      <mat-form-field><input matInput placeholder="interiorColor" [(ngModel)]="vehicle.interiorColor" required name="interiorColor" #interiorColor></mat-form-field>
-      <mat-form-field><input matInput placeholder="interiorType" [(ngModel)]="vehicle.interiorType" required name="interiorType" #interiorType></mat-form-field>
-      <mat-form-field><input matInput placeholder="tires" [(ngModel)]="vehicle.tires" required name="tires" #tires></mat-form-field>
-      <mat-form-field><input matInput placeholder="maxFuel" [(ngModel)]="vehicle.maxFuel" required name="maxFuel" #maxFuel></mat-form-field>
-      <mat-form-field><input matInput placeholder="chassisId" [(ngModel)]="vehicle.chassisId" required name="chassisId" #chassisId></mat-form-field>
-      <mat-form-field><input matInput placeholder="maxKmTank" [(ngModel)]="vehicle.maxKmTank" required name="maxKmTank" #maxKmTank></mat-form-field>
-      <mat-form-field><input matInput placeholder="mileage" [(ngModel)]="vehicle.mileage" required name="mileage" #mileage></mat-form-field>
-      <mat-form-field><input matInput placeholder="serviceHistory" [(ngModel)]="vehicle.serviceHistory" required name="serviceHistory" #serviceHistory></mat-form-field>
-      <mat-form-field><input matInput placeholder="servicePlanFollowed" [(ngModel)]="vehicle.servicePlanFollowed" required name="servicePlanFollowed" #servicePlanFollowed></mat-form-field>
-      <mat-form-field><input matInput placeholder="financePartner" [(ngModel)]="vehicle.financePartner" required name="financePartner" #financePartner></mat-form-field>
-      <mat-form-field><input matInput placeholder="insurancePartner" [(ngModel)]="vehicle.insurancePartner" required name="insurancePartner" #insurancePartner></mat-form-field>
+
       <alert></alert>
-    </mat-card-content>
+
     <mat-card-actions>
       <button mat-raised-button color="accent" type="submit"
               [disabled]="!vehicleForm.form.valid" (click)="upload()">Save</button>
-      <button mat-raised-button routerLink="/vehicle-list">Cancel</button>
-      <button mat-raised-button color="warn" (click)="remove(vehicle.id)"
-              *ngIf="vehicle.href" type="button">Delete</button>
+      <button mat-raised-button routerLink="/user-profile/{{currentUser.user.id}}">Cancel</button>
     </mat-card-actions>
   </form>
-  <button mat-raised-button color="primary" (click)="openInput()">Choose Files</button>
+  <button mat-raised-button color="primary" (click)="openInput()">Velg bildet</button>
   <input hidden="hidden" id="fileInput" multiple type="file" (change)="fileChange($event)" />
-  <button mat-raised-button [disabled]="!ourFile" color="accent" (click)="upload()">Upload</button>
+  <button mat-raised-button [disabled]="!ourFile" color="accent" (click)="upload()">Last opp</button>
 </mat-card>

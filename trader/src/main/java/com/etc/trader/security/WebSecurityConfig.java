@@ -1,12 +1,9 @@
 package com.etc.trader.security;
 
-import com.etc.trader.service.CustomUserDetails;
 import com.etc.trader.service.CustomUserDetailsService;
 import com.etc.trader.service.jwt.JwtAuthEntryPoint;
 import com.etc.trader.service.jwt.JwtAuthTokenFilter;
 import com.google.common.collect.ImmutableList;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -62,13 +59,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Konfigurasjon for spring security.
+     * Vi deaktiverer av csrf fordi vi bruker tokenbasert autentisering.
+     * Alle brukere har tilgang til aa sende GET forespoersel for
+     * annonser, alle andre forespoersler krever autentisering.
+     * @param http:
+     * @throws Exception:
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/listings/**").permitAll()
-                .antMatchers("/api/vehicle").permitAll()
+                .antMatchers("/api/auth/signin").permitAll()
+                .antMatchers("/api/listings/**", "GET").permitAll()
+                .antMatchers("/api/auth/signup").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

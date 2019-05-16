@@ -206,7 +206,6 @@ public class Company implements Serializable {
     public void setRegions(Set<Region> regions) {
         this.regions = regions;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

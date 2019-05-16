@@ -1,11 +1,9 @@
 package com.etc.trader.rest;
 
-import com.etc.trader.model.Role;
-import com.etc.trader.model.RoleName;
 import com.etc.trader.model.User;
 import com.etc.trader.repository.RoleRepository;
 import com.etc.trader.repository.UserRepository;
-import com.etc.trader.rest.errors.InternalServerErrorException;
+import com.etc.trader.rest.errors.BadRequestAlertException;
 import com.etc.trader.rest.errors.InvalidPasswordException;
 import com.etc.trader.rest.util.HeaderUtil;
 import com.etc.trader.rest.vm.ManagedUserVM;
@@ -15,11 +13,8 @@ import com.etc.trader.service.UserDTO;
 import com.etc.trader.service.UserService;
 import com.etc.trader.service.jwt.JwtProvider;
 import com.etc.trader.service.jwt.JwtResponse;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,17 +22,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.net.URISyntaxException;
 
 import static org.hibernate.id.IdentifierGenerator.ENTITY_NAME;
 
@@ -79,6 +71,16 @@ public class AccountResource {
         this.userService = userService;
         this.userDetailsService = userDetailsService;
     }
+
+    /** API for innloggin av bruker.
+     * autheticationManager sjekker om passord stemmer overens med brukernavn.
+     * Om brukeren har oppgitt korrekt passord bygges det en JWT til brukeren.
+     * Om brukeren er autentisert vil front-end motta en JWT med
+     * brukerens egen data.
+     *
+     * @param loginRequest: LoginForm objekt med brukernavn og passord
+     * @return JwtRepsonse: Bearer token med bruker data.
+     */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
 
@@ -89,16 +91,19 @@ public class AccountResource {
                 )
         );
 
+        // Sjekker om brukeren er autentisert
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtProvider.generateJwtToken(authentication);
         String username = jwtProvider.getUserNameFromJwtToken(jwt);
         CustomUserDetails customUserDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(username);
-
         return ResponseEntity.ok(new JwtResponse(jwt,customUserDetails));
     }
 
-
+    /**
+     * POST /signup: Registrerer bruker
+     * @param managedUserVM: Hjelpe objekt for aa validere passord.
+     */
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
@@ -140,6 +145,20 @@ public class AccountResource {
         String username = jwtProvider.getUserNameFromJwtToken(token);
         userDTO.setUsername(username);
         userService.updateUser(userDTO);
+    }
+
+
+
+    @PutMapping("/account")
+    public ResponseEntity<User> updateUser(@RequestBody User user) throws URISyntaxException {
+        if (user.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+
+        User result = userService.save(user);
+        return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, user.getId().toString()))
+                .body(result);
     }
 
     /**
