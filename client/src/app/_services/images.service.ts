@@ -17,16 +17,16 @@ export class ImagesService {
   ) { }
 
   getImages(vehicleID: string): Observable<any> {
-    return this.http.get(`${this.globals.apiUrl}/vehicle-albums/${vehicleID}`);
+    return this.http.get(`${this.globals.apiUrl}/vehicle-image/${vehicleID}`);
   }
 
   postImage(image: VehicleImage) {
-    return this.http.post(`${this.globals.apiUrl}/vehicle-albums`, image);
+    return this.http.post(`${this.globals.apiUrl}/vehicle-image`, image);
   }
 
   convertImage(dataImage: string, dataContentType: string) {
     const base64String = JSON.stringify(dataImage);
-    const startString = 'dataimage/' + dataContentType + ';base64';
+    const startString = '"dataimage/' + dataContentType + 'base64';
     const base64Data = base64String.substring(startString.length, base64String.length - 1);
     return 'data:image/' + dataContentType + ';base64,' + base64Data;
   }

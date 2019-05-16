@@ -18,6 +18,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   vehicle: any = {};
   ourFile: File[];
   vImage: VehicleImage;
+  vImages: VehicleImage[];
   sub: Subscription;
   imageArr: File[] = [];
   url: any;
@@ -91,17 +92,17 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  upload() { // TODO
+  upload() {
     console.log('Send to server');
-    const imgString = JSON.stringify(this.imageArr[0]);
-    const fileExt = imgString.substring('{data:image/'.length, imgString.indexOf(';base64'));
-    this.vImage = {
-      image: this.imageArr[0],
-      imageContentType: fileExt,
-      vehicle_id: this.vehicle.id
-    };
-
-    this.imageService.postImage(this.vImage).pipe(first())
+    for (let i = 0; i < this.imageArr.length; i++) {
+      const imgString = JSON.stringify(this.imageArr[i]);
+      const fileExt = imgString.substring('{data:image/'.length, imgString.indexOf(';base64'));
+      this.vImage = {
+        image: this.imageArr[i],
+        imageContentType: fileExt,
+        vehicle_id: this.vehicle.id
+      };
+      this.imageService.postImage(this.vImage).pipe(first())
         .subscribe(
           data => {
             this.alertService.success('Image posted');
@@ -109,6 +110,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
             this.alertService.error(error);
           }
         );
+    }
     // let vehicleAlbum = VehicleImage[];
     /*for (let i = 0; i < this.imageArr.length; i++) {
       // let fileExt = this.imageArr[i].split('.').pop();

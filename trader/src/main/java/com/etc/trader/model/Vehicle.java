@@ -2,8 +2,6 @@ package com.etc.trader.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -95,7 +93,7 @@ public class Vehicle implements Serializable {
 
     @OneToMany(mappedBy = "vehicle")
     //@OneToMany
-    private Set<VehicleAlbum> vehicleAlbums = new HashSet<>();
+    private Set<VehicleImage> vehicleImages = new HashSet<>();
 
     @OneToOne(mappedBy = "vehicle")
     //@OneToOne
@@ -115,7 +113,7 @@ public class Vehicle implements Serializable {
     public Vehicle() {
     }
 
-    public Vehicle(String nick, String firstRegistration, String registrationClass, String regNo, String warranty, String warrantyDuration, Long warrantyDistance, String warrantyUrl, String carPremium, String carPremiumLink, String exteriorColorMain, String exteriorColor, String interiorColor, String interiorType, String tires, Long maxFuel, String chassisId, Long maxKmTank, Long mileage, Boolean serviceHistory, Boolean servicePlanFollowed, String financePartner, String insurancePartner, Set<VehicleAlbum> vehicleAlbums, Listing listing, Company company, Model model) {
+    public Vehicle(String nick, String firstRegistration, String registrationClass, String regNo, String warranty, String warrantyDuration, Long warrantyDistance, String warrantyUrl, String carPremium, String carPremiumLink, String exteriorColorMain, String exteriorColor, String interiorColor, String interiorType, String tires, Long maxFuel, String chassisId, Long maxKmTank, Long mileage, Boolean serviceHistory, Boolean servicePlanFollowed, String financePartner, String insurancePartner, Set<VehicleImage> vehicleImages, Listing listing, Company company, Model model) {
         this.nick = nick;
         this.firstRegistration = firstRegistration;
         this.registrationClass = registrationClass;
@@ -139,7 +137,7 @@ public class Vehicle implements Serializable {
         this.servicePlanFollowed = servicePlanFollowed;
         this.financePartner = financePartner;
         this.insurancePartner = insurancePartner;
-        this.vehicleAlbums = vehicleAlbums;
+        this.vehicleImages = vehicleImages;
         this.listing = listing;
         this.company = company;
         this.model = model;
@@ -452,29 +450,29 @@ public class Vehicle implements Serializable {
         this.insurancePartner = insurancePartner;
     }
 
-    public Set<VehicleAlbum> getVehicleAlbums() {
-        return vehicleAlbums;
+    public Set<VehicleImage> getVehicleImages() {
+        return vehicleImages;
     }
 
-    public Vehicle vehicleAlbums(Set<VehicleAlbum> vehicleAlbums) {
-        this.vehicleAlbums = vehicleAlbums;
+    public Vehicle vehicleAlbums(Set<VehicleImage> vehicleImages) {
+        this.vehicleImages = vehicleImages;
         return this;
     }
 
-    public Vehicle addVehicleAlbum(VehicleAlbum vehicleAlbum) {
-        this.vehicleAlbums.add(vehicleAlbum);
-        vehicleAlbum.setVehicle(this);
+    public Vehicle addVehicleAlbum(VehicleImage vehicleImage) {
+        this.vehicleImages.add(vehicleImage);
+        vehicleImage.setVehicle(this);
         return this;
     }
 
-    public Vehicle removeVehicleAlbum(VehicleAlbum vehicleAlbum) {
-        this.vehicleAlbums.remove(vehicleAlbum);
-        vehicleAlbum.setVehicle(null);
+    public Vehicle removeVehicleAlbum(VehicleImage vehicleImage) {
+        this.vehicleImages.remove(vehicleImage);
+        vehicleImage.setVehicle(null);
         return this;
     }
 
-    public void setVehicleAlbums(Set<VehicleAlbum> vehicleAlbums) {
-        this.vehicleAlbums = vehicleAlbums;
+    public void setVehicleImages(Set<VehicleImage> vehicleImages) {
+        this.vehicleImages = vehicleImages;
     }
 
     public Listing getListing() {

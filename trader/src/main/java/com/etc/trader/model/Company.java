@@ -30,17 +30,17 @@ public class Company implements Serializable {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
     @JsonIgnore
     @OneToMany(mappedBy = "company")
-    //@OneToMany
     private Set<User> users = new HashSet<>();
+
     @JsonIgnore
     @OneToMany(mappedBy = "company")
-    //@OneToMany
     private Set<Vehicle> vehicles = new HashSet<>();
+
     @JsonIgnore
     @OneToMany(mappedBy = "company")
-    //@OneToMany
     private Set<Listing> listings = new HashSet<>();
 
     @ManyToMany

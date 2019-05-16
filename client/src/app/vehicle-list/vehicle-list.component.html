@@ -3,7 +3,7 @@
   <mat-card-content>
     <mat-list>
       <mat-list-item *ngFor="let vehicle of vehicles">
-          <a mat-flat-button [routerLink]="['/vehicle-detail', vehicle.id]">{{vehicle.id}}. {{vehicle.model}}</a>
+          <a mat-flat-button [routerLink]="['/vehicle-detail', vehicle.id]">{{vehicle.id}}. {{vehicle.model.name}}, {{vehicle.model.year}}</a>
       </mat-list-item>
       <!--<mat-paginator [length]="length"
                      [pageSize]="pageSize"

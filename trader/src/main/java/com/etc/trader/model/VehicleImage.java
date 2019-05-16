@@ -9,14 +9,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
- * A VehicleAlbum.
+ * A VehicleImage.
  */
 @Entity
-@Table(name = "vehicle_album")
-public class VehicleAlbum implements Serializable {
+@Table(name = "vehicle_image")
+public class VehicleImage implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -34,16 +33,16 @@ public class VehicleAlbum implements Serializable {
 
     @JsonIgnore
     @ManyToOne
-    @JsonIgnoreProperties("vehicleAlbums")
+    @JsonIgnoreProperties("vehicleImage")
     private Vehicle vehicle;
 
-    public VehicleAlbum(byte[] image, String imageContentType, Vehicle vehicle) {
+    public VehicleImage(byte[] image, String imageContentType, Vehicle vehicle) {
         this.image = image;
         this.imageContentType = imageContentType;
         this.vehicle = vehicle;
     }
 
-    public VehicleAlbum() {}
+    public VehicleImage() {}
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -89,11 +88,11 @@ public class VehicleAlbum implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        VehicleAlbum vehicleAlbum = (VehicleAlbum) o;
-        if (vehicleAlbum.getId() == null || getId() == null) {
+        VehicleImage vehicleImage = (VehicleImage) o;
+        if (vehicleImage.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), vehicleAlbum.getId());
+        return Objects.equals(getId(), vehicleImage.getId());
     }
 
     @Override
@@ -103,7 +102,7 @@ public class VehicleAlbum implements Serializable {
 
     @Override
     public String toString() {
-        return "VehicleAlbum{" +
+        return "VehicleImage{" +
                 "id=" + id +
                 ", image=" + Arrays.toString(image) +
                 ", imageContentType='" + imageContentType + '\'' +
