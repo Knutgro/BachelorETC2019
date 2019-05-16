@@ -5,6 +5,7 @@ import {AlertService} from '../_services/alert.service';
 import {ImagesService} from '../_services/images.service';
 import {ListingService} from '../_services/listing.service';
 import {Listing} from '../_models/listing';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-search-result',
@@ -19,7 +20,8 @@ export class SearchResultComponent implements OnInit {
     private vehicleService: VehicleService,
     private listingService: ListingService,
     private alertService: AlertService,
-    private imageService: ImagesService
+    private imageService: ImagesService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -27,6 +29,9 @@ export class SearchResultComponent implements OnInit {
       this.listings = listings;
       this.listingService.listingData = listings;
       console.log(listings);
+      for (let i = 0; i < listings.length; i++) {
+        this.listings[i].vehicle.thumbnail = this.sanitizer.bypassSecurityTrustUrl(this.imageService.convertImage(listings[i].vehicle.vehicleAlbums[0].image.substring(0, listings[i].vehicle.vehicleAlbums[0].image.length), listings[i].vehicle.vehicleAlbums[0].imageContentType));
+      }
       /* Old image method
       for (let i = 0; i < this.listings.length; i++) {
         this.imageService.getImages(this.listings[i].id.toString()).subscribe(images => {

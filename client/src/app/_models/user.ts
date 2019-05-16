@@ -7,4 +7,7 @@ export class User {
   email: string;
   token: string;
   image: Blob;
+  company_id: number;
+  role: string[];
+  authorities: string[];
 }

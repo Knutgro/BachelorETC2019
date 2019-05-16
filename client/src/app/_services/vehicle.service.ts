@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Vehicle} from "../_models/vehicle";
 import {Globals} from "../globals";
 import {Observable} from "rxjs";
+import {first} from 'rxjs/operators';
 import {log} from 'util';
 
 @Injectable({
@@ -17,10 +18,10 @@ export class VehicleService {
   searchFilter = [];
   constructor(private http: HttpClient, private globals: Globals) { }
 
-  save(vehicle: any): Observable<any> {
+  save(vehicle: any, exist: boolean): Observable<any> {
     let result: Observable<Object>;
-    if (vehicle['href']) {
-      result = this.http.put(vehicle.href, vehicle);
+    if (exist) {
+      result = this.http.put(`${this.globals.apiUrl}/vehicles`, vehicle);
     } else {
       result = this.http.post(`${this.globals.apiUrl}/vehicles`, vehicle);
     }

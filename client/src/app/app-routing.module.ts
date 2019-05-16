@@ -14,7 +14,7 @@ import {VehicleListingComponent} from './vehicle-listing/vehicle-listing.compone
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AuthGuardService} from './_services/auth-guard.service';
 import {RoleGuardService} from './_services/role-guard.service';
-import {UserEditComponent} from './user-edit/user-edit.component';
+import {RegisterCompanyComponent} from './register-company/register-company.component';
 
 const routes: Routes = [];
 
@@ -26,13 +26,15 @@ const routes: Routes = [];
     { path: 'vehicle-list', component: VehicleListComponent},
     { path: 'vehicle-add', component: VehicleEditComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-edit', component: VehicleEditComponent, canActivate: [AuthGuardService]},
-    { path: 'user-edit/:id', component: UserEditComponent, canActivate: [AuthGuardService]},
+    { path: 'user-edit/:id', component: RegisterComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-edit/:id', component: VehicleEditComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-listing/:id', component: VehicleListingComponent},
     { path: 'user-admin', component: UserAdminComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN'}},
+    { path: 'user-admin/company-edit/:id', component: RegisterCompanyComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN'} },
+    { path: 'user-admin/user-edit/:id', component: RegisterComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN'} },
     { path: 'vehicle-detail/:id', component: VehicleDetailComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-gallery-test', component: VehicleGalleryComponent},
-    { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuardService]}
+    { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuardService]},
     // { path: '**', redirectTo: '' }
   ])],
   exports: [RouterModule]

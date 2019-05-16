@@ -21,9 +21,14 @@ export class UserService {
     return this.http.get(`${this.globals.apiUrl}/users/${id}`);
   }
 
-  register(user: User) {
-    console.log(this.globals.apiUrl);
-    return this.http.post(`${this.globals.apiUrl}/auth/signup`, user);
+  register(user: any, exist: boolean): Observable<any> {
+    let result: Observable<Object>;
+    if (exist) {
+      result =  this.http.put(`${this.globals.apiUrl}/auth/signup`, user);
+    } else {
+      result =  this.http.post(`${this.globals.apiUrl}/auth/signup`, user);
+    }
+    return result;
   }
 
   update(user: User) {
@@ -31,6 +36,6 @@ export class UserService {
   }
 
   delete(id: number) {
-    return this.http.delete(`${this.globals.apiUrl}/users/${id}`);
+    return this.http.delete(`${this.globals.apiUrl}/auth/user/${id}`);
   }
 }

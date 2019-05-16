@@ -11,6 +11,10 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.DatatypeConverter;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 public class ImageUpload {
     @Lob
@@ -20,8 +24,8 @@ public class ImageUpload {
 
     private Long vehicle_id;
 
-    public ImageUpload(byte[] image, String imageContentType, Long vehicle_id) {
-        this.image = image;
+    public ImageUpload(String image, String imageContentType, Long vehicle_id) throws UnsupportedEncodingException {
+        this.image = DatatypeConverter.parseBase64Binary(image);
         this.imageContentType = imageContentType;
         this.vehicle_id = vehicle_id;
     }

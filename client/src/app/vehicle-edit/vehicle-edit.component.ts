@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
-import {VehicleService} from "../_services/vehicle.service";
-import {NgForm} from "@angular/forms";
+import {Subscription} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {VehicleService} from '../_services/vehicle.service';
+import {NgForm} from '@angular/forms';
 import {AlertService} from '../_services/alert.service';
 import {Title} from '@angular/platform-browser';
 import {VehicleImage} from '../_models/vehicleImage';
@@ -21,6 +21,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   sub: Subscription;
   imageArr: File[] = [];
   url: any;
+  exist: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -32,14 +33,17 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.exist = false;
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
+      console.log(id);
       if (id) {
         this.vehicleService.getById(id).subscribe((vehicle: any) => {
           if (vehicle) {
             this.vehicle = vehicle;
+            console.log(vehicle);
             this.titleService.setTitle(`Rediger ${vehicle.name}`);
-            this.vehicle.href = vehicle._links.self.href;
+            this.exist = true;
           } else {
             // console.log(`vehicle with id '${id}' not found, returning to list`);
             this.alertService.error(`vehicle with id '${id}' not found, returning to list`);
@@ -59,7 +63,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   }
 
   save(form: NgForm) {
-    this.vehicleService.save(form).subscribe(result => {
+    this.vehicleService.save(form, this.exist).subscribe(result => {
       this.gotoList();
     }, error => this.alertService.error(error));
   }
@@ -89,23 +93,15 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
 
   upload() { // TODO
     console.log('Send to server');
-    // let vehicleAlbum = VehicleImage[];
-    for (let i = 0; i < this.imageArr.length; i++) {
-      //let fileExt = this.imageArr[i].split('.').pop();
-      //let formData = new FormData();
-      //console.log(fileExt);
-      //formData.append('image', this.imageArr[i]);
-      //formData.append('imageContentType', fileExt);
-      //formData.append('vehicle_id', JSON.stringify(this.vehicle.id));
-      let imgString = JSON.stringify(this.imageArr[i]);
-      let fileExt = imgString.substring('{data:image/'.length, imgString.indexOf(';base64'));
-      this.vImage = {
-        image: this.imageArr[i],
-        imageContentType: fileExt,
-        vehicle_id: this.vehicle.id
-      };
-      console.log(this.vImage);
-      this.imageService.postImage(this.vImage/*formData, this.imageArr[i]*/).pipe(first())
+    const imgString = JSON.stringify(this.imageArr[0]);
+    const fileExt = imgString.substring('{data:image/'.length, imgString.indexOf(';base64'));
+    this.vImage = {
+      image: this.imageArr[0],
+      imageContentType: fileExt,
+      vehicle_id: this.vehicle.id
+    };
+
+    this.imageService.postImage(this.vImage).pipe(first())
         .subscribe(
           data => {
             this.alertService.success('Image posted');
@@ -113,7 +109,31 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
             this.alertService.error(error);
           }
         );
-    }
+    // let vehicleAlbum = VehicleImage[];
+    /*for (let i = 0; i < this.imageArr.length; i++) {
+      // let fileExt = this.imageArr[i].split('.').pop();
+      // let formData = new FormData();
+      // console.log(fileExt);
+      // formData.append('image', this.imageArr[i]);
+      // formData.append('imageContentType', fileExt);
+      // formData.append('vehicle_id', JSON.stringify(this.vehicle.id));
+      const imgString = JSON.stringify(this.imageArr[i]);
+      const fileExt = imgString.substring('{data:image/'.length, imgString.indexOf(';base64'));
+      this.vImage = {
+        image: this.imageArr[i],
+        imageContentType: fileExt,
+        vehicle_id: this.vehicle.id
+      };
+      console.log(this.vImage.image);
+      this.imageService.postImage(this.vImage/*formData, this.imageArr[i]).pipe(first())
+        .subscribe(
+          data => {
+            this.alertService.success('Image posted');
+          }, error => {
+            this.alertService.error(error);
+          }
+        );
+    }*/
   }
 
 }

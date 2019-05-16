@@ -43,11 +43,15 @@ public class VehicleAlbumResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/vehicle-albums")
-    public ResponseEntity<VehicleAlbum> createVehicleAlbum(@RequestBody VehicleAlbum vehicleAlbum) throws URISyntaxException {
-        if (vehicleAlbum.getId() != null) {
-            throw new BadRequestAlertException("A new vehicleAlbum cannot already have an ID", ENTITY_NAME, "idexists");
+    public ResponseEntity<VehicleAlbum> createVehicleAlbum(@RequestBody ImageUpload imageUpload) throws URISyntaxException {
+        if (imageUpload.getVehicle_id() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        VehicleAlbum result = vehicleAlbumRepository.save(vehicleAlbum);
+        VehicleAlbum album = new VehicleAlbum();
+        album.setVehicle(vehicleRepository.findVehicleById(imageUpload.getVehicle_id()));
+        album.setImage(imageUpload.getImage());
+        album.setImageContentType(imageUpload.getImageContentType());
+        VehicleAlbum result = vehicleAlbumRepository.save(album);
         return ResponseEntity.created(new URI("/api/vehicle-albums/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -69,7 +73,7 @@ public class VehicleAlbumResource {
         }
         VehicleAlbum album = new VehicleAlbum();
         album.setVehicle(vehicleRepository.findVehicleById(imageUpload.getVehicle_id()));
-        album.setImage(imageUpload.getImage());
+        //album.setImage(imageUpload.getImage());
         album.setImageContentType(imageUpload.getImageContentType());
         VehicleAlbum result = vehicleAlbumRepository.save(album);
         return ResponseEntity.ok()
@@ -95,7 +99,7 @@ public class VehicleAlbumResource {
      */
     @GetMapping("/vehicle-albums/{id}")
     public ResponseEntity<VehicleAlbum> getVehicleAlbum(@PathVariable Long id) {
-        Optional<VehicleAlbum> vehicleAlbum = vehicleAlbumRepository.findById(id);
+        Optional<VehicleAlbum> vehicleAlbum = vehicleAlbumRepository.findOneByVehicle_id(id);
         return ResponseUtil.wrapOrNotFound(vehicleAlbum);
     }
 

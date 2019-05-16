@@ -63,5 +63,6 @@ export class LoginComponent implements OnInit {
     let tmp = this.authenticationService.currentUserValue;
     console.log(tmp);
     console.log(this.authenticationService.currentUser);
+
   }
 }

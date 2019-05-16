@@ -1,0 +1,31 @@
+<div class="center-card">
+  <mat-card class="register-card" role="form">
+    <mat-card-title>{{exist ? 'Rediger' : 'Registrer'}} bedrift</mat-card-title>
+    <mat-card-content>
+      <form #companyForm="ngForm" (ngSubmit)="onSubmit(companyForm.value)">
+        <input type="hidden" [(ngModel)]="company.id" #id name="id" [value]="company.id">
+        <mat-form-field>
+          <input matInput placeholder="Navn" type="text" [(ngModel)]="company.name" #name name="name" required/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Organisasjonsnummer"  type="number" [(ngModel)]="company.orgNr" #orgNr name="orgNr" required/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Telefon nummer"  type="text" [(ngModel)]="company.phoneNumber" #phoneNumber name="phoneNumber" required/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-select placeholder="Region/Fylke" type="text" [(ngModel)]="company.regions" #region name="regions" required multiple>
+            <mat-option *ngFor="let region of regions" [value]="{id: region.id, name: region.name}">{{region.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-card-actions>
+          <button type="submit" [disabled]="!companyForm.form.valid" mat-raised-button>Lagre</button>
+        </mat-card-actions>
+      </form>
+      <alert></alert>
+    </mat-card-content>
+  </mat-card>
+</div>

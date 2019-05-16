@@ -18,7 +18,7 @@ import {
   MatListModule,
   MatPaginatorModule, MatSelectModule, MatSidenavModule,
   MatTableModule,
-  MatToolbarModule, MatTreeModule
+  MatToolbarModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -43,7 +43,8 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { VehicleListingComponent } from './vehicle-listing/vehicle-listing.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
-import { UserEditComponent } from './user-edit/user-edit.component';
+import { RegisterCompanyComponent } from './register-company/register-company.component';
+import {SidenavService} from './_services/sidenav.service';
 
 export function getToken() {
   return localStorage.getItem('currentUser');
@@ -68,7 +69,7 @@ export function getToken() {
     VehicleListingComponent,
     SearchFilterComponent,
     UserProfileComponent,
-    UserEditComponent
+    RegisterCompanyComponent
   ],
   imports: [
     JwtModule.forRoot({
@@ -108,7 +109,8 @@ export function getToken() {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     Globals,
     Title,
-    JwtHelperService
+    JwtHelperService,
+    SidenavService
   ],
   bootstrap: [AppComponent]
 })

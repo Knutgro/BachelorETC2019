@@ -1,42 +1,43 @@
 <div class="center-card">
   <mat-card class="register-card" role="form">
-    <mat-card-title>Register</mat-card-title>
+    <mat-card-title>Registrer bruker</mat-card-title>
     <mat-card-content>
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
         <mat-form-field>
-          <mat-label>Firstname</mat-label>
-          <input matInput type="text" formControlName="firstName" required/>
+          <input matInput placeholder="Fornavn" type="text" [(ngModel)]="user.firstName" #firstName name="firstName" required/>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>Lastname</mat-label>
-          <input matInput type="text" formControlName="lastName" required/>
+          <input matInput placeholder="Etternavn" type="text" [(ngModel)]="user.lastName" #lastName name="lastName" required/>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" ngModel email required/>
+          <input matInput placeholder="E-post" type="email" [(ngModel)]="user.email" #email name="email" ngModel email required/>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>Username</mat-label>
-          <input matInput type="text" formControlName="username" required/> <!-- TODO formControlName="username"-->
+          <input matInput placeholder="Brukernavn" type="text" [(ngModel)]="user.username" #username name="username" required/>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" required/>
+          <input matInput placeholder="Passord" type="password" [(ngModel)]="user.password" #password name="password" required/>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>CompanyID</mat-label>
-          <input matInput type="number" formControlName="company_id" required/>
+          <input matInput placeholder="Selskaps-ID" type="number" [(ngModel)]="user.company_id" #company_id name="company_id" required/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-select placeholder="Rolle" type="text" [(ngModel)]="user.role" #role name="role" #role name="role" required multiple>
+            <mat-option [value]="'user'">Bruker</mat-option>
+            <mat-option [value]="'admin'">Admin</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-card-actions>
-          <button type="submit" [disabled]="registerForm.invalid" mat-raised-button>Register</button>
+          <button type="submit" [disabled]="!userForm.form.valid" mat-raised-button>Register</button>
         </mat-card-actions>
       </form>
-      <!-- todo FIK DEN SKA VA HER<alert></alert>-->
+      <alert></alert>
     </mat-card-content>
   </mat-card>
 </div>

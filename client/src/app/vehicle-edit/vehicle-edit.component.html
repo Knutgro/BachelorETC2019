@@ -1,7 +1,7 @@
 <mat-card>
   <form #vehicleForm="ngForm" (ngSubmit)="save(vehicleForm.value)">
     <mat-card-header>
-      <mat-card-title><h2>{{vehicle ? 'Rediger' : 'Legg til'}} kjøretøy</h2></mat-card-title>
+      <mat-card-title><h2>{{exist ? 'Rediger' : 'Legg til'}} kjøretøy</h2></mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <input type="hidden" name="href" [(ngModel)]="vehicle.href">

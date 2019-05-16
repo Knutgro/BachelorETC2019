@@ -17,7 +17,7 @@
         <mat-card-subtitle>
           <p>{{listing.description}}</p>
         </mat-card-subtitle>
-        <img mat-card-md-image src="{{listing.vehicle.thumbnail}}">
+        <img mat-card-md-image [src]="listing.vehicle.thumbnail">
       </mat-card-title-group>
     </mat-card>
   </div>
