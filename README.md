@@ -74,6 +74,13 @@ Kjør `ng serve` i `client` mappen for utviklingsserveren til angular. Naviger i
 ### Kjøre Unit Tester
 Kjør `ng test` for å kjøre tester gjennom [Karma](https://karma-runner.github.io).
 
+## Databasen
+Vi brukte XAMPP Apache for å verte en MYSql server.
+
+### Konfigurasjon
+For databasekonfigurasjon endre filen `trader/src/main/resources/application.properties`.
+
 ## Trader
 ### Kjøre serveren
 Kjør `mvn clean install` i `trader` mappen. Kjør så `java -jar ./target/trader-0.0.1-SNAPSHOT.jar` for å kjøre serveren
+
