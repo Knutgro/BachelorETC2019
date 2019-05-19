@@ -84,13 +84,13 @@ For databasekonfigurasjon i Java endre filen `trader/src/main/resources/applicat
 ### Kjøre serveren
 Kjør `mvn clean install` i `trader` mappen. Kjør så `java -jar ./target/trader-0.0.1-SNAPSHOT.jar` for å kjøre serveren. For å konfigurere Angular appen til å peke på rett server, endre på filen `client/src/app/globals.ts` og endre variablen `apiUrl` til rett adresse.
 
-##Brukere:
-#Admin bruker:
+## Brukere:
+# Admin bruker:
 
 username: admin
 passord: admin123
 
-#User bruker:
+# User bruker:
 username: user
 passord: user123
 
