@@ -4,16 +4,29 @@ import com.etc.trader.model.Listing;
 import com.etc.trader.rest.errors.BadRequestAlertException;
 import com.etc.trader.rest.util.HeaderUtil;
 import com.etc.trader.rest.util.PaginationUtil;
+import com.etc.trader.rest.xml.ListingXML;
 import com.etc.trader.service.ListingService;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -108,5 +121,37 @@ public class ListingResource {
     public ResponseEntity<Void> deleteListing(@PathVariable Long id) {
         listingService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @PostMapping("/listing-finn")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void sendToFinn(@RequestBody ListingXML listingXML) throws JAXBException {
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(ListingXML.class);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        StringWriter sw = new StringWriter();
+        jaxbMarshaller.marshal(listingXML, sw);
+        String xmlString = sw.toString();
+
+        CloseableHttpClient client = HttpClientBuilder.create().build();
+        HttpPost postRequest = new HttpPost("FINN.NO api adresse");
+        StringEntity input = null;
+        try {
+            input = new StringEntity(xmlString);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        assert input != null;
+        input.setContentType("text/xml");
+        postRequest.setEntity(input);
+        try {
+            client.execute(postRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

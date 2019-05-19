@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Spring Data  repository for the Company entity.
+ * Spring Data  repository for Company entity.
  */
 @SuppressWarnings("unused")
 @Repository

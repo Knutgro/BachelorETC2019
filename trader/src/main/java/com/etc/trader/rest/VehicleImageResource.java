@@ -34,11 +34,12 @@ public class VehicleImageResource {
     }
 
     /**
-     * POST  /vehicle-albums : Create a new vehicleAlbum.
+     * POST  /vehicle-image : Lagre nytt bilde
      *
-     * @param imageUpload: the vehicleAlbum to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new vehicleAlbum, or with status 400 (Bad Request) if the vehicleAlbum has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param imageUpload: Hjelpe objekt som inneholder bilde, bildeformat og kjøretøy id
+     * @return Respons med status 201 (Created) og med body som inneholder vehicleImage,
+     * eller med status 400 (Bad Request) hvis vehicle_id ikke er sent med.
+     * @throws URISyntaxException Hvis URI syntaks ikke er korrekt
      */
     @PostMapping("/vehicle-image")
     public ResponseEntity<VehicleImage> createVehicleImage(@RequestBody ImageUpload imageUpload) throws URISyntaxException {

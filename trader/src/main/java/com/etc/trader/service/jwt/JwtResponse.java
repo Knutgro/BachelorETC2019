@@ -1,10 +1,6 @@
 package com.etc.trader.service.jwt;
 
 import com.etc.trader.service.CustomUserDetails;
-import com.etc.trader.service.UserDTO;
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class JwtResponse {
     private String token;
