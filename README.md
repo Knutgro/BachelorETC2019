@@ -69,7 +69,7 @@ Ha disse programvarene installert
 
 ## Klient
 ### Utviklings server
-Kjør `ng serve` i `client` mappen for utviklingsserveren til angular. Naviger il `http://localhost:4200/`. Webappen vil automatisk laste om ved endringer.
+Kjør `ng serve` i `client` mappen for utviklingsserveren til angular. Naviger til `http://localhost:4200/` i din nettleser. Webappen vil automatisk laste om ved endringer.
 
 ### Kjøre Unit Tester
 Kjør `ng test` for å kjøre tester gjennom [Karma](https://karma-runner.github.io).
@@ -78,9 +78,9 @@ Kjør `ng test` for å kjøre tester gjennom [Karma](https://karma-runner.github
 Vi brukte XAMPP Apache for å verte en MYSql server.
 
 ### Konfigurasjon
-For databasekonfigurasjon endre filen `trader/src/main/resources/application.properties`.
+For databasekonfigurasjon i Java endre filen `trader/src/main/resources/application.properties`.
 
 ## Trader
 ### Kjøre serveren
-Kjør `mvn clean install` i `trader` mappen. Kjør så `java -jar ./target/trader-0.0.1-SNAPSHOT.jar` for å kjøre serveren
+Kjør `mvn clean install` i `trader` mappen. Kjør så `java -jar ./target/trader-0.0.1-SNAPSHOT.jar` for å kjøre serveren. For å konfigurere Angular appen til å peke på rett server, endre på filen `client/src/app/globals.ts` og endre variablen `apiUrl` til rett adresse.
 
