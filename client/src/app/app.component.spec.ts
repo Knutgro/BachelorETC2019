@@ -1,16 +1,46 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import {User} from './_models/user';
+import {MatSidenav} from '@angular/material';
+import {SidenavService} from './_services/sidenav.service';
+import {Title} from '@angular/platform-browser';
+import {Role} from './_models/role';
+import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
+import {MatSidenavModule} from '@angular/material/typings/sidenav';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {Globals} from './globals';
+import {JwtModule} from '@auth0/angular-jwt';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+        JwtModule.forRoot({
+          config: {
+            tokenGetter: () => {
+              return '';
+            }
+          }
+        })
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        MatSidenav,
       ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [Globals]
+
     }).compileComponents();
   }));
 

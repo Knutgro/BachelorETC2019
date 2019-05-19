@@ -22,7 +22,7 @@ export class SearchBarComponent implements OnInit {
   @Output() onSelectedOption = new EventEmitter();
 
   constructor(
-    private listingService: ListingService
+    public listingService: ListingService
   ) { }
 
   ngOnInit() {

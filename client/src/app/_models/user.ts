@@ -10,4 +10,5 @@ export class User {
   company_id: number;
   role: string[];
   authorities: string[];
+  user: any;
 }

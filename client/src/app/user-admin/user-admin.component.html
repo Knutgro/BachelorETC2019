@@ -15,8 +15,8 @@
     <mat-list>
       <mat-list-item *ngFor="let user of users">
         {{user.username}} ({{user.firstName}} {{user.lastName}})
-        <a mat-flat-button routerLink="user-edit/{{user.id}}">Rediger</a>
-        <a mat-flat-button (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+        <button mat-flat-button color="accent" routerLink="user-edit/{{user.id}}">Rediger</button>
+        <button mat-flat-button color="warn" (click)="deleteUser(user.id)" class="text-danger">Slett</button>
       </mat-list-item>
     </mat-list>
     <alert></alert>
@@ -26,8 +26,8 @@
     <mat-list>
       <mat-list-item *ngFor="let company of companies">
         {{company.name}}
-        <a mat-flat-button routerLink="company-edit/{{company.id}}">Rediger</a>
-        <a mat-flat-button (click)="deleteCompany(company.id)" class="text-danger">Delete</a>
+        <button mat-flat-button color="accent" routerLink="company-edit/{{company.id}}">Rediger</button>
+        <button mat-flat-button color="warn" (click)="deleteCompany(company.id)" class="text-danger">Slett</button>
       </mat-list-item>
     </mat-list>
     <alert></alert>

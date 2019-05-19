@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VehicleGalleryComponent } from './vehicle-gallery.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('VehicleGalleryComponent', () => {
   let component: VehicleGalleryComponent;
@@ -8,7 +9,8 @@ describe('VehicleGalleryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VehicleGalleryComponent ]
+      declarations: [ VehicleGalleryComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

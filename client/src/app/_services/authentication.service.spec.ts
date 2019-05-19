@@ -4,14 +4,23 @@ import { AuthenticationService } from './authentication.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {AppComponent} from '../app.component';
 import {Globals} from '../globals';
+import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 
 describe('AuthenticationService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
-      HttpClientTestingModule
+      HttpClientTestingModule,
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: () => {
+            return '';
+          }
+        }
+      })
     ],
-    declarations: [
-      Globals
+    providers: [
+      Globals,
+      JwtHelperService
     ],
   }));
 

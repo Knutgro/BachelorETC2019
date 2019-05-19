@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserAdminComponent } from './user-admin.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('UserAdminComponent', () => {
   let component: UserAdminComponent;
@@ -8,7 +9,8 @@ describe('UserAdminComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserAdminComponent ]
+      declarations: [ UserAdminComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));
