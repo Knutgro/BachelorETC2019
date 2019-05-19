@@ -68,11 +68,15 @@ Ha disse programvarene installert
 - Angular-Cli 7.2.2
 
 ## Klient
+
+### Installere moduler
+Kjør kommandoen `npm install`, det burde laste ned og installere alle node_modules som hentes via package.json som trengs for klienten.
+
 ### Utviklings server
-Kjør `ng serve` i `client` mappen for utviklingsserveren til angular. Naviger til `http://localhost:4200/` i din nettleser. Webappen vil automatisk laste om ved endringer.
+Kjør kommandoen `ng serve` i `client` mappen for utviklingsserveren til angular. Naviger til `http://localhost:4200/` i din nettleser. Webappen vil automatisk laste om ved endringer.
 
 ### Kjøre Unit Tester
-Kjør `ng test` for å kjøre tester gjennom [Karma](https://karma-runner.github.io).
+Kjør kommandoen `ng test` for å kjøre tester gjennom [Karma](https://karma-runner.github.io).
 
 ## Databasen
 Vi brukte XAMPP Apache for å verte en MYSql server.
