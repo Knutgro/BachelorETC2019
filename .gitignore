@@ -2,3 +2,5 @@
 Server/.idea/
 client/.idea/
 Server
+client/dist/
+client/node_modules/

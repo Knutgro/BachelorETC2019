@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchResultComponent } from './search-result.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('SearchResultComponent', () => {
   let component: SearchResultComponent;
@@ -8,7 +9,8 @@ describe('SearchResultComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchResultComponent ]
+      declarations: [ SearchResultComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));
