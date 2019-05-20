@@ -70,7 +70,7 @@ Ha disse programvarene installert
 ## Klient
 
 ### Installere moduler
-Kjør kommandoen `npm install`, det burde laste ned og installere alle node_modules som hentes via package.json som trengs for klienten.
+Kjør kommandoen `npm install` i `client` mappen, det burde laste ned og installere alle node_modules som hentes via package.json som trengs for klienten.
 
 ### Utviklings server
 Kjør kommandoen `ng serve` i `client` mappen for utviklingsserveren til angular. Naviger til `http://localhost:4200/` i din nettleser. Webappen vil automatisk laste om ved endringer.
