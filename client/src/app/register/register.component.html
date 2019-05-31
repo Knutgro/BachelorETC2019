@@ -22,11 +22,19 @@
         <mat-form-field>
           <input matInput placeholder="Passord" type="password" [(ngModel)]="user.password" #password name="password" required/>
         </mat-form-field>
+        <!--
         <br>
         <mat-form-field>
           <input matInput placeholder="Selskaps-ID" type="number" [(ngModel)]="user.company_id" #company_id name="company_id" required/>
         </mat-form-field>
+        -->
         <br>
+        <mat-form-field>
+          <mat-select placeholder="Selskap" type="text" [(ngModel)]="company" #comp name="company_id" required>
+            <mat-option *ngFor="let company of companies" [value]="company.id">{{company.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+       <br>
         <mat-form-field>
           <mat-select placeholder="Rolle" type="text" [(ngModel)]="user.role" #role name="role" #role name="role" required multiple>
             <mat-option [value]="'user'">Bruker</mat-option>

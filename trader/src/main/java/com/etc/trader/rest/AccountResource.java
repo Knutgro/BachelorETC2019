@@ -1,5 +1,6 @@
 package com.etc.trader.rest;
 
+import com.etc.trader.model.Company;
 import com.etc.trader.model.User;
 import com.etc.trader.repository.RoleRepository;
 import com.etc.trader.repository.UserRepository;
@@ -110,6 +111,7 @@ public class AccountResource {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
+
         userService.registerUser(managedUserVM, managedUserVM.getPassword());
     }
 

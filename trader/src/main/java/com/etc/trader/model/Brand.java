@@ -1,6 +1,8 @@
 package com.etc.trader.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -35,6 +37,7 @@ public class Brand implements Serializable {
     private String logoContentType;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "brand")
     //@OneToMany
     private Set<Model> models = new HashSet<>();

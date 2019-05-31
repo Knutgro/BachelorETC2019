@@ -106,14 +106,13 @@ public class Vehicle implements Serializable {
     private Company company;
 
     @ManyToOne
-    //@JsonIgnore
     @JsonIgnoreProperties("vehicles")
-    private Model model;
+    private TypeData typeData;
 
     public Vehicle() {
     }
 
-    public Vehicle(String nick, String firstRegistration, String registrationClass, String regNo, String warranty, String warrantyDuration, Long warrantyDistance, String warrantyUrl, String carPremium, String carPremiumLink, String exteriorColorMain, String exteriorColor, String interiorColor, String interiorType, String tires, Long maxFuel, String chassisId, Long maxKmTank, Long mileage, Boolean serviceHistory, Boolean servicePlanFollowed, String financePartner, String insurancePartner, Set<VehicleImage> vehicleImages, Listing listing, Company company, Model model) {
+    public Vehicle(String nick, String firstRegistration, String registrationClass, String regNo, String warranty, String warrantyDuration, Long warrantyDistance, String warrantyUrl, String carPremium, String carPremiumLink, String exteriorColorMain, String exteriorColor, String interiorColor, String interiorType, String tires, Long maxFuel, String chassisId, Long maxKmTank, Long mileage, Boolean serviceHistory, Boolean servicePlanFollowed, String financePartner, String insurancePartner, Set<VehicleImage> vehicleImages, Listing listing, Company company, TypeData typeData) {
         this.nick = nick;
         this.firstRegistration = firstRegistration;
         this.registrationClass = registrationClass;
@@ -140,7 +139,7 @@ public class Vehicle implements Serializable {
         this.vehicleImages = vehicleImages;
         this.listing = listing;
         this.company = company;
-        this.model = model;
+        this.typeData = typeData;
     }
 
     public Long getId() {
@@ -501,17 +500,17 @@ public class Vehicle implements Serializable {
         this.company = company;
     }
 
-    public Model getModel() {
-        return model;
+    public TypeData getTypeData() {
+        return typeData;
     }
 
-    public Vehicle model(Model model) {
-        this.model = model;
+    public Vehicle typeData(TypeData typeData) {
+        this.typeData = typeData;
         return this;
     }
 
-    public void setModel(Model model) {
-        this.model = model;
+    public void setTypeData(TypeData typeData) {
+        this.typeData = typeData;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

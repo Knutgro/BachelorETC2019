@@ -1,3 +1,4 @@
+<!--
 <div fxLayout="row" *ngIf="currentUser">
   <mat-card fxFlex="1 1">
     <h3 mat-line>Lag ny bruker</h3>
@@ -8,14 +9,119 @@
     <app-register-company></app-register-company>
   </mat-card>
 </div>
+-->
 
+
+<div fxLayout="row">
+  <mat-card *ngIf="currentUser" fxFlex="1 1">
+    <h3 mat-line>Administrer Brukere</h3>
+    <button mat-flat-button color="accent" routerLink="/register" class="text-danger">Legg til</button>
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilterUsers($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  <table mat-table [dataSource]="dataUsers" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Brukernavn </th>
+      <td mat-cell *matCellDef="let row">{{row.username | json}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef> Etternavn </th>
+      <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef> Fornavn </th>
+      <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-flat-button  color="accent" routerLink="user-edit/{{row.id}}">Endre</button>
+         </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-flat-button color="warn" (click)="deleteUser(row.id)" class="text-danger">Slett</button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="columnsUsers"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsUsers;"></tr>
+  </table>
+
+  </mat-card>
+  <mat-card *ngIf="currentUser" fxFlex="1 1">
+    <h3 mat-line>Administrer Bedrifter</h3>
+    <button mat-flat-button color="accent" routerLink="/register-company" class="text-danger">Legg til</button>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilterUsers($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  <table mat-table [dataSource]="dataCompanies" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let row2"> {{row2.id}} </td>
+    </ng-container>
+    id', 'name', 'phone_number', 'update', 'delete'
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Navn </th>
+      <td mat-cell *matCellDef="let row2">{{row2.name | json}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="phone_number">
+      <th mat-header-cell *matHeaderCellDef> Telefon </th>
+      <td mat-cell *matCellDef="let row2"> {{row2.phoneNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let row2">
+        <button mat-flat-button  color="accent" routerLink="company-edit/{{row2.id}}">Endre</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let row2">
+        <button mat-flat-button color="warn" (click)="deleteCompany(row2.id)" class="text-danger">Slett</button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="columnsCompanies"></tr>
+    <tr mat-row *matRowDef="let row2; columns: columnsCompanies;"></tr>
+  </table>
+  </mat-card>
+</div>
+<!--
 <div fxLayout="row">
   <mat-card *ngIf="currentUser" fxFlex="1 1">
     <h3 mat-line>Alle registrerte brukere</h3>
     <mat-list>
       <mat-list-item *ngFor="let user of users">
+        <mat-divider></mat-divider>
         {{user.username}} ({{user.firstName}} {{user.lastName}})
-        <button mat-flat-button color="accent" routerLink="user-edit/{{user.id}}">Rediger</button>
+        <button mat-flat-button  color="accent" routerLink="user-edit/{{user.id}}">Rediger</button>
         <button mat-flat-button color="warn" (click)="deleteUser(user.id)" class="text-danger">Slett</button>
       </mat-list-item>
     </mat-list>
@@ -23,14 +129,18 @@
   </mat-card>
   <mat-card *ngIf="currentUser" fxFlex="1 1">
     <h3 mat-line>Alle selskap</h3>
-    <mat-list>
-      <mat-list-item *ngFor="let company of companies">
+    <mat-list class="todo">
+      <mat-list-item *ngFor="let company of companies" class="li">
+        <mat-divider></mat-divider>
         {{company.name}}
-        <button mat-flat-button color="accent" routerLink="company-edit/{{company.id}}">Rediger</button>
-        <button mat-flat-button color="warn" (click)="deleteCompany(company.id)" class="text-danger">Slett</button>
+          <div class="buttons">
+            <button mat-flat-button color="accent" routerLink="company-edit/{{company.id}}">Rediger</button>
+            <button mat-flat-button color="warn" (click)="deleteCompany(company.id)" class="text-danger">Slett</button>
+          </div>
       </mat-list-item>
     </mat-list>
     <alert></alert>
   </mat-card>
 </div>
+-->
 

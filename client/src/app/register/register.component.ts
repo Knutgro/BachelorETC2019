@@ -9,6 +9,8 @@ import {Title} from '@angular/platform-browser';
 import {Subscription} from 'rxjs';
 import {ɵplatformCoreDynamicTesting} from '@angular/platform-browser-dynamic/testing';
 import {User} from '../_models/user';
+import {CompanyService} from '../_services/company.service';
+
 
 @Component({
   selector: 'app-register',
@@ -23,6 +25,7 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   user: any = {};
   exist: boolean;
+  companies: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +34,9 @@ export class RegisterComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private alertService: AlertService,
-    private titleService: Title
+    private titleService: Title,
+    private companyService: CompanyService,
+
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     if (this.authenticationService.currentUserValue) {
@@ -42,6 +47,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.exist = false;
     this.titleService.setTitle('Registrer');
+    this.companyService.getAll().subscribe(companies => {
+      for (const company of companies) {
+        this.companies.push(company);
+
+      }
+    });
     this.sub = this.route.params.subscribe( params => {
       const id = params['id'];
       console.log(id);
@@ -76,6 +87,11 @@ export class RegisterComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
+  redirectTo(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+      this.router.navigate([uri]));}
+
+
   onSubmit(form: NgForm) {
     this.submitted = true;
     this.loading = true;
@@ -87,7 +103,7 @@ export class RegisterComponent implements OnInit {
         data => {
           // alertservice success
           this.alertService.success('Registration successful', true);
-          // this.router.navigate(this.router.getCurrentNavigation());
+          //this.redirectTo('/user-admin');
         },
         error => {
           this.alertService.error(error);

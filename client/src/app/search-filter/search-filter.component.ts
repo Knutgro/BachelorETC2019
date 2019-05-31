@@ -25,7 +25,7 @@ export class SearchFilterComponent implements OnInit {
   @ViewChild('checkboxFilter') checkboxFilter: ElementRef;
   @Output() onSelectedFilter = new EventEmitter();
 
-  //region TODO Replace with filters incoming from the database.
+  // region TODO Replace with filters incoming from the database.
   filters = [
     {
       name: 'Hjuldrift',

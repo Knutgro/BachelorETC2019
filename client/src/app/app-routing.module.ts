@@ -22,6 +22,7 @@ const routes: Routes = [];
   imports: [RouterModule.forRoot([
     { path: '', component: HomeComponent },
     { path: 'register', component: RegisterComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN' }},
+    { path: 'register-company', component: RegisterCompanyComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN'}},
     { path: 'login', component: LoginComponent },
     { path: 'vehicle-list', component: VehicleListComponent},
     { path: 'vehicle-add', component: VehicleEditComponent, canActivate: [AuthGuardService]},

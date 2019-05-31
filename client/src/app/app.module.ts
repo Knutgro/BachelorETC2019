@@ -1,6 +1,7 @@
 import {BrowserModule, Title} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import 'hammerjs';
+import { WavesModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md'
 import { fakeBackendProvider } from './_helper/fake-backend';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +19,7 @@ import {
   MatListModule,
   MatPaginatorModule, MatSelectModule, MatSidenavModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -69,7 +70,7 @@ export function getToken() {
     VehicleListingComponent,
     SearchFilterComponent,
     UserProfileComponent,
-    RegisterCompanyComponent
+    RegisterCompanyComponent,
   ],
   imports: [
     JwtModule.forRoot({
@@ -102,7 +103,10 @@ export function getToken() {
     MatCheckboxModule,
     FlexLayoutModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    WavesModule.forRoot(),
+    IconsModule,
+    ButtonsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * not an ignored comment
@@ -65,8 +67,13 @@ public class TypeData implements Serializable {
 
     @Column(name = "no_of_seats")
     private Long noOfSeats;
-    @ManyToOne
+
     @JsonIgnore
+    @OneToMany(mappedBy = "typeData")
+    private Set<Vehicle> vehicles = new HashSet<>();
+
+    @ManyToOne
+    //@JsonIgnore
     @JsonIgnoreProperties("typeData")
     private Model model;
 
@@ -273,6 +280,31 @@ public class TypeData implements Serializable {
 
     public void setNoOfSeats(Long noOfSeats) {
         this.noOfSeats = noOfSeats;
+    }
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public TypeData vehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+        return this;
+    }
+
+    public TypeData addVehicle(Vehicle vehicle) {
+        this.vehicles.add(vehicle);
+        vehicle.setTypeData(this);
+        return this;
+    }
+
+    public TypeData removeVehicle(Vehicle vehicle) {
+        this.vehicles.remove(vehicle);
+        vehicle.setTypeData(null);
+        return this;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     public Model getModel() {

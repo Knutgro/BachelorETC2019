@@ -31,6 +31,8 @@ export class UserService {
     return result;
   }
 
+
+
   update(user: User) {
     return this.http.put(`${this.globals.apiUrl}/users/${user.id}`, user);
   }

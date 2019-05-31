@@ -49,7 +49,7 @@ INSERT INTO `vehicle` (`id`, `reg_no`, `warranty`,
                       `warranty_duration`, `warranty_distance`, `warranty_url`, `car_premium`, `car_premium_link`,
                       `exterior_color_main`, `interior_color`, `tires`,`chassis_id`,`mileage`,
                       `service_history`, `service_plan_followed`, `finance_partner`, `insurance_partner`,
-                      `company_id`, `model_id`)
+                      `company_id`, `typeData_id`)
               VALUES ('1', '123456XZ', 'basic', '22', '200', '123.no', 'blabla', 'blabla.no',
                          'Blue', 'Black', '205/55 R16 91V', '123456789', '112', True, True, 'Storebrand', 'Storebrand',
                          '1', '1');
@@ -58,7 +58,7 @@ INSERT INTO `vehicle` (`id`, `reg_no`, `warranty`,
                       `warranty_duration`, `warranty_distance`, `warranty_url`, `car_premium`, `car_premium_link`,
                       `exterior_color_main`, `interior_color`, `tires`,`chassis_id`,`mileage`,
                       `service_history`, `service_plan_followed`, `finance_partner`, `insurance_partner`,
-                      `company_id`, `model_id`)
+                      `company_id`, `typeData_id`)
               VALUES ('2', '123456XY', 'basic', '22', '200', '123.no', 'blabla', 'blabla.no',
                          'Black', 'Beige', '205/55 R16 91V', '54321578', '112', True, True, 'DNB', 'DNB',
                          '1', '1');
@@ -82,3 +82,4 @@ INSERT INTO `users` (`id`, `activated`, `email`, `firstName`, `lastName`, `passw
 
 INSERT INTO `user_roles` (`user_id`, `role_id`)
               VALUES (2, 1);
+

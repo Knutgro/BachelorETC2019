@@ -1,4 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
 import {User} from '../_models/user';
 import {Subscription} from 'rxjs';
 import {AuthenticationService} from '../_services/authentication.service';
@@ -17,8 +18,20 @@ import {AlertService} from '../_services/alert.service';
 export class UserAdminComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserSubscription: Subscription;
+  columnsCompanies: string[] = ['id', 'name', 'phone_number', 'update', 'delete'];
+  columnsUsers: string[] = ['id', 'username', 'lastName', 'firstName', 'update', 'delete'];
   users: User[] = [];
   companies: Company[] = [];
+  dataUsers: MatTableDataSource<User>;
+  dataCompanies: MatTableDataSource<Company>;
+
+  applyFilterUsers(filterValue: string) {
+    this.dataUsers.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilterCompanies(filterValue: string) {
+    this.dataCompanies.filter = filterValue.trim().toLowerCase();
+  }
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -30,6 +43,7 @@ export class UserAdminComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
     });
+
   }
 
   ngOnInit() {
@@ -56,12 +70,14 @@ export class UserAdminComponent implements OnInit, OnDestroy {
     this.userService.getAll().pipe(first()).subscribe(users => {
       this.users = users;
       console.log(users);
+      this.dataUsers = new MatTableDataSource(users);
     });
   }
 
   private loadAllCompanies() {
     this.companyService.getAll().pipe(first()).subscribe(companies => {
       this.companies = companies;
+      this.dataCompanies = new MatTableDataSource(companies);
     });
   }
 

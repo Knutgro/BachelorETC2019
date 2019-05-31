@@ -2,6 +2,7 @@ package com.etc.trader.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -30,16 +31,11 @@ public class Model implements Serializable {
     @Column(name = "m_year")
     private Integer year;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "model")
-    //@OneToMany
-    private Set<Vehicle> vehicles = new HashSet<>();
-
-    @OneToMany(mappedBy = "model")
-    //@OneToMany
     private Set<TypeData> typeData = new HashSet<>();
 
     @ManyToOne
-    //@JsonIgnore
     @JsonIgnoreProperties("models")
     private Brand brand;
 
@@ -77,31 +73,6 @@ public class Model implements Serializable {
 
     public void setYear(Integer year) {
         this.year = year;
-    }
-
-    public Set<Vehicle> getVehicles() {
-        return vehicles;
-    }
-
-    public Model vehicles(Set<Vehicle> vehicles) {
-        this.vehicles = vehicles;
-        return this;
-    }
-
-    public Model addVehicle(Vehicle vehicle) {
-        this.vehicles.add(vehicle);
-        vehicle.setModel(this);
-        return this;
-    }
-
-    public Model removeVehicle(Vehicle vehicle) {
-        this.vehicles.remove(vehicle);
-        vehicle.setModel(null);
-        return this;
-    }
-
-    public void setVehicles(Set<Vehicle> vehicles) {
-        this.vehicles = vehicles;
     }
 
     public Set<TypeData> getTypeData() {
