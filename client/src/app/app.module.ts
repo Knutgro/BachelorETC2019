@@ -20,6 +20,7 @@ import {
   MatPaginatorModule, MatSelectModule, MatSidenavModule,
   MatTableModule,
   MatToolbarModule,
+  MatPaginatorIntl,
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -46,6 +47,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
 import {SidenavService} from './_services/sidenav.service';
+import { CompanyComponent } from './company/company.component';
+import {getNorwegianPaginatorIntl} from './_helper/norsk-paginator';
 
 export function getToken() {
   return localStorage.getItem('currentUser');
@@ -71,6 +74,7 @@ export function getToken() {
     SearchFilterComponent,
     UserProfileComponent,
     RegisterCompanyComponent,
+    CompanyComponent,
   ],
   imports: [
     JwtModule.forRoot({
@@ -111,6 +115,7 @@ export function getToken() {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: MatPaginatorIntl, useValue: getNorwegianPaginatorIntl() },
     Globals,
     Title,
     JwtHelperService,

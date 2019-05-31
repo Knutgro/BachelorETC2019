@@ -1,0 +1,24 @@
+SØNDAG
+-etc logo?
+-bottom text
+	-hyperlinks
+		-kontakt oss
+		-om oss
+		-carAdmin
+		-Finn.no
+- PYNTE PÅ ANNONSEVISNING
+
+LØRDAG
+Søk
+	-Fikse annonse viser
+		-Lag som finn.no
+	-Fikse søk
+	-Bedre filter
+
+FREDAG:
+Bedrift side
+	-Se biler
+	-Se annonser
+	-Finn.no knapp
+
+Administere side (done)

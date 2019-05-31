@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {User} from '../_models/user';
 import {Subscription} from 'rxjs';
@@ -9,6 +9,7 @@ import {Title} from '@angular/platform-browser';
 import {CompanyService} from '../_services/company.service';
 import {Company} from '../_models/company';
 import {AlertService} from '../_services/alert.service';
+import {MatPaginator} from '@angular/material';
 
 @Component({
   selector: 'app-user-admin',
@@ -19,12 +20,13 @@ export class UserAdminComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserSubscription: Subscription;
   columnsCompanies: string[] = ['id', 'name', 'phone_number', 'update', 'delete'];
-  columnsUsers: string[] = ['id', 'username', 'lastName', 'firstName', 'update', 'delete'];
+  columnsUsers: string[] = ['id', 'username', 'roles', 'lastName', 'firstName', 'update', 'delete'];
   users: User[] = [];
   companies: Company[] = [];
   dataUsers: MatTableDataSource<User>;
   dataCompanies: MatTableDataSource<Company>;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   applyFilterUsers(filterValue: string) {
     this.dataUsers.filter = filterValue.trim().toLowerCase();
   }
@@ -71,6 +73,7 @@ export class UserAdminComponent implements OnInit, OnDestroy {
       this.users = users;
       console.log(users);
       this.dataUsers = new MatTableDataSource(users);
+      this.dataUsers.paginator = this.paginator;
     });
   }
 
@@ -78,6 +81,7 @@ export class UserAdminComponent implements OnInit, OnDestroy {
     this.companyService.getAll().pipe(first()).subscribe(companies => {
       this.companies = companies;
       this.dataCompanies = new MatTableDataSource(companies);
+      this.dataCompanies.paginator = this.paginator;
     });
   }
 

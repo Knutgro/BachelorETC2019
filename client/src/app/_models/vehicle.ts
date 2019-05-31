@@ -1,4 +1,5 @@
-export class Vehicle {
+import {TypeData} from './type-data';
+export class Vehicle{
   id: number;
   nick: string;
   firstRegistration: string;
@@ -24,4 +25,5 @@ export class Vehicle {
   financePartner: string;
   insurancePartner: string;
   vehicleImages: string[];
+  typeData: TypeData;
 }
