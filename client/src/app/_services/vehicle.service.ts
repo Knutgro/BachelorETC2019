@@ -32,6 +32,10 @@ export class VehicleService {
     return this.http.get<Vehicle[]>(`${this.globals.apiUrl}/vehicles`);
   }
 
+  getByCompanyId(id: number) {
+    return this.http.get<Vehicle[]>(`${this.globals.apiUrl}/companyVehicles/${id}`);
+  }
+
   getById(id: number) {
     return this.http.get(`${this.globals.apiUrl}/vehicles/${id}`);
   }

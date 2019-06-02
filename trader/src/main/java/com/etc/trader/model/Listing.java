@@ -75,7 +75,7 @@ public class Listing implements Serializable {
     private Vehicle vehicle;
 
     @ManyToOne
-    @JsonIgnore
+    //@JsonIgnore
     @JsonIgnoreProperties("listings")
     private Company company;
 

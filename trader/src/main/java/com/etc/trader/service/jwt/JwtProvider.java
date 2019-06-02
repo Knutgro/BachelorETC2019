@@ -22,7 +22,7 @@ public class JwtProvider {
     @Value("$trader.app.jwtSecret")
     private String jwtSecret;
     // Tid til token løper ut
-    @Value("${trader.app.jwtExpiration}0")
+    @Value("${trader.app.jwtExpiration}000")
     private int jwtExpiration;
 
     public String generateJwtToken(Authentication authentication) {

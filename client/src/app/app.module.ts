@@ -21,6 +21,7 @@ import {
   MatTableModule,
   MatToolbarModule,
   MatPaginatorIntl,
+  MatTabsModule,
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -111,6 +112,8 @@ export function getToken() {
     WavesModule.forRoot(),
     IconsModule,
     ButtonsModule,
+    MatTableModule,
+    MatTabsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

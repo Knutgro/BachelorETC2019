@@ -81,4 +81,9 @@ public class VehicleService {
     public void delete(Long id) {
         vehicleRepository.deleteById(id);
     }
+
+    public List<Vehicle> findByCompany(Long id) {
+        return vehicleRepository.findAllByCompany_Id(id);
+
+    }
 }

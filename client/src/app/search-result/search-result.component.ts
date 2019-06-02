@@ -29,11 +29,13 @@ export class SearchResultComponent implements OnInit {
       this.listings = listings;
       this.listingService.listingData = listings;
       console.log(listings);
+      /*
       for (let i = 0; i < listings.length; i++) {
         this.listings[i].vehicle.thumbnail = this.sanitizer.bypassSecurityTrustUrl(
           this.imageService.convertImage(listings[i].vehicle.vehicleImages[0].image,
             listings[i].vehicle.vehicleImages[0].imageContentType));
       }
+      */
       /* Old image method
       for (let i = 0; i < this.listings.length; i++) {
         this.imageService.getImages(this.listings[i].id.toString()).subscribe(images => {

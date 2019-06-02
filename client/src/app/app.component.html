@@ -4,17 +4,17 @@
     <router-outlet></router-outlet>
     <app-footer></app-footer>
   </mat-sidenav-content>
-  <mat-sidenav #sidenav mode="push" [(opened)]="opened" [fixedInViewport]="true">
+  <mat-sidenav class="hallo" #sidenav mode="push" [(opened)]="opened" [fixedInViewport]="true">
     <mat-nav-list>
       <mat-list-item mat-button style="height: 0;position: absolute"></mat-list-item><!-- Brukes for å unngå at første element i listen automatisk blir merket -->
-      <mat-list-item mat-list-item *ngIf="currentUser" routerLink="/user-profile/{{currentUser.id}}">{{currentUser.firstName}}</mat-list-item>
+      <mat-list-item mat-list-item *ngIf="currentUser" routerLink="/user-profile/{{currentUser.id}}">{{currentUser.username}}</mat-list-item>
       <mat-divider *ngIf="currentUser"></mat-divider>
       <mat-list-item mat-list-item (click)="toggleSidenav()" routerLink="/login" *ngIf="!currentUser">Logg inn</mat-list-item>
-      <mat-list-item mat-list-item (click)="toggleSidenav()" (click)="logout()" *ngIf="currentUser">Logg ut</mat-list-item>
-      <mat-list-item mat-list-item (click)="toggleSidenav()" routerLink="/vehicle-list" *ngIf="currentUser">Kjøretøy</mat-list-item>
-
+      <!--<mat-list-item mat-list-item (click)="toggleSidenav()" routerLink="/vehicle-list" *ngIf="currentUser">Kjøretøy</mat-list-item>-->
+      <mat-list-item mat-list-item (click)="toggleSidenav()" routerLink="/company" *ngIf="currentUser">Bedrift</mat-list-item>
       <mat-list-item mat-list-item (click)="toggleSidenav()" routerLink="/user-admin"
             *ngIf="isAdmin">Administrer</mat-list-item>
+      <mat-list-item mat-list-item (click)="toggleSidenav()" (click)="logout()" *ngIf="currentUser">Logg ut</mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>

@@ -1,3 +1,117 @@
-<p>
-  company works!
-</p>
+<mat-tab-group animationDuration="0" color="accent">
+  <mat-tab label="Administer Kjøretøy">
+    <mat-card *ngIf="currentUser" class = "edit-card">
+      <h3 mat-line>Administrer kjøretøy</h3>
+      <button mat-flat-button color="accent" routerLink="/register" class="text-danger">Nytt Kjøretøy</button>
+
+      <mat-form-field>
+        <input matInput (keyup)="applyFilterVehicles($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataVehicles" class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <!--'id', 'brand', 'model', 'type', 'regnr', 'update', 'delete'-->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+         Name Column
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Navn </th>
+          <td mat-cell *matCellDef="let row">{{row.typeData.model.brand.name}} {{row.typeData.model.name}} {{row.typeData.bodyType}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="regnr">
+          <th mat-header-cell *matHeaderCellDef> Registreringsnummer </th>
+          <td mat-cell *matCellDef="let row"> {{row.regNo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="update">
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-flat-button  color="accent" routerLink="user-edit/{{row.id}}">Endre</button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-flat-button color="warn" (click)="deleteUser(row.id)" class="text-danger">Slett</button>
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="columnsVehicles"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsVehicles;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card>
+  </mat-tab>
+
+
+
+  <mat-tab label="Administer Annonser">
+    <mat-card *ngIf="currentUser" class = "edit-card">
+      <h3 mat-line>Administrer annonser</h3>
+      <button mat-flat-button color="accent" routerLink="/register" class="text-danger">Ny Annonse</button>
+
+      <mat-form-field>
+        <input matInput (keyup)="applyFilterListing($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataListings" class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <!--'id', 'brand', 'model', 'type', 'regnr', 'update', 'delete'-->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+        Name Column
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Navn </th>
+          <td mat-cell *matCellDef="let row">{{row.vehicle.typeData.model.brand.name}}
+            {{row.vehicle.typeData.model.name}} {{row.vehicle.typeData.bodyType}}
+          </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="regnr">
+          <th mat-header-cell *matHeaderCellDef> Registreringsnummer </th>
+          <td mat-cell *matCellDef="let row"> {{row.vehicle.regNo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="created">
+          <th mat-header-cell *matHeaderCellDef> Dato laget </th>
+          <td mat-cell *matCellDef="let row"> {{row.dateCreated}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expires">
+          <th mat-header-cell *matHeaderCellDef> Dato utgår </th>
+          <td mat-cell *matCellDef="let row"> {{row.dateExpired}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="update">
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-flat-button  color="accent" routerLink="user-edit/{{row.id}}">Endre</button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-flat-button color="warn" (click)="deleteUser(row.id)" class="text-danger">Slett</button>
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="columnsListings"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsListings;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

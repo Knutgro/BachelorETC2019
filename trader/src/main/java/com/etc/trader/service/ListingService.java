@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -65,5 +66,10 @@ public class ListingService {
      */
     public void delete(Long id) {
         listingRepository.deleteById(id);
+    }
+
+    public List<Listing> findByCompany(Long id) {
+        return listingRepository.findAllByCompany_Id(id);
+
     }
 }

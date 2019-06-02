@@ -123,6 +123,12 @@ public class ListingResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    @GetMapping("/companyListings/{id}")
+    public List<Listing> GetAllCompanyVehicles(@PathVariable Long id) {
+        return listingService.findByCompany(id);
+
+    }
+
     @PostMapping("/listing-finn")
     @ResponseStatus(HttpStatus.CREATED)
     public void sendToFinn(@RequestBody ListingXML listingXML) throws JAXBException {

@@ -38,7 +38,7 @@ public class TypeData implements Serializable {
     @Column(name = "fuel")
     private String fuel;
 
-    @Column(name = "range")
+    @Column(name = "jhi_range")
     private Double range;
 
     @Column(name = "battery_capacity")

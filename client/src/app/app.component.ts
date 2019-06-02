@@ -29,16 +29,15 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.role = {
       authority: ['']
-    }
+    };
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x.user);
-    console.log(this.currentUser);
+
     if (this.currentUser) {
       for (let i = 0; i < this.currentUser.authorities.length; i++) {
         this.role.authority[i] = this.currentUser.authorities[i];
       }
     }
-    console.log(this.role);
-    console.log(this.sideNav);
+
     this.isAdmin = false;
     this.isAdministrator();
     this.sidenavService.setSideNav(this.sideNav);
@@ -60,12 +59,11 @@ export class AppComponent implements OnInit {
 
   isAdministrator() {
     if (this.currentUser) {
-      console.log()
+
       for (let i = 0; i < this.role.authority.length; i++) {
         if (JSON.stringify(this.role.authority[0]).includes('ROLE_ADMIN')) {
-          console.log('true');
           this.isAdmin = true;
-        } else console.log('false');
+        }
       }
     }
   }

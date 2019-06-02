@@ -40,7 +40,9 @@ $md-myblue: (
   200 : #8fd3e1,
   300 : #62c1d5,
   400 : #41b3cc,
-  500 : #1fa6c3,
+  //500 : #1fa6c3,
+  //500 : #4e96c8,
+  500 : #ffb043,
   600 : #1b9ebd,
   700 : #1795b5,
   800 : #128bae,
@@ -70,6 +72,7 @@ $md-myblue: (
 
 
 $my-app-primary: mat-palette($md-myamber, 500, 200, 900);
+//$my-app-accent: mat-palette('#0000ff');
 $my-app-accent: mat-palette($md-myblue, 500, 200, 900);
 $my-app-warn: mat-palette($mat-red);
 

@@ -40,6 +40,11 @@ export class ListingService {
     return this.http.get(`${this.globals.apiUrl}/listings/${id}`);
   }
 
+  getByCompany(id: number) {
+    return this.http.get<Listing[]>(`${this.globals.apiUrl}/companyListings/${id}`);
+
+  }
+
   filteredListOptions() {
     const listings = this.listingData;
     this.filteredListingsList.length = 0;
@@ -52,7 +57,7 @@ export class ListingService {
       }
       for (const options of this.searchOption) {
         //if (options.name === vehicle.name) {
-        if (vehicle.name.includes(options.name) && !this.filteredListingsList.includes(listing)) {
+        if (vehicle.typeData.model.name.includes(options.name) && !this.filteredListingsList.includes(listing)) {
           this.filteredListingsList.push(listing);
         }
       }

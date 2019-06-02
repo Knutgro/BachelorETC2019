@@ -26,7 +26,8 @@ export class UserAdminComponent implements OnInit, OnDestroy {
   dataUsers: MatTableDataSource<User>;
   dataCompanies: MatTableDataSource<Company>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator1: MatPaginator;
+  @ViewChild(MatPaginator) paginator2: MatPaginator;
   applyFilterUsers(filterValue: string) {
     this.dataUsers.filter = filterValue.trim().toLowerCase();
   }
@@ -71,9 +72,8 @@ export class UserAdminComponent implements OnInit, OnDestroy {
   private loadAllUsers() {
     this.userService.getAll().pipe(first()).subscribe(users => {
       this.users = users;
-      console.log(users);
       this.dataUsers = new MatTableDataSource(users);
-      this.dataUsers.paginator = this.paginator;
+      this.dataUsers.paginator = this.paginator1;
     });
   }
 
@@ -81,7 +81,7 @@ export class UserAdminComponent implements OnInit, OnDestroy {
     this.companyService.getAll().pipe(first()).subscribe(companies => {
       this.companies = companies;
       this.dataCompanies = new MatTableDataSource(companies);
-      this.dataCompanies.paginator = this.paginator;
+      this.dataCompanies.paginator = this.paginator2;
     });
   }
 

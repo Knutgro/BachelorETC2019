@@ -33,12 +33,14 @@ export class VehicleListingComponent implements OnInit {
           if (listing) {
             this.listing = listing;
             this.listing.href = listing.href;
+            listing.vehicle.typeData.dinosaur = listing.vehicle.typeData.fuel !== 'elektrisk';
             this.vehicle = this.listing.vehicle;
-            this.titleService.setTitle(this.listing.name);
+            this.titleService.setTitle(this.listing.title);
+            console.log(listing);
           } else {
             // console.log(`listing with id '${id}' not found, returning to list`);
             this.alertService.error(`listing with id '${id}' not found, returning to list`);
-            this.gotoList();
+            //this.gotoList();
           }
         });
       }

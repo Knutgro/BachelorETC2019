@@ -15,6 +15,7 @@ import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AuthGuardService} from './_services/auth-guard.service';
 import {RoleGuardService} from './_services/role-guard.service';
 import {RegisterCompanyComponent} from './register-company/register-company.component';
+import {CompanyComponent} from './company/company.component';
 
 const routes: Routes = [];
 
@@ -36,6 +37,7 @@ const routes: Routes = [];
     { path: 'vehicle-detail/:id', component: VehicleDetailComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-gallery-test', component: VehicleGalleryComponent},
     { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuardService]},
+    { path: 'company', component: CompanyComponent, canActivate: [AuthGuardService]},
     // { path: '**', redirectTo: '' }
   ])],
   exports: [RouterModule]

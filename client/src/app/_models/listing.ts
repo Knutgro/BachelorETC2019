@@ -1,3 +1,5 @@
+import {Vehicle} from './vehicle';
+
 export class Listing {
   id: number;
   title: string;
@@ -16,5 +18,5 @@ export class Listing {
   carCondition: string;
   dateCreated: string;
   dateExpired: string;
-  vehicle: any;
+  vehicle: Vehicle;
 }

@@ -3,6 +3,7 @@ import {Model} from './model';
 export class TypeData {
   id: number;
   bodyType: string;
+  fuel: string;
   engineEffect: number;
   engineVolume: number;
   batteryCapacity: number;
@@ -15,5 +16,6 @@ export class TypeData {
   weight: number;
   noOfDoors: number;
   noOfSeats: number;
+  dinosaur: boolean;
   model: Model;
 }

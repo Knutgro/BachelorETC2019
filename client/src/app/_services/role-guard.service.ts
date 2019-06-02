@@ -22,19 +22,18 @@ export class RoleGuardService implements CanActivate {
     let asExpected = false;
     const token = JSON.parse(localStorage.getItem('currentUser')).token;
     const tokenPayload = decode(token);
-    console.log(tokenPayload.role);
     for (let i = 0; i < tokenPayload.role.length; i++) {
       if (tokenPayload.role[i].authority === expectedRole) {
-        console.log(tokenPayload.role[i].authority);
+
         asExpected = true;
-        console.log('Role as expected');
+
       }
     }
     if (
       !this.authenticationService.isAuthenticated() ||
       !asExpected
     ) {
-      console.log('Access denied!');
+
       this.router.navigate(['']);
       return false;
     }

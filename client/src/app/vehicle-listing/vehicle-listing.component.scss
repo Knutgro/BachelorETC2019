@@ -1,4 +1,42 @@
 .inlineStyle {
   display: inline-block;
   background-color: whitesmoke;
+  max-width: 650px;
+}
+.edit-card {
+  max-width: 900px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  position: relative;
+  background-color: whitesmoke;
+  display: inline-block;
+}
+
+.main-div{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  position: relative;
+  background-color: whitesmoke;
+}
+
+.absoluteCenterWrapper {
+  position: relative; /* Declare this element as the anchor point for centering */
+}
+
+/* Positioning */
+.absoluteCenter {
+  margin: auto; /* Required */
+  position: absolute; /* Required */
+  top: 0; bottom: 0; /* Aligns Vertically */
+  left: 0; right: 0; /* Aligns Horizontally */
+}
+
+/* Make sure the centered element fits into its container. If you know that's the case, you can omit this part. */
+.absoluteCenter {
+  max-height: 100%;
+  max-width: 100%;
 }

@@ -92,6 +92,12 @@ public class VehicleResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/companyVehicles/{id}")
+    public List<Vehicle> GetAllCompanyVehicles(@PathVariable Long id) {
+    return vehicleService.findByCompany(id);
+
+    }
+
     /**
      * GET  /vehicles/:id : get the "id" vehicle.
      *

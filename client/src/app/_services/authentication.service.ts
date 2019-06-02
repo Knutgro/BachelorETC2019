@@ -21,7 +21,6 @@ export class AuthenticationService {
   ) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
-    console.log(this.currentUser);
   }
 
   public get currentUserValue(): User {
@@ -30,7 +29,6 @@ export class AuthenticationService {
 
   public isAuthenticated(): boolean {
     const token = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(token.token);
     return !this.jwtHelper.isTokenExpired(token.token);
   }
 
