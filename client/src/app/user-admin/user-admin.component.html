@@ -11,7 +11,7 @@
 </div>
 -->
 
-<mat-tab-group animationDuration="0" color="accent">
+<mat-tab-group #tabGroup (selectedIndexChange)="_setDataSource($event)" animationDuration="0" color="accent">
   <mat-tab label="Administer Brukere">
     <mat-card *ngIf="currentUser" class = "edit-card">
       <h3 mat-line>Administrer Brukere</h3>
@@ -75,7 +75,7 @@
       <tr mat-header-row *matHeaderRowDef="columnsUsers"></tr>
       <tr mat-row *matRowDef="let row; columns: columnsUsers;"></tr>
     </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator  #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </mat-card>
   </mat-tab>
 
@@ -124,7 +124,7 @@
       <tr mat-header-row *matHeaderRowDef="columnsCompanies"></tr>
       <tr mat-row *matRowDef="let row2; columns: columnsCompanies;"></tr>
     </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator  #paginator2 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </mat-card>
   </mat-tab>
 </mat-tab-group>

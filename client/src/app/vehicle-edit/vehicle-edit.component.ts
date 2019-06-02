@@ -70,7 +70,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   }
 
   remove(id) {
-    this.vehicleService.remove(id).subscribe(result => {
+    this.vehicleService.delete(id).subscribe(result => {
       this.gotoList();
     }, error => this.alertService.error(error));
   }

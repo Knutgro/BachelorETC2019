@@ -11,89 +11,148 @@
   <app-vehicle-gallery></app-vehicle-gallery>
   <alert></alert>
   <br>
+<div *ngIf="listing || vehicle || listing.company ||
+  listing.vehicle.typeData || listing.vehicle.typeData.model || listing.vehicle.typeData.model.brand">
   <div class="center-card" style="margin-top: 10px">
     <mat-card class="inlineStyle">
 
       <mat-card-title>{{listing.title}}</mat-card-title>
-      <mat-card-subtitle>{{listing.description}}</mat-card-subtitle>
-      <p>Listing info</p>
+      <mat-card-subtitle>{{listing.underTitle}}</mat-card-subtitle>
       <mat-list role="list" style="float: left">
         <mat-list-item role="listitem">
             Total pris: {{listing.totalPrice | currency: 'NOK'}}
         </mat-list-item>
-        <mat-list-item role="listitem">Reg.nr: {{listing.vehicle.regNo}}</mat-list-item>
-        <mat-list-item role="listitem">Modell: {{listing.vehicle.typeData.model.name}}</mat-list-item>
-        <mat-list-item role="listitem">Årsmodell: {{listing.vehicle.typeData.model.year}}</mat-list-item>
-        <mat-list-item role="listitem">registrationTaxIncluded: {{listing.registrationTaxIncluded}}</mat-list-item>
-        <mat-list-item role="listitem">registrationExemption: {{listing.registrationExemption}}</mat-list-item>
-        <mat-list-item role="listitem">vatIncluded: {{listing.vatIncluded}}</mat-list-item>
-        <mat-list-item role="listitem">totalPrice: {{listing.totalPrice}}</mat-list-item>
+        <mat-list-item role="listitem">Reg.nr: {{listing.vehicle?.regNo}}</mat-list-item>
+        <mat-list-item role="listitem">Modell: {{listing.vehicle?.typeData?.model?.brand?.name}},{{listing.vehicle?.typeData?.model?.name}}</mat-list-item>
+        <mat-list-item role="listitem">Årsmodell: {{listing.vehicle?.typeData?.model?.year}}</mat-list-item>
+        <mat-list-item role="listitem">Biltype: {{listing.vehicle?.typeData?.bodyType}}</mat-list-item>
+        <mat-list-item role="listitem">Antall eiere: {{listing?.noOfOwners}}</mat-list-item>
+        <mat-list-item role="listitem">Bilens tilstand: {{listing?.carCondition}}</mat-list-item>
+        <mat-list-item role="listitem">Farge: {{listing.vehicle?.exteriorColorMain}}</mat-list-item>
+        <mat-list-item role="listitem">Annonse laget: {{listing?.dateCreated}}</mat-list-item>
+
       </mat-list>
-      <mat-list role="list" style="float: left">
-        <mat-list-item role="listitem">Kilometerstand: {{listing.vehicle.mileage}} km</mat-list-item>
-        <mat-list-item role="listitem">registration: {{listing.registration}}</mat-list-item>
-        <mat-list-item role="listitem">currency: {{listing.currency}}</mat-list-item>
-        <mat-list-item role="listitem">position: {{listing.position}}</mat-list-item>
-        <mat-list-item role="listitem">noOfOwners: {{listing.noOfOwners}}</mat-list-item>
-        <mat-list-item role="listitem">carCondition: {{listing.carCondition}}</mat-list-item>
-        <mat-list-item role="listitem">dateCreated: {{listing.dateCreated}}</mat-list-item>
-        <mat-list-item role="listitem">dateExpired: {{listing.dateExpired}}</mat-list-item>
+      <mat-list role="list">
+        <mat-list-item role="listitem">Kilometerstand: {{listing.vehicle?.mileage}} km</mat-list-item>
+        <mat-list-item role="listitem">Girkasse: {{listing.vehicle?.typeData?.transmission}}</mat-list-item>
+        <mat-list-item role="listitem">Hjuldrift: {{listing.vehicle?.typeData?.wheelDrive}}</mat-list-item>
+        <mat-list-item role="listitem">Vekt: {{listing.vehicle?.typeData?.weight | number}} kg</mat-list-item>
+        <mat-list-item role="listitem">Antall dører: {{listing.vehicle?.typeData?.noOfDoors | number}}</mat-list-item>
+        <mat-list-item role="listitem">Antall seter: {{listing.vehicle?.typeData?.noOfSeats | number}}</mat-list-item>
+        <mat-list-item role="listitem">Drivstoff: {{listing.vehicle?.typeData?.fuel}}</mat-list-item>
+        <mat-list-item role="listitem">Bagasjerom: {{listing.vehicle?.typeData?.sizeOfBoot}} L</mat-list-item>
+        <mat-list-item role="listitem">Annonse utløper: {{listing.dateExpired}}</mat-list-item>
       </mat-list>
+
+      <mat-accordion class="inlineStyle">
+        <mat-expansion-panel class = "inlineStyle">
+          <mat-expansion-panel-header class="inlineStyle">
+            <i class="material-icons">
+              subject
+            </i>
+            Beskrivelse
+          </mat-expansion-panel-header>
+          {{listing.description}}
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion class="inlineStyle">
+        <mat-expansion-panel class = "inlineStyle">
+          <mat-expansion-panel-header class="inlineStyle">
+            <i class="material-icons">
+              call
+            </i>
+            Selger
+          </mat-expansion-panel-header>
+          <mat-list role="list" style="float: left">
+
+            <mat-list-item role="listitem">Bedrift: {{listing.company?.name}}</mat-list-item>
+            <mat-list-item role="listitem">Telefon: {{listing.company?.phoneNumber}}</mat-list-item>
+          </mat-list>
+          <mat-list role="list" style="float: right">
+            <mat-list-item role="listitem">Region:
+              <ng-container *ngFor="let region of listing?.company?.regions">
+                {{region?.name}}
+              </ng-container>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+      <mat-accordion class="inlineStyle">
+
+        <mat-expansion-panel class = "inlineStyle">
+
+          <mat-expansion-panel-header class="inlineStyle">
+            <div class="icon">
+            <i class="material-icons">
+              build
+            </i>
+              </div>
+            Tekniske Detaljer
+          </mat-expansion-panel-header>
+          <mat-list role="list" style="float: left">
+            <div *ngIf="listing.vehicle?.typeData?.dinosaur">
+              <mat-list-item role="listitem">Betterikapasitet: {{listing.vehicle?.typeData?.batteryCapacity}} kWh</mat-list-item>
+              <mat-list-item role="listitem">Rekkevidde: {{listing.vehicle.typeData.range}} km</mat-list-item>
+              <mat-list-item role="listitem">Effekt: {{listing.vehicle?.typeData?.engineEffect}}</mat-list-item>
+
+            </div>
+
+            <div *ngIf="!listing.vehicle?.typeData?.dinosaur">
+              <mat-list-item role="listitem">Drivstoffkapasitet: {{listing.vehicle?.maxFuel}} L </mat-list-item>
+              <mat-list-item role="listitem">Rekkevidde: {{listing.vehicle?.maxKmTank}} km </mat-list-item>
+              <mat-list-item role="listitem">Effekt: {{listing.vehicle?.typeData?.engineEffect}}</mat-list-item>
+              <mat-list-item role="listitem">Volum: {{listing.vehicle?.typeData?.engineVolume}} cm<sup>2</sup></mat-list-item>
+              <mat-list-item role="listitem">CO2 :{{listing.vehicle?.typeData?.co2}} g/km</mat-list-item>
+              <mat-list-item role="listitem">NOx: {{listing.vehicle?.typeData?.nox}} mg/km</mat-list-item>
+
+            </div>
+          </mat-list>
+          <mat-list role="list" style="float: right">
+            <mat-list-item role="listitem">Først registreringsdato: {{listing.vehicle?.firstRegistration | date}}</mat-list-item>
+            <div *ngIf="listing.vehicle?.servicePlanFollowed">
+              <mat-list-item role="listitem">Service plan er fulgt: 	&#10004;</mat-list-item>
+            </div>
+            <div *ngIf="!listing.vehicle?.servicePlanFollowed">
+              <mat-list-item role="listitem">Service plan er fulgt: &#10008;</mat-list-item>
+            </div>
+            <div *ngIf="listing.vehicle?.serviceHistory">
+              <mat-list-item role="listitem">Service historie finnes: 	&#10004;</mat-list-item>
+            </div>
+            <div *ngIf="!listing.vehicle?.serviceHistory">
+              <mat-list-item role="listitem">Service historie finnes: &#10004;</mat-list-item>
+            </div>
+            <mat-list-item role="listitem">Garanti: {{listing.vehicle?.warranty}}</mat-list-item>
+            <mat-list-item role="listitem">Garanti betingelse kilometerstand: {{listing.vehicle?.warrantyDistance}} km</mat-list-item>
+            <mat-list-item role="listitem">Garanti betingelse dato: {{listing.vehicle?.warrantyDuration}}</mat-list-item>
+            <mat-list-item role="listitem">Garanti betingelse link: {{listing.vehicle?.warrantyUrl}}</mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion class="inlineStyle">
+        <mat-expansion-panel class = "inlineStyle">
+          <mat-expansion-panel-header class="inlineStyle">
+            <i class="material-icons">
+              more_vert
+            </i>
+            Annet
+          </mat-expansion-panel-header>
+          <mat-list role="list" style="float: left">
+            <mat-list-item role="listitem">Eksteriør farge: {{listing.vehicle?.exteriorColorMain}}</mat-list-item>
+            <mat-list-item role="listitem">Eksteriør farge 2: {{listing.vehicle?.exteriorColor}}</mat-list-item>
+          </mat-list>
+          <mat-list role="list" style="float: right">
+            <mat-list-item role="listitem">Interiør: {{listing.vehicle?.interiorType}}</mat-list-item>
+            <mat-list-item role="listitem">Interiør farge: {{listing.vehicle?.interiorColor}}</mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+
     </mat-card>
   </div>
-<div class="center-card" style="margin-top: 10px">
-  <mat-accordion class="inlineStyle">
-    <mat-expansion-panel class = "inlineStyle">
-      <mat-expansion-panel-header class="inlineStyle">
-        <p>Selger</p>
-      </mat-expansion-panel-header>
-      <mat-list role="list" style="float: left">
-
-        <mat-list-item role="listitem">Name: {{vehicle.name}}</mat-list-item>
-        <mat-list-item role="listitem">Nick: {{vehicle.nick}}</mat-list-item>
-        <mat-list-item role="listitem">Color: {{vehicle.color}}</mat-list-item>
-        <mat-list-item role="listitem">Make :{{vehicle.make}}</mat-list-item>
-        <mat-list-item role="listitem">Tires: {{vehicle.tires}}</mat-list-item>
-        <mat-list-item role="listitem">Max fuel: {{vehicle.maxFuel}}</mat-list-item>
-        <mat-list-item role="listitem">Chassis id: {{vehicle.chassisID}}</mat-list-item>
-      </mat-list>
-      <mat-list role="list" style="float: left">
-        <mat-list-item role="listitem">Max km on full tank: {{vehicle.maxKmTank}}</mat-list-item>
-        <mat-list-item role="listitem">Fuelsystem: {{vehicle.fuelSystem}}</mat-list-item>
-        <mat-list-item role="listitem">Gearsystem: {{vehicle.gearSystem}}</mat-list-item>
-        <mat-list-item role="listitem">Drive: {{vehicle.drive}}</mat-list-item>
-        <mat-list-item role="listitem">Interior: {{vehicle.interior}}</mat-list-item>
-        <mat-list-item role="listitem">Barcode: {{vehicle.barcode}}</mat-list-item>
-        <mat-list-item role="listitem">Mileage: {{vehicle.mileage}}</mat-list-item>
-      </mat-list>
-    </mat-expansion-panel>
-  </mat-accordion>
-
-  <mat-accordion class="inlineStyle">
-    <mat-expansion-panel class = "inlineStyle">
-      <mat-expansion-panel-header class="inlineStyle">
-        <p>Tekniske detaljer</p>
-      </mat-expansion-panel-header>
-      <mat-list role="list" style="float: left">
-
-        <mat-list-item role="listitem">Name: {{vehicle.name}}</mat-list-item>
-        <mat-list-item role="listitem">Nick: {{vehicle.nick}}</mat-list-item>
-        <mat-list-item role="listitem">Color: {{vehicle.color}}</mat-list-item>
-        <mat-list-item role="listitem">Make :{{vehicle.make}}</mat-list-item>
-        <mat-list-item role="listitem">Tires: {{vehicle.tires}}</mat-list-item>
-        <mat-list-item role="listitem">Max fuel: {{vehicle.maxFuel}}</mat-list-item>
-        <mat-list-item role="listitem">Chassis id: {{vehicle.chassisID}}</mat-list-item>
-      </mat-list>
-      <mat-list role="list" style="float: left">
-        <mat-list-item role="listitem">Max km on full tank: {{vehicle.maxKmTank}}</mat-list-item>
-        <mat-list-item role="listitem">Fuelsystem: {{vehicle.fuelSystem}}</mat-list-item>
-        <mat-list-item role="listitem">Gearsystem: {{vehicle.gearSystem}}</mat-list-item>
-        <mat-list-item role="listitem">Drive: {{vehicle.drive}}</mat-list-item>
-        <mat-list-item role="listitem">Interior: {{vehicle.interior}}</mat-list-item>
-        <mat-list-item role="listitem">Barcode: {{vehicle.barcode}}</mat-list-item>
-        <mat-list-item role="listitem">Mileage: {{vehicle.mileage}}</mat-list-item>
-      </mat-list>
-    </mat-expansion-panel>
-  </mat-accordion>
 </div>
+
 

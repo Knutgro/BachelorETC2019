@@ -3,6 +3,7 @@ import {Vehicle} from './vehicle';
 export class Listing {
   id: number;
   title: string;
+  underTitle: String;
   description: string;
   urlText: string;
   keywords: string;

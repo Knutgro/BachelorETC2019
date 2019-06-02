@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Globals} from '../globals';
 import {Observable} from 'rxjs';
 import {VehicleService} from './vehicle.service';
+import {Company} from '../_models/company';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,21 @@ export class ListingService {
     private vehicleService: VehicleService,
   ) { }
 
-  save(listing: any): Observable<any> {
+ /* save(listing: any): Observable<any> {
     let result: Observable<Object>;
     if (listing['href']) {
       result = this.http.put(listing.href, listing);
+    } else {
+      result = this.http.post(`${this.globals.apiUrl}/listings`, listing);
+    }
+    return result;
+  }
+  */
+
+  save(listing: any, exist: boolean): Observable<any> {
+    let result: Observable<Object>;
+    if (exist) {
+      result = this.http.put(`${this.globals.apiUrl}/listings`, listing);
     } else {
       result = this.http.post(`${this.globals.apiUrl}/listings`, listing);
     }
@@ -43,6 +55,14 @@ export class ListingService {
   getByCompany(id: number) {
     return this.http.get<Listing[]>(`${this.globals.apiUrl}/companyListings/${id}`);
 
+  }
+
+  update(listing: Listing) {
+    return this.http.put(`${this.globals.apiUrl}/listings`, listing);
+  }
+
+  delete(id: number) {
+    return this.http.delete(`${this.globals.apiUrl}/listings/${id}`);
   }
 
   filteredListOptions() {

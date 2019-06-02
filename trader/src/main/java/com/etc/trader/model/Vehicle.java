@@ -91,7 +91,7 @@ public class Vehicle implements Serializable {
     @Column(name = "insurance_partner")
     private String insurancePartner;
 
-    @OneToMany(mappedBy = "vehicle")
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
     //@OneToMany
     private Set<VehicleImage> vehicleImages = new HashSet<>();
 

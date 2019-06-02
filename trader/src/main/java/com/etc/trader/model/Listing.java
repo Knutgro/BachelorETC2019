@@ -25,7 +25,10 @@ public class Listing implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "under_title")
+    private String UnderTitle;
+
+    @Column(name = "description", length = 600)
     private String description;
 
     @Column(name = "url_text")

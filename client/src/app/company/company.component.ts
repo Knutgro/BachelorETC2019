@@ -11,6 +11,7 @@ import {CompanyService} from '../_services/company.service';
 import {Listing} from '../_models/listing';
 import {ListingService} from '../_services/listing.service';
 import {AuthenticationService} from '../_services/authentication.service';
+import {AlertService} from '../_services/alert.service';
 
 @Component({
   selector: 'app-company',
@@ -32,7 +33,8 @@ export class CompanyComponent implements OnInit, OnDestroy {
   dataVehicles: MatTableDataSource<Vehicle>;
   dataListings: MatTableDataSource<Listing>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
+  @ViewChild('paginator2') paginator2: MatPaginator;
 
   applyFilterVehicles(filterValue: string) {
     this.dataVehicles.filter = filterValue.trim().toLowerCase();
@@ -46,12 +48,14 @@ export class CompanyComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private companyService: CompanyService,
     private vehicleService: VehicleService,
-    private listingsService: ListingService
+    private listingsService: ListingService,
+    private alertService: AlertService,
   ) {
     this.companyService = companyService;
     this.userService = userService;
     this.vehicleService = vehicleService;
     this.listingsService = listingsService;
+    this.alertService = alertService;
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
     });
@@ -78,7 +82,38 @@ export class CompanyComponent implements OnInit, OnDestroy {
     this.listingsService.getByCompany(this.currentUser.user.company.id).pipe(first()).subscribe(listings => {
       this.listings = listings;
       this.dataListings = new MatTableDataSource(listings);
-      this.dataListings.paginator = this.paginator;
+      this.dataListings.paginator = this.paginator2;
+    });
+  }
+
+  private deleteListing(id: number) {
+    this.listingsService.delete(id).pipe(first()).subscribe(() => {
+      this.loadAllListings();
+      this.alertService.success('Annonse slettet');
+    }, error => {
+      this.alertService.error(error);
+    });
+  }
+
+  private deleteVehicle(id: number) {
+    this.vehicleService.delete(id).pipe(first()).subscribe(() => {
+      this.loadAllVehicles();
+      this.loadAllListings();
+      this.alertService.success('Kjøretøy slettet');
+    }, error => {
+      this.alertService.error(error);
+    });
+  }
+
+  _setDataSource(indexNumber) {
+    setTimeout(() => {
+      switch (indexNumber) {
+        case 0:
+          !this.dataVehicles.paginator ? this.dataVehicles.paginator = this.paginator : null;
+          break;
+        case 1:
+          !this.dataListings.paginator ? this.dataListings.paginator = this.paginator2 : null;
+      }
     });
   }
 

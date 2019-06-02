@@ -85,7 +85,7 @@ export class RegisterCompanyComponent implements OnInit {
   onSubmit(form: NgForm) {
     form.controls['role'].setValue(['']);
     console.log(form);
-    this.companyService.register(form, this.exist)
+    this.companyService.save(form, this.exist)
       .pipe(first())
       .subscribe(
         data => {

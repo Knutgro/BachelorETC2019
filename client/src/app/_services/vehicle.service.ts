@@ -5,6 +5,8 @@ import {Globals} from "../globals";
 import {Observable} from "rxjs";
 import {first} from 'rxjs/operators';
 import {log} from 'util';
+import {Listing} from '../_models/listing';
+import {VehicleDetailComponent} from '../vehicle-detail/vehicle-detail.component';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +42,11 @@ export class VehicleService {
     return this.http.get(`${this.globals.apiUrl}/vehicles/${id}`);
   }
 
-  remove(id: number) {
+  update(vehicle: Vehicle) {
+    return this.http.put(`${this.globals.apiUrl}/listings`, vehicle);
+  }
+
+  delete(id: number) {
     return this.http.delete(`${this.globals.apiUrl}/vehicles/${id}`);
   }
 

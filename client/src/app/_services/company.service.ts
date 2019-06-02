@@ -20,7 +20,7 @@ export class CompanyService {
     return this.http.get(`${this.globals.apiUrl}/companies/${id}`);
   }
 
-  register(company: any, exist: boolean): Observable<any> {
+  save(company: any, exist: boolean): Observable<any> {
     let result: Observable<Object>;
     if (exist) {
       result = this.http.put(`${this.globals.apiUrl}/companies`, company);
