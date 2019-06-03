@@ -1,4 +1,5 @@
 import {TypeData} from './type-data';
+import {VehicleImage} from './vehicleImage';
 export class Vehicle{
   id: number;
   nick: string;
@@ -24,7 +25,7 @@ export class Vehicle{
   servicePlanFollowed: boolean;
   financePartner: string;
   insurancePartner: string;
-  vehicleImages: string[];
-  thumbnail: Blob;
+  vehicleImages: VehicleImage[];
+  thumbnail: string;
   typeData: TypeData;
 }

@@ -1,7 +1,7 @@
 import {Vehicle} from './vehicle';
 
 export class VehicleImage {
-  image: Blob;
+  image: string;
   imageContentType: string;
   vehicle_id: Vehicle;
 }
