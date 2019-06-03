@@ -1,0 +1,48 @@
+<!--<div style="margin:auto; width: 70%; margin-top: 30px;">-->
+  <!--<app-search-bar (onSelectedOption)="onSelectedOption($event)"></app-search-bar>-->
+<!--</div>-->
+<!--<h2 style="text-align:center" *ngIf="vehicles">Results</h2>-->
+<alert></alert>
+<div style="margin:auto; width: 70%; margin-top: 30px;">
+<mat-form-field class="sbar">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Søk">
+</mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
+  <div fxLayout="column" fxFlex="0 0 10%">
+    <h3>Filtere</h3>
+    <app-search-filter (onSelectedFilter)="onSelectedFilter($event)"></app-search-filter>
+  </div>
+  <div fxLayout="column" fxLayoutGap="5px" fxFlex="1 1 100%">
+    <mat-card class="search" *ngFor="let listing of obs | async" routerLink="vehicle-listing/{{listing.id}}">
+      <mat-card-title-group>
+        <mat-card-title><p>{{listing.title}}</p></mat-card-title>
+        <mat-card-subtitle>
+          <p>{{listing.underTitle}}</p>
+        </mat-card-subtitle>
+        <img mat-card-md-image src="../assets/1-car.png">
+      </mat-card-title-group>
+      <mat-card-content style="float: left;">
+        <h3>
+        {{listing.totalPrice | currency: 'NOK': 'kr' : '4.0-0'}}
+        </h3>
+        <h3>
+          {{listing?.vehicle?.mileage}} km
+        </h3>
+      </mat-card-content>
+      <mat-card-content style="float: right;">
+        <h3>
+          {{listing.company?.name}}
+        </h3>
+        <h3>
+          <ng-container *ngFor="let region of listing?.company?.regions">
+            {{region?.name}}
+          </ng-container>
+        </h3>
+      </mat-card-content>
+    </mat-card>
+    <div style="float: left;">
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>
