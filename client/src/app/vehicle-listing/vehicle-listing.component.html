@@ -20,7 +20,7 @@
       <mat-card-subtitle>{{listing.underTitle}}</mat-card-subtitle>
       <mat-list role="list" style="float: left">
         <mat-list-item role="listitem">
-            Total pris: {{listing.totalPrice | currency: 'NOK'}}
+            Total pris: {{listing.totalPrice | currency: 'NOK': 'kr' : '4.0-0'}}
         </mat-list-item>
         <mat-list-item role="listitem">Reg.nr: {{listing.vehicle?.regNo}}</mat-list-item>
         <mat-list-item role="listitem">Modell: {{listing.vehicle?.typeData?.model?.brand?.name}},{{listing.vehicle?.typeData?.model?.name}}</mat-list-item>
@@ -69,7 +69,7 @@
             <mat-list-item role="listitem">Bedrift: {{listing.company?.name}}</mat-list-item>
             <mat-list-item role="listitem">Telefon: {{listing.company?.phoneNumber}}</mat-list-item>
           </mat-list>
-          <mat-list role="list" style="float: right">
+          <mat-list role="list" style="float: left">
             <mat-list-item role="listitem">Region:
               <ng-container *ngFor="let region of listing?.company?.regions">
                 {{region?.name}}
@@ -110,7 +110,7 @@
 
             </div>
           </mat-list>
-          <mat-list role="list" style="float: right">
+          <mat-list role="list" style="float: left">
             <mat-list-item role="listitem">Først registreringsdato: {{listing.vehicle?.firstRegistration | date}}</mat-list-item>
             <div *ngIf="listing.vehicle?.servicePlanFollowed">
               <mat-list-item role="listitem">Service plan er fulgt: 	&#10004;</mat-list-item>
@@ -144,7 +144,7 @@
             <mat-list-item role="listitem">Eksteriør farge: {{listing.vehicle?.exteriorColorMain}}</mat-list-item>
             <mat-list-item role="listitem">Eksteriør farge 2: {{listing.vehicle?.exteriorColor}}</mat-list-item>
           </mat-list>
-          <mat-list role="list" style="float: right">
+          <mat-list role="list" style="float: left">
             <mat-list-item role="listitem">Interiør: {{listing.vehicle?.interiorType}}</mat-list-item>
             <mat-list-item role="listitem">Interiør farge: {{listing.vehicle?.interiorColor}}</mat-list-item>
           </mat-list>

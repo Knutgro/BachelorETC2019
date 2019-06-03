@@ -28,7 +28,6 @@ export class SearchResultComponent implements OnInit {
     this.listingService.getAll().subscribe(listings => {
       this.listings = listings;
       this.listingService.listingData = listings;
-      console.log(listings);
       /*
       for (let i = 0; i < listings.length; i++) {
         this.listings[i].vehicle.thumbnail = this.sanitizer.bypassSecurityTrustUrl(

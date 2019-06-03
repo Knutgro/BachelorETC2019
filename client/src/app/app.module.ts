@@ -1,5 +1,5 @@
 import {BrowserModule, Title} from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import 'hammerjs';
 import { WavesModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md'
 import { fakeBackendProvider } from './_helper/fake-backend';
@@ -7,6 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { LoginComponent } from './login/login.component';
+import { registerLocaleData} from '@angular/common';
+import localeNb from '@angular/common/locales/nb';
+registerLocaleData(localeNb);
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -50,6 +53,7 @@ import { RegisterCompanyComponent } from './register-company/register-company.co
 import {SidenavService} from './_services/sidenav.service';
 import { CompanyComponent } from './company/company.component';
 import {getNorwegianPaginatorIntl} from './_helper/norsk-paginator';
+import { ListingSearchComponent } from './listing-search/listing-search.component';
 
 export function getToken() {
   return localStorage.getItem('currentUser');
@@ -76,6 +80,7 @@ export function getToken() {
     UserProfileComponent,
     RegisterCompanyComponent,
     CompanyComponent,
+    ListingSearchComponent,
   ],
   imports: [
     JwtModule.forRoot({
@@ -119,6 +124,7 @@ export function getToken() {
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: MatPaginatorIntl, useValue: getNorwegianPaginatorIntl() },
+    { provide: LOCALE_ID, useValue: 'nb'},
     Globals,
     Title,
     JwtHelperService,

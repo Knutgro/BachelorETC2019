@@ -25,5 +25,6 @@ export class Vehicle{
   financePartner: string;
   insurancePartner: string;
   vehicleImages: string[];
+  thumbnail: Blob;
   typeData: TypeData;
 }
