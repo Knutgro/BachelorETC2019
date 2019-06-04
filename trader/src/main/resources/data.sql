@@ -1,5 +1,5 @@
 
-
+/*
 INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_PM');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
@@ -83,3 +83,4 @@ INSERT INTO `users` (`id`, `activated`, `email`, `firstName`, `lastName`, `passw
 INSERT INTO `user_roles` (`user_id`, `role_id`)
               VALUES (2, 1);
 
+*/

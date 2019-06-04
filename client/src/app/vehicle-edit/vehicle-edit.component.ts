@@ -8,6 +8,9 @@ import {Title} from '@angular/platform-browser';
 import {VehicleImage} from '../_models/vehicleImage';
 import {ImagesService} from '../_services/images.service';
 import {first} from 'rxjs/operators';
+import {User} from '../_models/user';
+import {AuthenticationService} from '../_services/authentication.service';
+import {Vehicle} from '../_models/vehicle';
 
 @Component({
   selector: 'app-vehicle-edit',
@@ -16,6 +19,7 @@ import {first} from 'rxjs/operators';
 })
 export class VehicleEditComponent implements OnInit, OnDestroy {
   vehicle: any = {};
+  currentUser: User;
   ourFile: File[];
   vImage: VehicleImage;
   vImages: VehicleImage[];
@@ -26,15 +30,20 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private authenticationService: AuthenticationService,
               private vehicleService: VehicleService,
               private alertService: AlertService,
               private titleService: Title,
-              private imageService: ImagesService,
-              ) {
+              private imageService: ImagesService
+  ) {
+    this.sub = this.authenticationService.currentUser.subscribe(user => {
+      this.currentUser = user;
+    });
   }
 
   ngOnInit() {
     this.exist = false;
+    this.vehicle.company = this.currentUser.user.company;
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       console.log(id);

@@ -16,7 +16,7 @@ export class ImagesService {
     private globals: Globals
   ) { }
 
-  getImages(vehicleID: string): Observable<any> {
+  getImages(vehicleID: number): Observable<any> {
     return this.http.get(`${this.globals.apiUrl}/vehicle-image/${vehicleID}`);
   }
 

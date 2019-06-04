@@ -5,6 +5,7 @@
     </mat-card-header>
     <mat-card-content>
       <input type="hidden" name="href" [(ngModel)]="vehicle.href">
+      <mat-form-field class="invisible"><input matInput [(ngModel)]="vehicle.company" [value]="vehicle.company" name="company" #company></mat-form-field>
       <mat-form-field><input matInput placeholder="nick" [(ngModel)]="vehicle.nick" required name="nick" #nick></mat-form-field>
       <mat-form-field><input matInput placeholder="firstRegistration" [(ngModel)]="vehicle.firstRegistration" required name="firstRegistration" #firstRegistration></mat-form-field>
       <mat-form-field><input matInput placeholder="registrationClass" [(ngModel)]="vehicle.registrationClass" required name="registrationClass" #registrationClass></mat-form-field>
@@ -28,6 +29,13 @@
       <mat-form-field><input matInput placeholder="servicePlanFollowed" [(ngModel)]="vehicle.servicePlanFollowed" required name="servicePlanFollowed" #servicePlanFollowed></mat-form-field>
       <mat-form-field><input matInput placeholder="financePartner" [(ngModel)]="vehicle.financePartner" required name="financePartner" #financePartner></mat-form-field>
       <mat-form-field><input matInput placeholder="insurancePartner" [(ngModel)]="vehicle.insurancePartner" required name="insurancePartner" #insurancePartner></mat-form-field>
+      <!-- <mat-form-field>
+        <mat-select placeholder="model" type="text" [(ngModel)]="vehicle.typeData.model.name" #name name="name" required>
+          <mat-option [value]="Ford">Ford</mat-option>
+          <mat-option [value]="Dodge">Dodge</mat-option>
+          <mat-option [value]="Toyota">Toyota</mat-option>
+        </mat-select>
+      </mat-form-field> -->
       <alert></alert>
     </mat-card-content>
     <mat-card-actions>
@@ -42,3 +50,29 @@
   <input hidden="hidden" id="fileInput" multiple type="file" (change)="fileChange($event)" />
   <button mat-raised-button [disabled]="!ourFile" color="accent" (click)="upload()">Upload</button>
 </mat-card>
+
+company
+typeData
+  id
+  bodyType
+  fuel
+  engineEffect
+  engineVolume
+  batteryCapacity
+  range
+  co2
+  nox
+  transmission
+  wheelDrive
+  sizeOfBoot
+  weight
+  noOfDoors
+  noOfSeats
+  dinosaur
+  model
+    id
+    name
+    year
+    brand
+      id
+      name

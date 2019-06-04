@@ -2,7 +2,7 @@
   <mat-tab label="Administer Kjøretøy">
     <mat-card *ngIf="currentUser" class = "edit-card">
       <h3 mat-line>Administrer kjøretøy</h3>
-      <button mat-flat-button color="accent" routerLink="/edit-vehicle" class="text-danger">Nytt Kjøretøy</button>
+      <button mat-flat-button color="accent" routerLink="/vehicle-edit" class="text-danger">Nytt Kjøretøy</button>
 
       <mat-form-field>
         <input matInput (keyup)="applyFilterVehicles($event.target.value)" placeholder="Filter">

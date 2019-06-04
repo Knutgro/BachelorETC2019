@@ -1,9 +1,8 @@
-footer {
+.footer {
   position: fixed;
   bottom: 0px;
-  width: 100%;
-  background-color: #ddd;
-  border-top: 1px solid #bbb;
+  min-height: 3px !important;
+  height: 3px !important;
   text-align: center;
   align-self: flex-end;
 }

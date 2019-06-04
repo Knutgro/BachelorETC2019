@@ -5,42 +5,42 @@
     </mat-card-header>
     <mat-card-content>
       <input type="hidden" name="href" [(ngModel)]="listing.href">
-      <mat-form-field class="invisible"><input matInput [(ngModel)]="listing.id" [value]="listing.id" name="id" #id></mat-form-field>
-      <mat-form-field class="invisible"><input matInput [(ngModel)]="listing.company" [value]="listing.company" name="company" #company></mat-form-field>
-      <mat-form-field><input matInput placeholder="title" [(ngModel)]="listing.title" required name="title" #title></mat-form-field>
-      <mat-form-field><input matInput placeholder="UnderTitle" [(ngModel)]="listing.underTitle" required name="UnderTitle" #UnderTitle></mat-form-field>
-      <mat-form-field><input matInput placeholder="description" [(ngModel)]="listing.description" required name="description" #description></mat-form-field>
-      <mat-form-field><input matInput placeholder="urlText" [(ngModel)]="listing.urlText" required name="urlText" #urlText></mat-form-field>
-      <mat-form-field><input matInput placeholder="keywords" [(ngModel)]="listing.keywords" required name="keywords" #keywords></mat-form-field>
-      <mat-form-field><input matInput type="boolean" placeholder="registrationTaxIncluded" [(ngModel)]="listing.registrationTaxIncluded" required name="registrationTaxIncluded" #registrationTaxIncluded></mat-form-field>
-      <mat-form-field><input matInput type="boolean" placeholder="registrationExemption" [(ngModel)]="listing.registrationExemption" required name="registrationExemption" #registrationExemption></mat-form-field>
-      <mat-form-field><input matInput type="boolean" placeholder="vatIncluded" [(ngModel)]="listing.vatIncluded" required name="vatIncluded" #vatIncluded></mat-form-field>
-      <mat-form-field><input matInput type="number" placeholder="totalPrice" [(ngModel)]="listing.totalPrice" required name="totalPrice" #totalPrice></mat-form-field>
-      <mat-form-field><input matInput type="number" placeholder="netPrice" [(ngModel)]="listing.netPrice" required name="netPrice" #netPrice></mat-form-field>
-      <mat-form-field><input matInput placeholder="registration" [(ngModel)]="listing.registration" required name="registration" #registration></mat-form-field>
-      <mat-form-field><input matInput placeholder="currency" [(ngModel)]="listing.currency" required name="currency" #currency></mat-form-field>
-      <mat-form-field><input matInput placeholder="position" [(ngModel)]="listing.position" required name="position" #position></mat-form-field>
-      <mat-form-field><input matInput placeholder="noOfOwners" [(ngModel)]="listing.noOfOwners" required name="noOfOwners" #noOfOwners></mat-form-field>
-      <mat-form-field><input matInput placeholder="carCondition" [(ngModel)]="listing.carCondition" required name="carCondition" #carCondition></mat-form-field>
+      <mat-form-field class="invisible"><input matInput placeholder="registrationTaxIncluded" [(ngModel)]="listing.registrationTaxIncluded" [value]="true" name="registrationTaxIncluded" #registrationTaxIncluded></mat-form-field><br>
+      <mat-form-field class="invisible"><input matInput placeholder="registrationExemption" [(ngModel)]="listing.registrationExemption" [value]="true" name="registrationExemption" #registrationExemption></mat-form-field>&nbsp;
+      <mat-form-field class="invisible"><input matInput placeholder="vatIncluded" [(ngModel)]="listing.vatIncluded" [value]="true" name="vatIncluded" #vatIncluded></mat-form-field><br>
       <mat-form-field class="invisible"><input matInput placeholder="dateCreated" [(ngModel)]="listing.dateCreated" [value]="dateNow" name="dateCreated" #dateCreated></mat-form-field>
       <mat-form-field class="invisible"><input matInput placeholder="dateExpired" [(ngModel)]="listing.dateExpired" [value]="dateNowPlusThreeMonths" name="dateExpired" #dateExpired></mat-form-field>
+      <mat-form-field class="invisible"><input matInput [(ngModel)]="listing.id" [value]="listing.id" name="id" #id></mat-form-field>
+      <mat-form-field class="invisible"><input matInput [(ngModel)]="listing.company" [value]="listing.company" name="company" #company></mat-form-field>
+      <mat-form-field><input matInput placeholder="Tittel" [(ngModel)]="listing.title" required name="title" #title></mat-form-field>&nbsp;
+      <mat-form-field><input matInput placeholder="Undertittel" [(ngModel)]="listing.underTitle" required name="underTitle" #underTitle></mat-form-field><br>
+      <mat-form-field><input matInput placeholder="Beskrivelse" [(ngModel)]="listing.description" required name="description" #description></mat-form-field>&nbsp;
+      <mat-form-field><input matInput type="number" placeholder="Totalpris" [(ngModel)]="listing.totalPrice" required name="totalPrice" #totalPrice></mat-form-field><br>
+      <mat-form-field><input matInput placeholder="Ant. eiere" [(ngModel)]="listing.noOfOwners" required name="noOfOwners" #noOfOwners></mat-form-field>&nbsp;
+      <mat-form-field><input matInput placeholder="Tilstand" [(ngModel)]="listing.carCondition" required name="carCondition" #carCondition></mat-form-field><br>
       <mat-form-field *ngIf="!vehicleModel">
         <mat-select placeholder="Kjøretøy" type="object" [(ngModel)]="vehicleModel" #vehicle name="vehicle" required>
           <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">{{vehicle.typeData.model.name}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field *ngIf="vehicleModel" class="invisible"><input matInput [(ngModel)]="vehicleModel" [value]="vehicleModel" name="vehicle" #vehicle></mat-form-field>
+      <!--<mat-form-field><input matInput placeholder="urlText" [(ngModel)]="listing.urlText" required name="urlText" #urlText></mat-form-field>-->
+      <!--<mat-form-field><input matInput placeholder="keywords" [(ngModel)]="listing.keywords" required name="keywords" #keywords></mat-form-field>-->
+      <!--<mat-form-field><input matInput type="number" placeholder="netPrice" [(ngModel)]="listing.netPrice" required name="netPrice" #netPrice></mat-form-field>-->
+      <!--<mat-form-field><input matInput placeholder="asdasd" [(ngModel)]="listing.registration" required name="registration" #registration></mat-form-field>-->
+      <!--<mat-form-field><input matInput placeholder="currency" [(ngModel)]="listing.currency" required name="currency" #currency></mat-form-field>-->
+      <!--<mat-form-field><input matInput placeholder="position" [(ngModel)]="listing.position" required name="position" #position></mat-form-field>-->
       <alert></alert>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="accent" type="submit"
-              [disabled]="!listingForm.form.valid" (click)="upload()">Save</button>
-      <button mat-raised-button routerLink="/company">Cancel</button>
+              [disabled]="!listingForm.form.valid">Publiser</button>
+      <button mat-raised-button routerLink="/company">Avbryt</button>
       <button mat-raised-button color="warn" (click)="remove(listing.id)"
-              *ngIf="listing.href" type="button">Delete</button>
+              *ngIf="listing.href" type="button">Slett</button>
     </mat-card-actions>
   </form>
-  <button mat-raised-button color="primary" (click)="openInput()">Choose Files</button>
+  <button mat-raised-button color="primary" (click)="openInput()">Velg bilder</button>
   <input hidden="hidden" id="fileInput" multiple type="file" (change)="fileChange($event)" />
   <button mat-raised-button [disabled]="!ourFile" color="accent" (click)="upload()">Upload</button>
 </mat-card>

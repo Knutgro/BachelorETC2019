@@ -5,6 +5,8 @@ import {AlertService} from '../_services/alert.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import {ListingService} from '../_services/listing.service';
+import {Listing} from '../_models/listing';
 
 @Component({
   selector: 'app-vehicle-gallery',
@@ -15,6 +17,8 @@ export class VehicleGalleryComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
   ngxImage: NgxGalleryImage;
+  listing: any;
+  vehicleID: string;
   imageURL: any;
   file: File;
   img: any;
@@ -28,7 +32,8 @@ export class VehicleGalleryComponent implements OnInit {
     private router: Router,
     private imageService: ImagesService,
     private alertService: AlertService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private listingService: ListingService
   ) { }
 
   ngOnInit() {
@@ -66,27 +71,37 @@ export class VehicleGalleryComponent implements OnInit {
     });
   }
 
-  getImageFromService(vehicleID: string) {
+  getImageFromService(listingID: number) {
     this.isImageLoading = true;
-    this.imageService.getImages(vehicleID).subscribe(data => {
-      console.log(data);
-      for (let i = 0; i < data.length; i++) {
-        const image = this.imageService.convertImage(data[i].image, data[i].imageContentType);
-        this.ngxImage = image;
-        console.log(image);
-        const img = {
-          small: this.ngxImage,
-          medium: this.ngxImage,
-          big: this.ngxImage
-        };
-        console.log(img);
-        this.galleryImages.push(img);
+    console.log(listingID);
+    this.listing = this.listingService.getById(listingID).subscribe((listing: any) => {
+      if (listing) {
+        console.log(listing);
+        this.listing = listing;
+        this.vehicleID = listing.vehicle.id;
+        console.log(this.listing);
+        this.imageService.getImages(Number(this.vehicleID)).subscribe(data => {
+          console.log(data);
+          for (let i = 0; i < data.length; i++) {
+            const image = this.imageService.convertImage(data[i].image, data[i].imageContentType);
+            this.ngxImage = image;
+            console.log(image);
+            const img = {
+              small: this.ngxImage,
+              medium: this.ngxImage,
+              big: this.ngxImage
+            };
+            console.log(img);
+            this.galleryImages.push(img);
+          }
+        }, error => {
+          this.isImageLoading = false;
+          this.alertService.error(error);
+          console.log(error);
+        });
+        console.log(this.galleryImages);
       }
-    }, error => {
-      this.isImageLoading = false;
-      this.alertService.error(error);
-      console.log(error);
     });
-    console.log(this.galleryImages);
+
   }
 }

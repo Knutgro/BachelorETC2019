@@ -45,7 +45,7 @@
       </mat-list>
 
       <mat-accordion class="inlineStyle">
-        <mat-expansion-panel class = "inlineStyle">
+        <mat-expansion-panel class = "inlineStyle" [expanded]="true">
           <mat-expansion-panel-header class="inlineStyle">
             <i class="material-icons">
               subject
@@ -107,7 +107,7 @@
               <mat-list-item role="listitem">Volum: {{listing.vehicle?.typeData?.engineVolume}} cm<sup>2</sup></mat-list-item>
               <mat-list-item role="listitem">CO2 :{{listing.vehicle?.typeData?.co2}} g/km</mat-list-item>
               <mat-list-item role="listitem">NOx: {{listing.vehicle?.typeData?.nox}} mg/km</mat-list-item>
-
+  
             </div>
           </mat-list>
           <mat-list role="list" style="float: left">

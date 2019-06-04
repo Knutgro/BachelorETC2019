@@ -12,7 +12,7 @@
 -->
 
 <mat-tab-group #tabGroup (selectedIndexChange)="_setDataSource($event)" animationDuration="0" color="accent">
-  <mat-tab label="Administer Brukere">
+  <mat-tab label="Administrer Brukere">
     <mat-card *ngIf="currentUser" class = "edit-card">
       <h3 mat-line>Administrer Brukere</h3>
       <button mat-flat-button color="accent" routerLink="/register" class="text-danger">Ny Bruker</button>
@@ -79,7 +79,7 @@
     </mat-card>
   </mat-tab>
 
-  <mat-tab label="Administre Bedrifter">
+  <mat-tab label="Administrer Bedrifter">
     <mat-card *ngIf="currentUser" class="edit-card">
       <h3 mat-line>Administrer Bedrifter</h3>
       <button mat-flat-button color="accent" routerLink="/register-company" class="text-danger">Ny Bedrift</button>

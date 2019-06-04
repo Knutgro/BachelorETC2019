@@ -5,6 +5,7 @@ import {AlertService} from '../_services/alert.service';
 import {Title} from '@angular/platform-browser';
 import {ListingService} from '../_services/listing.service';
 import {Subscription} from 'rxjs';
+import {ImagesService} from '../_services/images.service';
 
 @Component({
   selector: 'app-vehicle-listing',
@@ -22,12 +23,14 @@ export class VehicleListingComponent implements OnInit {
     private router: Router,
     private listingService: ListingService,
     private alertService: AlertService,
-    private titleService: Title
+    private titleService: Title,
+    private imageService: ImagesService
   ) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
+      console.log(id);
       if (id) {
         this.listingService.getById(id).subscribe((listing: any) => {
           if (listing) {
@@ -35,6 +38,7 @@ export class VehicleListingComponent implements OnInit {
             this.listing.href = listing.href;
             listing.vehicle.typeData.dinosaur = listing.vehicle.typeData.fuel !== 'elektrisk';
             this.vehicle = this.listing.vehicle;
+
             this.titleService.setTitle(this.listing.title);
             console.log(listing);
           } else {

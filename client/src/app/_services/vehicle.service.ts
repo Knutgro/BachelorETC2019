@@ -54,7 +54,7 @@ export class VehicleService {
     const vehicles = this.vehicleData;
     this.filteredVehiclesList.length = 0;
     for (const vehicle of vehicles) {
-      for (const filter of this.searchFilter) { // TODO fiks det her filterrotet: Fjernes ikke når man avhuker filteret
+      for (const filter of this.searchFilter) {
           if (filter.name === vehicle.exteriorColorMain && filter.selected && !this.filteredVehiclesList.includes(vehicle)) {
             this.filteredVehiclesList.push(vehicle);
           }

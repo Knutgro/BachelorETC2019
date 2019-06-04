@@ -26,7 +26,7 @@ public class Listing implements Serializable {
     private String title;
 
     @Column(name = "under_title")
-    private String UnderTitle;
+    private String underTitle;
 
     @Column(name = "description", length = 600)
     private String description;
@@ -126,6 +126,14 @@ public class Listing implements Serializable {
     public Listing urlText(String urlText) {
         this.urlText = urlText;
         return this;
+    }
+
+    public String getUnderTitle() {
+        return underTitle;
+    }
+
+    public void setUnderTitle(String underTitle) {
+        this.underTitle = underTitle;
     }
 
     public void setUrlText(String urlText) {

@@ -30,6 +30,7 @@ const routes: Routes = [];
     { path: 'vehicle-add', component: VehicleEditComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-edit', component: VehicleEditComponent, canActivate: [AuthGuardService]},
     { path: 'user-edit/:id', component: RegisterComponent, canActivate: [AuthGuardService]},
+    { path: 'company/vehicle-edit', component: VehicleEditComponent, canActivate: [AuthGuardService]},
     { path: 'company/vehicle-edit/:id', component: VehicleEditComponent, canActivate: [AuthGuardService]},
     { path: 'company/listing-edit/:id', component: ListingEditComponent, canActivate: [AuthGuardService]},
     { path: 'company/listing-edit', component: ListingEditComponent, canActivate: [AuthGuardService]},

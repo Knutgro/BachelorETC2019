@@ -55,6 +55,7 @@ export class ListingEditComponent implements OnInit {
     this.dateNow = new Date().getTime();
     this.dateNowPlusThreeMonths = new Date(this.dateNow + (1000 * 60 * 60 * 24 * 90)).getTime();
     this.companyID = this.currentUser.user.company.id;
+    this.listing.company = this.currentUser.user.company;
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       console.log(this.id);
