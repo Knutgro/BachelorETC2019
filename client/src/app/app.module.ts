@@ -54,6 +54,7 @@ import {SidenavService} from './_services/sidenav.service';
 import { CompanyComponent } from './company/company.component';
 import {getNorwegianPaginatorIntl} from './_helper/norsk-paginator';
 import { ListingSearchComponent } from './listing-search/listing-search.component';
+import { ListingEditComponent } from './listing-edit/listing-edit.component';
 
 export function getToken() {
   return localStorage.getItem('currentUser');
@@ -81,6 +82,7 @@ export function getToken() {
     RegisterCompanyComponent,
     CompanyComponent,
     ListingSearchComponent,
+    ListingEditComponent,
   ],
   imports: [
     JwtModule.forRoot({

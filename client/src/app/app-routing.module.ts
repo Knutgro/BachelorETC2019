@@ -16,6 +16,7 @@ import {AuthGuardService} from './_services/auth-guard.service';
 import {RoleGuardService} from './_services/role-guard.service';
 import {RegisterCompanyComponent} from './register-company/register-company.component';
 import {CompanyComponent} from './company/company.component';
+import {ListingEditComponent} from './listing-edit/listing-edit.component';
 
 const routes: Routes = [];
 
@@ -29,7 +30,9 @@ const routes: Routes = [];
     { path: 'vehicle-add', component: VehicleEditComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-edit', component: VehicleEditComponent, canActivate: [AuthGuardService]},
     { path: 'user-edit/:id', component: RegisterComponent, canActivate: [AuthGuardService]},
-    { path: 'vehicle-edit/:id', component: VehicleEditComponent, canActivate: [AuthGuardService]},
+    { path: 'company/vehicle-edit/:id', component: VehicleEditComponent, canActivate: [AuthGuardService]},
+    { path: 'company/listing-edit/:id', component: ListingEditComponent, canActivate: [AuthGuardService]},
+    { path: 'company/listing-edit', component: ListingEditComponent, canActivate: [AuthGuardService]},
     { path: 'vehicle-listing/:id', component: VehicleListingComponent},
     { path: 'user-admin', component: UserAdminComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN'}},
     { path: 'user-admin/company-edit/:id', component: RegisterCompanyComponent, canActivate: [RoleGuardService], data: {expectedRole: 'ROLE_ADMIN'} },

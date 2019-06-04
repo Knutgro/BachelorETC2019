@@ -20,7 +20,7 @@ export class VehicleEditComponent implements OnInit, OnDestroy {
   vImage: VehicleImage;
   vImages: VehicleImage[];
   sub: Subscription;
-  imageArr: File[] = [];
+  imageArr: string[] = [];
   url: any;
   exist: boolean;
 
