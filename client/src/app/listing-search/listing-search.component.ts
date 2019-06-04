@@ -41,10 +41,20 @@ export class ListingSearchComponent implements OnInit, OnDestroy {
   private loadAllListings() {
     this.listingsService.getAll().pipe(first()).subscribe(listings => {
       this.listings = listings;
+      this.listingsService.listingData = listings;
+      for (let i = 0; i < listings.length; i++) {
+        if (listings[i].vehicle.vehicleImages[0]) {
+          this.listings[i].vehicle.thumbnail =
+            this.imagesService.convertImage(listings[i].vehicle.vehicleImages[0].image,
+              listings[i].vehicle.vehicleImages[0].imageContentType);
+        }
+      }
       this.dataListings = new MatTableDataSource(listings);
       this.changeDetectorRef.detectChanges();
       this.dataListings.paginator = this.paginator;
       this.obs = this.dataListings.connect();
+    }, error1 => {
+      this.alertService.error(error1);
     });
   }
 

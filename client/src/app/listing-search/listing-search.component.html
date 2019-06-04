@@ -20,7 +20,7 @@
         <mat-card-subtitle>
           <p>{{listing.underTitle}}</p>
         </mat-card-subtitle>
-        <img mat-card-md-image src="../assets/1-car.png">
+        <img mat-card-md-image *ngIf="listing.vehicle.thumbnail" src="{{listing?.vehicle?.thumbnail}}">
       </mat-card-title-group>
       <mat-card-content style="float: left;">
         <h3>

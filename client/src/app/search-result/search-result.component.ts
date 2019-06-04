@@ -28,13 +28,11 @@ export class SearchResultComponent implements OnInit {
     this.listingService.getAll().subscribe(listings => {
       this.listings = listings;
       this.listingService.listingData = listings;
-      /*
       for (let i = 0; i < listings.length; i++) {
-        this.listings[i].vehicle.thumbnail = this.sanitizer.bypassSecurityTrustUrl(
+        this.listings[i].vehicle.thumbnail =
           this.imageService.convertImage(listings[i].vehicle.vehicleImages[0].image,
-            listings[i].vehicle.vehicleImages[0].imageContentType));
+            listings[i].vehicle.vehicleImages[0].imageContentType);
       }
-      */
       /* Old image method
       for (let i = 0; i < this.listings.length; i++) {
         this.imageService.getImages(this.listings[i].id.toString()).subscribe(images => {

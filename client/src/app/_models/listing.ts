@@ -1,9 +1,11 @@
 import {Vehicle} from './vehicle';
+import {Company} from './company';
 
 export class Listing {
   id: number;
+  company: Company;
   title: string;
-  underTitle: String;
+  underTitle: string;
   description: string;
   urlText: string;
   keywords: string;
