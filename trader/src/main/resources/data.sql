@@ -30,8 +30,8 @@ INSERT INTO `brand` (`id`, `name`, `origin`) VALUES ('3', 'Citroën', 'France');
 INSERT INTO `brand` (`id`, `name`, `origin`) VALUES ('4', 'Škoda', 'Czech Republic');
 
 
-INSERT INTO `model` (`id`, `name`, `m_year`, `brand_id`) VALUES ('1', 'Skoda Octavia', 2017, '4');
-INSERT INTO `model` (`id`, `name`, `m_year`, `brand_id`) VALUES ('2', 'Skoda Octavia', 2013, '4');
+INSERT INTO `model` (`id`, `name`, `m_year`, `brand_id`) VALUES ('1', 'Octavia', 2017, '4');
+INSERT INTO `model` (`id`, `name`, `m_year`, `brand_id`) VALUES ('2', 'Octavia', 2013, '4');
 
 
 INSERT INTO `type_data` (`id`, `type_name`, `body_type`, `engine_effect`, `engine_volume`, `fuel`, `co_2`,

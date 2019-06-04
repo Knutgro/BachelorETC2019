@@ -2,6 +2,7 @@ import {Model} from './model';
 
 export class TypeData {
   id: number;
+  typeName: string;
   bodyType: string;
   fuel: string;
   engineEffect: number;

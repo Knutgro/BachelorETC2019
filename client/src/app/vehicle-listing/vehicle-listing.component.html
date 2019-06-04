@@ -25,6 +25,7 @@
         <mat-list-item role="listitem">Reg.nr: {{listing.vehicle?.regNo}}</mat-list-item>
         <mat-list-item role="listitem">Modell: {{listing.vehicle?.typeData?.model?.brand?.name}},{{listing.vehicle?.typeData?.model?.name}}</mat-list-item>
         <mat-list-item role="listitem">Årsmodell: {{listing.vehicle?.typeData?.model?.year}}</mat-list-item>
+        <mat-list-item role="listitem">Type: {{listing.vehicle?.typeData?.typeName}}</mat-list-item>
         <mat-list-item role="listitem">Biltype: {{listing.vehicle?.typeData?.bodyType}}</mat-list-item>
         <mat-list-item role="listitem">Antall eiere: {{listing?.noOfOwners}}</mat-list-item>
         <mat-list-item role="listitem">Bilens tilstand: {{listing?.carCondition}}</mat-list-item>
@@ -93,14 +94,14 @@
             Tekniske Detaljer
           </mat-expansion-panel-header>
           <mat-list role="list" style="float: left">
-            <div *ngIf="listing.vehicle?.typeData?.dinosaur">
+            <div *ngIf="!listing.vehicle.typeData.dinosaur">
               <mat-list-item role="listitem">Betterikapasitet: {{listing.vehicle?.typeData?.batteryCapacity}} kWh</mat-list-item>
               <mat-list-item role="listitem">Rekkevidde: {{listing.vehicle.typeData.range}} km</mat-list-item>
               <mat-list-item role="listitem">Effekt: {{listing.vehicle?.typeData?.engineEffect}}</mat-list-item>
 
             </div>
 
-            <div *ngIf="!listing.vehicle?.typeData?.dinosaur">
+            <div *ngIf="listing.vehicle.typeData.dinosaur">
               <mat-list-item role="listitem">Drivstoffkapasitet: {{listing.vehicle?.maxFuel}} L </mat-list-item>
               <mat-list-item role="listitem">Rekkevidde: {{listing.vehicle?.maxKmTank}} km </mat-list-item>
               <mat-list-item role="listitem">Effekt: {{listing.vehicle?.typeData?.engineEffect}}</mat-list-item>
